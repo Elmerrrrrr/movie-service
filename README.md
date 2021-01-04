@@ -1,2 +1,2 @@
 # movie-service
-Final Project - Netflix clone -Backend
+Final Project - Netflix clone - Backend
