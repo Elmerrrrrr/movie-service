@@ -1,4 +1,4 @@
-package netflixclone.NetflixAssignment.feignclient.genre;
+package netflixclone.NetflixAssignment.feignclient.movieGenres;
 
 
 public class Genre {
