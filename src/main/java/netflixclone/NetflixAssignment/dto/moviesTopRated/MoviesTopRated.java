@@ -1,4 +1,4 @@
-package netflixclone.NetflixAssignment.feignclient.moviesTopRated;
+package netflixclone.NetflixAssignment.dto.moviesTopRated;
 
 import java.util.List;
 

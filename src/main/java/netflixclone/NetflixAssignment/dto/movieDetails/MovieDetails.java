@@ -1,4 +1,4 @@
-package netflixclone.NetflixAssignment.feignclient.movieDetails;
+package netflixclone.NetflixAssignment.dto.movieDetails;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class MovieDetails {
     private String backdropPath;
     private Object belongsToCollection;
     private Integer budget;
-    private List<movieDetails.Genre> genres = null;
+    private List<Genre> genres = null;
     private String homepage;
     private Integer id;
     private String imdbId;
@@ -46,7 +46,7 @@ public class MovieDetails {
         return budget;
     }
 
-    public List<movieDetails.Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 

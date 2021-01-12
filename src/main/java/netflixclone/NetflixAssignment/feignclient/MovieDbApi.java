@@ -1,10 +1,11 @@
 package netflixclone.NetflixAssignment.feignclient;
 
 
-import netflixclone.NetflixAssignment.feignclient.movieDetails.MovieDetails;
-import netflixclone.NetflixAssignment.feignclient.movieGenres.MovieGenres;
-import netflixclone.NetflixAssignment.feignclient.moviesByGenres.MoviesByGenre;
-import netflixclone.NetflixAssignment.feignclient.moviesTopRated.MoviesTopRated;
+import netflixclone.NetflixAssignment.view.searchResults.SearchResults;
+import netflixclone.NetflixAssignment.view.movieDetails.MovieDetails;
+import netflixclone.NetflixAssignment.view.movieGenres.MovieGenres;
+import netflixclone.NetflixAssignment.view.moviesByGenres.MoviesByGenre;
+import netflixclone.NetflixAssignment.view.moviesTopRated.MoviesTopRated;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,14 @@ public interface MovieDbApi {
 
     //Movie by genre request
     @GetMapping("discover/movie")
-    public MoviesByGenre getMoviesByGenre(@RequestParam(value="api_key") String api_key, @RequestParam(value="with_genres") String genreId);
+    MoviesByGenre getMoviesByGenre(@RequestParam(value="api_key") String api_key, @RequestParam(value="with_genres") String genreId);
+
+
+    //https://api.themoviedb.org/3/search/multi?api_key=4b9e0a6d10b150a86ea776f903aaaf8c&language=en-US&query=brad%20pitt&page=1&include_adult=false
+    // Multi search request
+    @GetMapping("search/multi")
+    public SearchResults getSearchResult(@RequestParam(value="api_key") String api_key, @RequestParam(value="language") String language, @RequestParam("query") String query);
+
 
 }
 

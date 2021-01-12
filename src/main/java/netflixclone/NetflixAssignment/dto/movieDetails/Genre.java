@@ -1,5 +1,5 @@
 
-package movieDetails;
+package netflixclone.NetflixAssignment.dto.movieDetails;
 
 
 public class Genre {

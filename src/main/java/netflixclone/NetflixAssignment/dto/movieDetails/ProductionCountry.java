@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.feignclient.movieDetails;
+package netflixclone.NetflixAssignment.dto.movieDetails;
 
 
 public class ProductionCountry {

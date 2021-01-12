@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.feignclient.moviesByGenres;
+package netflixclone.NetflixAssignment.dto.moviesByGenres;
 
 import java.util.List;
 
