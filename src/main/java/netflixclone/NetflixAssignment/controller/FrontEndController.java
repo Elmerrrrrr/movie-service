@@ -118,6 +118,16 @@ public class FrontEndController {
     }
 
 
+    // Disney movies request
+    @GetMapping("/movies/disney")
+    public MoviesByPeriod getMoviesDisney(){
+        System.out.println(" ---> Disney movies request from frontend");
+        return movieDbApi.getMoviesDisney(api_key, lang, include_video,"134209", with_original_language);
+    }
+
+    // Movies with actor / actress
+
+
 
     /* ------------------Search Request------------------ */
 
@@ -127,6 +137,15 @@ public class FrontEndController {
         System.out.println(" ---> Search request from frontend");
         return movieDbApi.getSearchResult(api_key, lang, query);
     }
+
+    // Search company request from frontend
+    @GetMapping("/search/company/{query}")
+    public SearchResults getSearchCompanyResults(@PathVariable String query){ //update return type!
+        System.out.println(" ---> Search company request from frontend");
+        return movieDbApi.getSearchCompanyResults(api_key, query);
+    }
+
+
 
 
 }

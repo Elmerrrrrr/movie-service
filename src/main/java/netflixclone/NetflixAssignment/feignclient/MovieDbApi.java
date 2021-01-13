@@ -20,8 +20,8 @@ public interface MovieDbApi {
     //Top rated movies
     @GetMapping("movie/top_rated")
     MoviesTopRated getTopRatedMovies(@RequestParam(value="api_key") String api_key,
-                                            @RequestParam(value="language") String language,
-                                            @RequestParam(value="page") String pageNr);
+                                     @RequestParam(value="language") String language,
+                                     @RequestParam(value="page") String pageNr);
 
 
 
@@ -30,16 +30,16 @@ public interface MovieDbApi {
     // Single movie details request
     @GetMapping("movie/{movieId}")
     MovieDetails getMovieDetails(@PathVariable("movieId") String movieId,
-                                        @RequestParam(value="api_key") String api_key,
-                                        @RequestParam(value="language") String language,
-                                        @RequestParam(value="video") String inclVideo);
+                                 @RequestParam(value="api_key") String api_key,
+                                 @RequestParam(value="language") String language,
+                                 @RequestParam(value="video") String inclVideo);
 
     // Intro banner request
     @GetMapping("discover/tv")
     BannerIntroMovies getBannerIntroMovie(@RequestParam(value="api_key") String api_key,
-                                                 @RequestParam(value="language") String language,
-                                                 @RequestParam(value="include_video") String inclVideo,
-                                                 @RequestParam(value="with_networks") String networks);
+                                          @RequestParam(value="language") String language,
+                                          @RequestParam(value="include_video") String inclVideo,
+                                          @RequestParam(value="with_networks") String networks);
 
 
 
@@ -48,7 +48,7 @@ public interface MovieDbApi {
     // Movie genres overview
     @GetMapping("genre/movie/list")
     MovieGenres getMovieGenres(@RequestParam(value="api_key") String api_key,
-                                      @RequestParam(value="language") String language);
+                               @RequestParam(value="language") String language);
 
 
     //Movie by genre request
@@ -66,29 +66,44 @@ public interface MovieDbApi {
    //80’s movies request
    @GetMapping("/discover/movie")
   MoviesByPeriod getMovies80s(@RequestParam(value="api_key") String api_key,
-                                      @RequestParam(value="language") String language,
-                                      @RequestParam(value="include_video") String inclVideo,
-                                      @RequestParam(value="primary_release_date.gte") String gteDate,
-                                      @RequestParam(value="primary_release_date.lte") String lteDate,
-                                      @RequestParam(value="with_original_language") String original_language);
+                              @RequestParam(value="language") String language,
+                              @RequestParam(value="include_video") String inclVideo,
+                              @RequestParam(value="primary_release_date.gte") String gteDate,
+                              @RequestParam(value="primary_release_date.lte") String lteDate,
+                              @RequestParam(value="with_original_language") String original_language);
 
     //90’s movies request
     @GetMapping("/discover/movie")
     MoviesByPeriod getMovies90s(@RequestParam(value="api_key") String api_key,
-                                       @RequestParam(value="language") String language,
-                                       @RequestParam(value="include_video") String inclVideo,
-                                       @RequestParam(value="primary_release_date.gte") String gteDate,
-                                       @RequestParam(value="primary_release_date.lte") String lteDate,
-                                       @RequestParam(value="with_original_language") String original_language);
+                                @RequestParam(value="language") String language,
+                                @RequestParam(value="include_video") String inclVideo,
+                                @RequestParam(value="primary_release_date.gte") String gteDate,
+                                @RequestParam(value="primary_release_date.lte") String lteDate,
+                                @RequestParam(value="with_original_language") String original_language);
     //00’s movies request
     @GetMapping("/discover/movie")
     MoviesByPeriod getMovies00s(@RequestParam(value="api_key") String api_key,
-                                       @RequestParam(value="language") String language,
-                                       @RequestParam(value="include_video") String inclVideo,
-                                       @RequestParam(value="primary_release_date.gte") String gteDate,
-                                       @RequestParam(value="primary_release_date.lte") String lteDate,
-                                       @RequestParam(value="with_original_language") String original_language);
+                                @RequestParam(value="language") String language,
+                                @RequestParam(value="include_video") String inclVideo,
+                                @RequestParam(value="primary_release_date.gte") String gteDate,
+                                @RequestParam(value="primary_release_date.lte") String lteDate,
+                                @RequestParam(value="with_original_language") String original_language);
 
+    //Disney movies request
+    @GetMapping("/discover/movie")
+    MoviesByPeriod getMoviesDisney(@RequestParam(value="api_key") String api_key,
+                                   @RequestParam(value="language") String language,
+                                   @RequestParam(value="include_video") String inclVideo,
+                                   @RequestParam(value="with_companies") String withCompanies,
+                                   @RequestParam(value="with_original_language") String original_language);
+
+
+    // Movies with actor / actress
+//    @GetMapping("/discover/movie")
+//    MoviesByPeriod getMoviesActor(@RequestParam(value="api_key") String api_key,
+//                                   @RequestParam(value="language") String language,
+//                                   @RequestParam(value="include_video") String inclVideo);
+//
 
 
 
@@ -97,8 +112,13 @@ public interface MovieDbApi {
     // Multi search request
     @GetMapping("search/multi")
     SearchResults getSearchResult(@RequestParam(value="api_key") String api_key,
-                                         @RequestParam(value="language") String language,
-                                         @RequestParam("query") String query);
+                                  @RequestParam(value="language") String language,
+                                  @RequestParam("query") String query);
+
+    //Company search request
+    @GetMapping("search/company")
+    SearchResults getSearchCompanyResults(@RequestParam(value="api_key") String api_key,
+                                          @RequestParam("query") String query);
 
 
 }
