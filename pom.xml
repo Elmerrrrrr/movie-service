@@ -15,7 +15,7 @@
 	<description>A Netflix clone. Final assignment.</description>
 
 	<properties>
-		<java.version>15</java.version>
+		<java.version>11</java.version>
 		<spring-cloud.version>2020.0.0</spring-cloud.version>
 	</properties>
 
@@ -53,7 +53,37 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
+				<configuration>
+
+					<mainClass>netflixclone.NetflixAssignment.NetflixAssignmentApplication</mainClass>
+
+				</configuration>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>netflixclone.NetflixAssignment.NetflixAssignmentApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+
 		</plugins>
 	</build>
 
