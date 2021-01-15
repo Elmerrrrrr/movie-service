@@ -42,4 +42,5 @@ public class SearchResults {
         this.totalResults = totalResults;
     }
 
+
 }

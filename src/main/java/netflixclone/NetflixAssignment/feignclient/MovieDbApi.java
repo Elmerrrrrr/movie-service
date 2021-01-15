@@ -8,6 +8,7 @@ import netflixclone.NetflixAssignment.dto.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.dto.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.dto.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.dto.moviesTopRated.MoviesTopRated;
+import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,11 +54,11 @@ public interface MovieDbApi {
 
     //Movie by genre request
     @GetMapping("discover/movie")
-    MoviesByGenre getMoviesByGenre(@RequestParam(value="api_key") String api_key,
-                                   @RequestParam(value="with_genres") String genreId,
-                                   @RequestParam(value="language") String language,
-                                   @RequestParam(value="include_video") String inclVideo,
-                                   @RequestParam(value="with_original_language") String original_language);
+    MoviesByGenreView getMoviesByGenre(@RequestParam(value="api_key") String api_key,
+                                       @RequestParam(value="with_genres") String genreId,
+                                       @RequestParam(value="language") String language,
+                                       @RequestParam(value="include_video") String inclVideo,
+                                       @RequestParam(value="with_original_language") String original_language);
 
 
 
@@ -93,17 +94,18 @@ public interface MovieDbApi {
     @GetMapping("/discover/movie")
     MoviesByPeriod getMoviesDisney(@RequestParam(value="api_key") String api_key,
                                    @RequestParam(value="language") String language,
-                                   @RequestParam(value="include_video") String inclVideo,
-                                   @RequestParam(value="with_companies") String withCompanies,
-                                   @RequestParam(value="with_original_language") String original_language);
+                                  // @RequestParam(value="include_video") String inclVideo,
+                                   @RequestParam(value="with_companies") String withCompanies
+                                  // @RequestParam(value="with_original_language") String original_language
+                                    );
 
 
     // Movies with actor / actress
-//    @GetMapping("/discover/movie")
-//    MoviesByPeriod getMoviesActor(@RequestParam(value="api_key") String api_key,
-//                                   @RequestParam(value="language") String language,
-//                                   @RequestParam(value="include_video") String inclVideo);
-//
+    @GetMapping("/discover/movie")
+    MoviesByPeriod getMoviesByActor(@RequestParam(value="api_key") String api_key,
+                                   @RequestParam(value="language") String language,
+                                   @RequestParam(value="with_cast") String cast);
+
 
 
 
@@ -118,7 +120,8 @@ public interface MovieDbApi {
     //Company search request
     @GetMapping("search/company")
     SearchResults getSearchCompanyResults(@RequestParam(value="api_key") String api_key,
-                                          @RequestParam("query") String query);
+                                          @RequestParam("query") String companyId);
+
 
 
 }
