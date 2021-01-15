@@ -54,11 +54,12 @@ public interface MovieDbApi {
 
     //Movie by genre request
     @GetMapping("discover/movie")
-    MoviesByGenreView getMoviesByGenre(@RequestParam(value="api_key") String api_key,
-                                       @RequestParam(value="with_genres") String genreId,
-                                       @RequestParam(value="language") String language,
-                                       @RequestParam(value="include_video") String inclVideo,
-                                       @RequestParam(value="with_original_language") String original_language);
+    MoviesByGenre getMoviesByGenre(@RequestParam(value="api_key") String api_key,
+                                       @RequestParam(value="with_genres") String genreId
+                                     //  @RequestParam(value="language") String language,
+                                     //  @RequestParam(value="include_video") String inclVideo,
+                                      // @RequestParam(value="with_original_language") String original_language
+                                       );
 
 
 

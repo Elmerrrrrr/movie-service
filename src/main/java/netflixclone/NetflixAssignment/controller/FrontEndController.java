@@ -36,7 +36,8 @@ public class FrontEndController {
     @Autowired
     private MovieDbApi movieDbApi;
 
-
+    @Autowired
+    private MovieService movieService;
 
 
     // Top Rated movie request from frontend
@@ -74,24 +75,26 @@ public class FrontEndController {
     }
 
 
-    // Movies by genre request from frontend
-    @GetMapping("/movies/genre/{genreId}")
-    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
-        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-//        MoviesByGenre newMoviesByGenre = new MoviesByGenre();
-//        newMoviesByGenre.getResults();
-        return movieDbApi.getMoviesByGenre(api_key, genreId, lang, include_video, with_original_language);
-    }
-
-
-//-----------------------------------Via Service class-------------------------------------------
-
 //    // Movies by genre request from frontend
 //    @GetMapping("/movies/genre/{genreId}")
 //    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
 //        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-//        return MovieService.getMoviesByGenre(api_key, genreId);
+////        MoviesByGenre newMoviesByGenre = new MoviesByGenre();
+////        newMoviesByGenre.getResults();
+//        return movieDbApi.getMoviesByGenre(api_key, genreId, lang, include_video, with_original_language);
 //    }
+
+
+//-----------------------------------Via Service class-------------------------------------------
+
+    // Movies by genre request from frontend
+    @GetMapping("/movies/genre/{genreId}")
+    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
+
+        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
+
+        return movieService.getMoviesByGenre(api_key, genreId);
+    }
 //-----------------------------------------------------------------------------------------------
 
 
