@@ -1,14 +1,14 @@
 package netflixclone.NetflixAssignment.feignclient;
 
 
-import netflixclone.NetflixAssignment.dto.moviesBannerIntro.BannerIntroMovies;
-import netflixclone.NetflixAssignment.dto.moviesByPeriod.MoviesByPeriod;
-import netflixclone.NetflixAssignment.dto.searchResults.SearchResults;
-import netflixclone.NetflixAssignment.dto.movieDetails.MovieDetails;
-import netflixclone.NetflixAssignment.dto.movieGenres.MovieGenres;
-import netflixclone.NetflixAssignment.dto.moviesByGenres.MoviesByGenre;
-import netflixclone.NetflixAssignment.dto.moviesTopRated.MoviesTopRated;
-import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
+import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
+import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
+import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
+import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
+import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
+import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
+import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
+import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +23,13 @@ public interface MovieDbApi {
     MoviesTopRated getTopRatedMovies(@RequestParam(value="api_key") String api_key,
                                      @RequestParam(value="language") String language,
                                      @RequestParam(value="page") String pageNr);
+
+   // https://api.themoviedb.org/3/movie/550/videos?api_key=4b9e0a6d10b150a86ea776f903aaaf8c&language=en-US
+    // Movie trailer request
+    @GetMapping("movie/{movieId}/videos")
+    MovieTrailer getMovieTrailer(@PathVariable("movieId") int movieId,
+                                 @RequestParam(value="api_key") String api_key,
+                                 @RequestParam(value="language") String language);
 
 
 

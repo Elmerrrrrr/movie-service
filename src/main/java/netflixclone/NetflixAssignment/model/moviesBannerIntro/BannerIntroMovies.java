@@ -1,14 +1,17 @@
 
-package netflixclone.NetflixAssignment.dto.moviesByGenres;
+package netflixclone.NetflixAssignment.model.moviesBannerIntro;
+
 
 import java.util.List;
 
-public class MoviesByGenre {
+
+public class BannerIntroMovies {
 
     private Integer page;
     private List<Result> results;
     private Integer totalPages;
     private Integer totalResults;
+
 
     public Integer getPage() {
         return page;
@@ -18,11 +21,9 @@ public class MoviesByGenre {
         this.page = page;
     }
 
-
     public List<Result> getResults() {
         return results;
     }
-
 
     public void setResults(List<Result> results) {
         this.results = results;
@@ -43,5 +44,6 @@ public class MoviesByGenre {
     public void setTotalResults(Integer totalResults) {
         this.totalResults = totalResults;
     }
+
 
 }

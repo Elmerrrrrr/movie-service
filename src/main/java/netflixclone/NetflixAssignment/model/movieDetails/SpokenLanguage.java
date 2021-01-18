@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.dto.movieDetails;
+package netflixclone.NetflixAssignment.model.movieDetails;
 
 
 public class SpokenLanguage {

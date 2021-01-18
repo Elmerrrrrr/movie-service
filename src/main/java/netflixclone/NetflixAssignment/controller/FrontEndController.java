@@ -1,22 +1,17 @@
 package netflixclone.NetflixAssignment.controller;
 
-import netflixclone.NetflixAssignment.dto.moviesBannerIntro.BannerIntroMovies;
-import netflixclone.NetflixAssignment.dto.moviesByPeriod.MoviesByPeriod;
+import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
+import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
-import netflixclone.NetflixAssignment.dto.moviesByGenres.MoviesByGenre;
-import netflixclone.NetflixAssignment.dto.movieDetails.MovieDetails;
-import netflixclone.NetflixAssignment.dto.movieGenres.MovieGenres;
-import netflixclone.NetflixAssignment.dto.moviesTopRated.MoviesTopRated;
+import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
+import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
+import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.service.MovieService;
-import netflixclone.NetflixAssignment.dto.searchResults.SearchResults;
+import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -96,6 +91,9 @@ public class FrontEndController {
         return movieService.getMoviesByGenre(api_key, genreId);
     }
 //-----------------------------------------------------------------------------------------------
+
+
+
 
 
 

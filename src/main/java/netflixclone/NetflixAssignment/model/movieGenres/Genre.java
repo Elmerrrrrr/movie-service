@@ -1,4 +1,4 @@
-package netflixclone.NetflixAssignment.dto.movieGenres;
+package netflixclone.NetflixAssignment.model.movieGenres;
 
 
 public class Genre {

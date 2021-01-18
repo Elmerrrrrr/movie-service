@@ -1,23 +1,22 @@
-
-package netflixclone.NetflixAssignment.dto.searchResults;
+package netflixclone.NetflixAssignment.model.moviesByPeriod;
 
 import java.util.List;
 
-public class KnownFor {
+public class Result {
 
     private Boolean adult;
-    private Object backdropPath;
-    private List<Integer> genreIds = null;
+    private String backdropPath;
+    private List<Integer> genreIds;
     private Integer id;
-    private String mediaType;
     private String originalLanguage;
     private String originalTitle;
     private String overview;
+    private Float popularity;
     private String posterPath;
     private String releaseDate;
     private String title;
     private Boolean video;
-    private Integer voteAverage;
+    private Float voteAverage;
     private Integer voteCount;
 
     public Boolean getAdult() {
@@ -28,11 +27,11 @@ public class KnownFor {
         this.adult = adult;
     }
 
-    public Object getBackdropPath() {
+    public String getBackdropPath() {
         return backdropPath;
     }
 
-    public void setBackdropPath(Object backdropPath) {
+    public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
     }
 
@@ -50,14 +49,6 @@ public class KnownFor {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getMediaType() {
-        return mediaType;
-    }
-
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
     }
 
     public String getOriginalLanguage() {
@@ -82,6 +73,14 @@ public class KnownFor {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public Float getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Float popularity) {
+        this.popularity = popularity;
     }
 
     public String getPosterPath() {
@@ -116,11 +115,11 @@ public class KnownFor {
         this.video = video;
     }
 
-    public Integer getVoteAverage() {
+    public Float getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Integer voteAverage) {
+    public void setVoteAverage(Float voteAverage) {
         this.voteAverage = voteAverage;
     }
 
@@ -131,5 +130,8 @@ public class KnownFor {
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
-
 }
+
+
+
+

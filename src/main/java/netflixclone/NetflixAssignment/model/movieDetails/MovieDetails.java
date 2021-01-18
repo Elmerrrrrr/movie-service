@@ -1,4 +1,4 @@
-package netflixclone.NetflixAssignment.dto.movieDetails;
+package netflixclone.NetflixAssignment.model.movieDetails;
 
 import java.util.List;
 

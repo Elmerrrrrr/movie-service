@@ -1,12 +1,14 @@
+package netflixclone.NetflixAssignment.model.moviesByPeriod;
 
-package netflixclone.NetflixAssignment.dto.searchResults;
+import netflixclone.NetflixAssignment.model.moviesByGenres.Result;
 
 import java.util.List;
 
-public class SearchResults {
+public class MoviesByPeriod {
+
 
     private Integer page;
-    private List<Result> results = null;
+    private List<Result> results;
     private Integer totalPages;
     private Integer totalResults;
 
@@ -41,5 +43,7 @@ public class SearchResults {
     public void setTotalResults(Integer totalResults) {
         this.totalResults = totalResults;
     }
+
+
 
 }

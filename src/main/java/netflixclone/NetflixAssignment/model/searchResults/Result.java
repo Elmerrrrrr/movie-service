@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.dto.searchResults;
+package netflixclone.NetflixAssignment.model.searchResults;
 
 import java.util.List;
 

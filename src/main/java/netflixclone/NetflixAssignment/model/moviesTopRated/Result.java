@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.dto.moviesTopRated;
+package netflixclone.NetflixAssignment.model.moviesTopRated;
 
 import java.util.List;
 

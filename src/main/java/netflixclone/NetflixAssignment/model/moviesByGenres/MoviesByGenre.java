@@ -1,15 +1,14 @@
-package netflixclone.NetflixAssignment.view.moviesByGenreView;
+
+package netflixclone.NetflixAssignment.model.moviesByGenres;
 
 import java.util.List;
 
-public class MoviesByGenreView {
+public class MoviesByGenre {
 
     private Integer page;
     private List<Result> results;
     private Integer totalPages;
     private Integer totalResults;
-
-
 
     public Integer getPage() {
         return page;
@@ -19,9 +18,11 @@ public class MoviesByGenreView {
         this.page = page;
     }
 
+
     public List<Result> getResults() {
         return results;
     }
+
 
     public void setResults(List<Result> results) {
         this.results = results;
@@ -42,4 +43,5 @@ public class MoviesByGenreView {
     public void setTotalResults(Integer totalResults) {
         this.totalResults = totalResults;
     }
+
 }

@@ -1,17 +1,14 @@
 
-package netflixclone.NetflixAssignment.dto.moviesBannerIntro;
-
+package netflixclone.NetflixAssignment.model.searchResults;
 
 import java.util.List;
 
-
-public class BannerIntroMovies {
+public class SearchResults {
 
     private Integer page;
-    private List<Result> results;
+    private List<Result> results = null;
     private Integer totalPages;
     private Integer totalResults;
-
 
     public Integer getPage() {
         return page;
@@ -44,6 +41,5 @@ public class BannerIntroMovies {
     public void setTotalResults(Integer totalResults) {
         this.totalResults = totalResults;
     }
-
 
 }

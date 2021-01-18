@@ -1,31 +1,25 @@
-
 package netflixclone.NetflixAssignment.view.moviesByGenreView;
 
-import java.util.List;
 
 public class Result {
 
-    private Boolean adult;
     private String backdropPath;
-    private List<Integer> genreIds;
     private Integer id;
     private String originalLanguage;
     private String originalTitle;
     private String overview;
-    private Float popularity;
     private String posterPath;
     private String releaseDate;
     private String title;
-    private Boolean video;
-    private Float voteAverage;
-    private Integer voteCount;
+    private String trailer; //added in service class
 
-    public Boolean getAdult() {
-        return adult;
+
+    public String getTrailer() {
+        return trailer;
     }
 
-    public void setAdult(Boolean adult) {
-        this.adult = adult;
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 
     public String getBackdropPath() {
@@ -34,14 +28,6 @@ public class Result {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
-    }
-
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
-
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
     }
 
     public Integer getId() {
@@ -76,14 +62,6 @@ public class Result {
         this.overview = overview;
     }
 
-    public Float getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(Float popularity) {
-        this.popularity = popularity;
-    }
-
     public String getPosterPath() {
         return posterPath;
     }
@@ -108,28 +86,6 @@ public class Result {
         this.title = title;
     }
 
-    public Boolean getVideo() {
-        return video;
-    }
 
-    public void setVideo(Boolean video) {
-        this.video = video;
-    }
-
-    public Float getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(Float voteAverage) {
-        this.voteAverage = voteAverage;
-    }
-
-    public Integer getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
-    }
 
 }

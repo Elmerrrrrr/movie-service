@@ -1,23 +1,23 @@
 
-package netflixclone.NetflixAssignment.dto.moviesByGenres;
+package netflixclone.NetflixAssignment.model.searchResults;
 
 import java.util.List;
 
-public class Result {
+public class KnownFor {
 
     private Boolean adult;
-    private String backdropPath;
-    private List<Integer> genreIds;
+    private Object backdropPath;
+    private List<Integer> genreIds = null;
     private Integer id;
+    private String mediaType;
     private String originalLanguage;
     private String originalTitle;
     private String overview;
-    private Float popularity;
     private String posterPath;
     private String releaseDate;
     private String title;
     private Boolean video;
-    private Float voteAverage;
+    private Integer voteAverage;
     private Integer voteCount;
 
     public Boolean getAdult() {
@@ -28,11 +28,11 @@ public class Result {
         this.adult = adult;
     }
 
-    public String getBackdropPath() {
+    public Object getBackdropPath() {
         return backdropPath;
     }
 
-    public void setBackdropPath(String backdropPath) {
+    public void setBackdropPath(Object backdropPath) {
         this.backdropPath = backdropPath;
     }
 
@@ -50,6 +50,14 @@ public class Result {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public String getOriginalLanguage() {
@@ -74,14 +82,6 @@ public class Result {
 
     public void setOverview(String overview) {
         this.overview = overview;
-    }
-
-    public Float getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(Float popularity) {
-        this.popularity = popularity;
     }
 
     public String getPosterPath() {
@@ -116,11 +116,11 @@ public class Result {
         this.video = video;
     }
 
-    public Float getVoteAverage() {
+    public Integer getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Float voteAverage) {
+    public void setVoteAverage(Integer voteAverage) {
         this.voteAverage = voteAverage;
     }
 

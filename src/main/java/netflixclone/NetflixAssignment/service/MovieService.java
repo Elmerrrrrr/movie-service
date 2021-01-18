@@ -1,13 +1,9 @@
 package netflixclone.NetflixAssignment.service;
 
-import netflixclone.NetflixAssignment.dto.movieGenres.MovieGenres;
-import netflixclone.NetflixAssignment.dto.moviesBannerIntro.BannerIntroMovies;
-import netflixclone.NetflixAssignment.dto.moviesByGenres.MoviesByGenre;
-import netflixclone.NetflixAssignment.dto.moviesByPeriod.MoviesByPeriod;
-import netflixclone.NetflixAssignment.dto.moviesTopRated.MoviesTopRated;
-import netflixclone.NetflixAssignment.dto.searchResults.SearchResults;
+import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
+import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
+import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
-import netflixclone.NetflixAssignment.view.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,33 +44,47 @@ public class MovieService {
 
 
 
-
-
-    //-----------------------------------------------------------------------------------------------
-
-
-
-
-
-    public  MoviesByGenreView getMoviesByGenre(String api_key, String genreId) {
+    public MoviesByGenreView getMoviesByGenre(String api_key, String genreId) {
 
         MoviesByGenre dtoObject = movieDbApi.getMoviesByGenre(api_key, genreId);
 
+
         MoviesByGenreView viewObject = new MoviesByGenreView();
-        Result result =new Result();
-        result.setOriginalTitle(dtoObject.getResults().get(0).getOriginalTitle());
         List<Result> newList = new ArrayList<>();
-        newList.add(result);
+        viewObject.setPage(dtoObject.getPage());
+        viewObject.setTotalPages(dtoObject.getTotalPages());
+        viewObject.setTotalResults(dtoObject.getTotalResults());
+
+        for (int i = 0; i<dtoObject.getResults().size(); i++) {
+
+            Result result = new Result();
+            result.setId(dtoObject.getResults().get(i).getId());
+            result.setTitle(dtoObject.getResults().get(i).getTitle());
+            result.setOriginalTitle(dtoObject.getResults().get(i).getOriginalTitle());
+            result.setOverview(dtoObject.getResults().get(i).getOverview());
+            result.setReleaseDate(dtoObject.getResults().get(i).getReleaseDate());
+            result.setOriginalLanguage(dtoObject.getResults().get(i).getOriginalLanguage());
+            result.setBackdropPath(dtoObject.getResults().get(i).getBackdropPath());
+            result.setPosterPath(dtoObject.getResults().get(i).getPosterPath());
+
+            //add trailer info
+            int movieId = dtoObject.getResults().get(i).getId();
+            MovieTrailer dtoTrailer = movieDbApi.getMovieTrailer(movieId,api_key,lang);
+            MovieTrailerView trailerView = new MovieTrailerView();
+
+            for (int j=0; j<dtoTrailer.getResults().size(); j++){
+                trailerView.setYoutubeId(dtoTrailer.getResults().get(j).getKey());
+            }
+            result.setTrailer(trailerView.getYoutubeId());
+
+
+            //add result object to the ArrayList
+            newList.add(result);
+        }
+
         viewObject.setResults(newList);
-
         return viewObject;
-
     }
-
-    //-----------------------------------------------------------------------------------------------
-
-
-
 
 
 
