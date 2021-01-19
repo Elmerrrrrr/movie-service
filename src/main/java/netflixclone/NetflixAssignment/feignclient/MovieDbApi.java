@@ -37,7 +37,7 @@ public interface MovieDbApi {
 
     // Single movie details request
     @GetMapping("movie/{movieId}")
-    MovieDetails getMovieDetails(@PathVariable("movieId") String movieId,
+    MovieDetails getMovieDetails(@PathVariable("movieId") int movieId,
                                  @RequestParam(value="api_key") String api_key,
                                  @RequestParam(value="language") String language,
                                  @RequestParam(value="video") String inclVideo);

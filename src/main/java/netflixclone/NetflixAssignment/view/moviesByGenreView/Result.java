@@ -12,7 +12,16 @@ public class Result {
     private String releaseDate;
     private String title;
     private String trailer; //added in service class
+    private String logoPath; //added in service class
 
+
+    public String getLogoPath() {
+        return logoPath;
+    }
+
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
+    }
 
     public String getTrailer() {
         return trailer;

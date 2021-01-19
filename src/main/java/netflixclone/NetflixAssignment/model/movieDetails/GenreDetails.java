@@ -2,7 +2,7 @@
 package netflixclone.NetflixAssignment.model.movieDetails;
 
 
-public class Genre {
+public class GenreDetails {
 
     private Integer id;
     private String name;

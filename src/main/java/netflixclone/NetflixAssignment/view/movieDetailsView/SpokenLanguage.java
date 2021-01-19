@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.view.movieDetails;
+package netflixclone.NetflixAssignment.view.movieDetailsView;
 
 
 public class SpokenLanguage {

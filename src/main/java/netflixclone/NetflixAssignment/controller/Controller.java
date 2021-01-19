@@ -1,25 +1,30 @@
 package netflixclone.NetflixAssignment.controller;
 
+
 import netflixclone.NetflixAssignment.feignclient.FanArtApi;
-import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
-import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
-import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
+import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
+import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
+import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
-import netflixclone.NetflixAssignment.service.MovieService;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
+import netflixclone.NetflixAssignment.service.MovieService;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController
-public class FrontEndController {
+//@CrossOrigin(origins = "http://localhost:3000")
+//@RestController
+public class Controller {
+
 
     private final String lang = "en-US";
     private final String include_adult = "false";
@@ -66,21 +71,12 @@ public class FrontEndController {
 
 
     // Single movie detail request from frontend
-     @GetMapping("/movie/detailss/{movieId}")
-     public MovieDetails getMovieDetailss(@PathVariable int movieId){
-         System.out.println(" ---> Movie detailss with id:"+ movieId +" requested from frontend");
-         return movieDbApi.getMovieDetails(movieId, api_key, lang, include_video);
-   }
-
-    //---------Via Service class-----------------
-
-    // Single movie detail request from frontend
     @GetMapping("/movie/details/{movieId}")
     public MovieDetailsView getMovieDetails(@PathVariable int movieId){
         System.out.println(" ---> Movie details with id:"+ movieId +" requested from frontend");
         return movieService.getMovieDetails(movieId);
     }
-//----------------------------------------------------
+
 
     // Get introBanner movie request from frontend
     @GetMapping("/movies/introBanner")
@@ -102,17 +98,7 @@ public class FrontEndController {
     }
 
 
-//    // Movies by genre request from frontend
-//    @GetMapping("/movies/genre/{genreId}")
-//    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
-//        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-////        MoviesByGenre newMoviesByGenre = new MoviesByGenre();
-////        newMoviesByGenre.getResults();
-//        return movieDbApi.getMoviesByGenre(api_key, genreId, lang, include_video, with_original_language);
-//    }
 
-
-//-----------------------------------Via Service class-------------------------------------------
 
     // Movies by genre request from frontend
     @GetMapping("/movies/genre/{genreId}")
@@ -122,10 +108,6 @@ public class FrontEndController {
 
         return movieService.getMoviesByGenre(api_key, genreId);
     }
-//-----------------------------------------------------------------------------------------------
-
-
-
 
 
 
@@ -187,6 +169,7 @@ public class FrontEndController {
         System.out.println(" ---> Search company request from frontend");
         return movieDbApi.getSearchCompanyResults(api_key, query);
     }
+
 
 
 
