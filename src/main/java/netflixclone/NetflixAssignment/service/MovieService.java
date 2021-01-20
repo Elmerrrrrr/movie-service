@@ -5,10 +5,15 @@ import netflixclone.NetflixAssignment.feignclient.FanArtApi;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
+import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
+import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 
+import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
+import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
+import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
@@ -58,7 +63,7 @@ public class MovieService {
           }
 
         return trailerView.getYoutubeId();
-    }
+    } //done
 
 
     public String getMovieLogo(int movieId){
@@ -73,52 +78,22 @@ public class MovieService {
             return "";
         } else
             return dtoImagesFA.getMovielogo().get(0).getUrl();
-    }
+    } //done
 
 
+     public MovieImagesFA getMovieImages(int id) {
 
-    public MoviesByGenreView getMoviesByGenre(String api_key, String genreId) {
-
-
-        MoviesByGenre dtoObject = movieDbApi.getMoviesByGenre(api_key, genreId);
-
-        MoviesByGenreView viewObject = new MoviesByGenreView();
-
-        List<Result> newList = new ArrayList<>();
-
-        viewObject.setPage(dtoObject.getPage());
-        viewObject.setTotalPages(dtoObject.getTotalPages());
-        viewObject.setTotalResults(dtoObject.getTotalResults());
-
-        for (int i = 0; i<dtoObject.getResults().size(); i++) {
-
-            Result result = new Result();
-            result.setId(dtoObject.getResults().get(i).getId());
-            result.setTitle(dtoObject.getResults().get(i).getTitle());
-            result.setOriginalTitle(dtoObject.getResults().get(i).getOriginalTitle());
-            result.setOverview(dtoObject.getResults().get(i).getOverview());
-            result.setReleaseDate(dtoObject.getResults().get(i).getReleaseDate());
-            result.setOriginalLanguage(dtoObject.getResults().get(i).getOriginalLanguage());
-            result.setBackdropPath(dtoObject.getResults().get(i).getBackdropPath());
-            result.setPosterPath(dtoObject.getResults().get(i).getPosterPath());
+         return fanArtApi.getMovieImages(id, api_keyFA);
+     } //done
 
 
-            int movieId = dtoObject.getResults().get(i).getId();
+    public MoviesTopRated getTopRatedMovies( String pageNr) {
 
-            //add trailer info
-            result.setTrailer(getMovieTrailer(movieId));
-            result.setLogoPath(getMovieLogo(movieId));
-
-            //add result object to the ArrayList
-            newList.add(result);
-        }
-
-        viewObject.setResults(newList);
-        return viewObject;
-    }
+        return movieDbApi.getTopRatedMovies(api_keyMD, lang, pageNr);
+    } //done
 
 
-
+    /* ------------------Single Movie Requests------------------ */
 
     public MovieDetailsView getMovieDetails(int movieId){
 
@@ -165,7 +140,93 @@ public class MovieService {
 
 
         return detailsMovieView;
+    } //done - finalized
+
+
+    public BannerIntroMovies getBannerIntroMovie(String s) {
+       //let this method return 1 random top movie
+        return movieDbApi.getBannerIntroMovie(api_keyMD, lang, include_video, "213");
+    } //done
+
+
+    /* ------------------Genre Requests------------------ */
+
+    public MovieGenres getMovieGenres() {
+        return movieDbApi.getMovieGenres(api_keyMD, lang); //done
+    }
+
+    public MoviesByGenreView getMoviesByGenre(String genreId) {
+
+
+        MoviesByGenre dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId);
+
+        MoviesByGenreView viewObject = new MoviesByGenreView();
+
+        List<Result> newList = new ArrayList<>();
+
+        viewObject.setPage(dtoObject.getPage());
+        viewObject.setTotalPages(dtoObject.getTotalPages());
+        viewObject.setTotalResults(dtoObject.getTotalResults());
+
+        for (int i = 0; i<dtoObject.getResults().size(); i++) {
+
+            Result result = new Result();
+            result.setId(dtoObject.getResults().get(i).getId());
+            result.setTitle(dtoObject.getResults().get(i).getTitle());
+            result.setOriginalTitle(dtoObject.getResults().get(i).getOriginalTitle());
+            result.setOverview(dtoObject.getResults().get(i).getOverview());
+            result.setReleaseDate(dtoObject.getResults().get(i).getReleaseDate());
+            result.setOriginalLanguage(dtoObject.getResults().get(i).getOriginalLanguage());
+            result.setBackdropPath(dtoObject.getResults().get(i).getBackdropPath());
+            result.setPosterPath(dtoObject.getResults().get(i).getPosterPath());
+
+
+            int movieId = dtoObject.getResults().get(i).getId();
+
+            //add trailer info
+            result.setTrailer(getMovieTrailer(movieId));
+            result.setLogoPath(getMovieLogo(movieId));
+
+            //add result object to the ArrayList
+            newList.add(result);
+        }
+
+        viewObject.setResults(newList);
+        return viewObject;
+    } //done - finalized
+
+
+
+    /* ------------------Categories Requests------------------ */
+
+    public MoviesByPeriod getMovies80s() {
+        return movieDbApi.getMovies80s(api_keyMD, lang, include_video,"1980-01-01", "1989-12-31" ,with_original_language );
+    }
+
+    public MoviesByPeriod getMovies90s() {
+        return movieDbApi.getMovies90s(api_keyMD, lang, include_video, "1990-01-01", "1999-12-31" ,with_original_language );
+    }
+
+    public MoviesByPeriod getMovies00s() {
+        return movieDbApi.getMovies00s(api_keyMD, lang, include_video,"2000-01-01", "2019-12-31" ,with_original_language);
+    }
+
+    public MoviesByPeriod getMoviesCompany(String companyId) {
+        return movieDbApi.getMoviesCompany(api_keyMD, lang, companyId);
+    }
+
+    public MoviesByPeriod getMoviesByActor(String actorId) {
+        return movieDbApi.getMoviesByActor(api_keyMD, lang, actorId);
     }
 
 
+    /* ------------------Search Request------------------ */
+
+    public SearchResults getSearchResult(String query) {
+        return movieDbApi.getSearchResult(api_keyMD, lang, query);
+    }
+
+    public SearchResults getSearchCompanyResults(String query) {
+        return movieDbApi.getSearchCompanyResults(api_keyMD, query);
+    }
 }

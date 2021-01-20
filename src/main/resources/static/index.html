@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NetfllixClone Backend endpoints</title>
+    <title>Backend - NetfllixClone Project 2021 </title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-<h1>NetfllixClone Backend endpoints</h1>
+<main>
+<h1>Backend - NetfllixClone Endpoints</h1>
+<h4>-Final project-</h4>
 
 <br>
 <h3>Movie</h3>
 <ul><li><a href="http://localhost:2021/movie/details/550" target="_blank">http://localhost:2021/movie/details/{movieId}</a></li></ul>
 <ul><li><a href="http://localhost:2021/movies/introBanner" target="_blank">http://localhost:2021/movies/introBanner</a></li></ul>
+<ul><li><a href="http://localhost:2021/movies/toprated/1" target="_blank">http://localhost:2021/movies/toprated/{pageNumber}</a></li></ul>
 <br>
 <h3>Genres</h3>
 <ul><li><a href="http://localhost:2021/movies/genre/99" target="_blank">http://localhost:2021/movies/genre/{genreId}</a></li></ul>
@@ -22,11 +24,17 @@
 <ul><li><a href="http://localhost:2021/movies/80s" target="_blank">http://localhost:2021/movies/80s</a></li></ul>
 <ul><li><a href="http://localhost:2021/movies/90s" target="_blank">http://localhost:2021/movies/90s</a></li></ul>
 <ul><li><a href="http://localhost:2021/movies/00s" target="_blank">http://localhost:2021/movies/00s</a></li></ul>
-<ul><li><a href="http://localhost:2021/movies/disney" target="_blank">http://localhost:2021/movies/disney</a> <----- correct ID number had to be found</li></ul>
+<ul><li><a href="http://localhost:2021/movies/company/134209" target="_blank">http://localhost:2021/movies/disney</a></li></ul>
 <br>
 <h3>Search</h3>
 <ul><li><a href="http://localhost:2021/search/something" target="_blank">http://localhost:2021/search/{query}</a></li></ul>
 <ul><li><a href="http://localhost:2021/search/company/134209" target="_blank">http://localhost:2021/search/company/{company ID number}</a></li></ul>
-
+<br>
+<h3>Logos</h3>
+    <p>The logos are included if available in the detailed movie request. Also in the movies by genrne view. They can be included anywhere on request.</p>
+<ul><li><a href="http://localhost:2021/movie/images/{id}" target="_blank">http://localhost:2021/movie/images/{movieId}</a></li></ul>
+<br>
+</main>
+<footer><p>Copyright 2021 - Developed by Backend Team: Elmerrr, Jouke and Sunny</p></footer>
 </body>
 </html>

@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
-//@CrossOrigin(origins = "http://localhost:3000")
-//@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
 public class Controller {
 
 
@@ -39,10 +39,11 @@ public class Controller {
     private String api_keyFA;
 
 
-    // Injecting Interface Feign Class
-    @Autowired
-    private MovieDbApi movieDbApi;
 
+   // @Autowired
+   // private MovieDbApi movieDbApi;
+
+    // Injecting Interface Feign Classes
     @Autowired
     private MovieService movieService;
 
@@ -56,7 +57,7 @@ public class Controller {
     @GetMapping("/movie/images/{id}")
     public MovieImagesFA getMovieImages(@PathVariable int id){
         System.out.println(" ---> Movie images requested from frontend");
-        return fanArtApi.getMovieImages(id, api_keyFA);
+        return movieService.getMovieImages(id);
     }
 
 
@@ -64,10 +65,8 @@ public class Controller {
     @GetMapping("/movies/toprated/{pageNr}")
     public MoviesTopRated getTopRatedMovies(@PathVariable String pageNr){
         System.out.println(" ---> Movies TopRated requested from frontend");
-        return movieDbApi.getTopRatedMovies(api_key, lang, pageNr);
+        return movieService.getTopRatedMovies(pageNr);
     }
-
-
 
 
     // Single movie detail request from frontend
@@ -82,7 +81,7 @@ public class Controller {
     @GetMapping("/movies/introBanner")
     public BannerIntroMovies getBannerIntroMovie(){
         System.out.println(" ---> Intro banner movie request from frontend");
-        return movieDbApi.getBannerIntroMovie(api_key, lang, include_video, "213");
+        return movieService.getBannerIntroMovie("213");
     }
 
 
@@ -94,10 +93,8 @@ public class Controller {
     @GetMapping("/movies/genres")
     public MovieGenres getMovieGenres(){
         System.out.println(" ---> Movies genre requested from frontend");
-        return movieDbApi.getMovieGenres(api_key, lang);
+        return movieService.getMovieGenres();
     }
-
-
 
 
     // Movies by genre request from frontend
@@ -106,7 +103,7 @@ public class Controller {
 
         System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
 
-        return movieService.getMoviesByGenre(api_key, genreId);
+        return movieService.getMoviesByGenre(genreId);
     }
 
 
@@ -117,29 +114,29 @@ public class Controller {
     @GetMapping("/movies/80s")
     public MoviesByPeriod getMovies80s(){
         System.out.println(" ---> 80’s movies request from frontend");
-        return movieDbApi.getMovies80s(api_key, lang, include_video,"1980-01-01", "1989-12-31" ,with_original_language );
+        return movieService.getMovies80s();
     }
 
     // 90’s movies request
     @GetMapping("/movies/90s")
     public MoviesByPeriod getMovies90s(){
         System.out.println(" ---> 90’s movies request from frontend");
-        return movieDbApi.getMovies90s(api_key, lang, include_video, "1990-01-01", "1999-12-31" ,with_original_language );
+        return movieService.getMovies90s();
     }
 
     // 00’s movies request
     @GetMapping("/movies/00s")
     public MoviesByPeriod getMovies00s(){
         System.out.println(" ---> 00’s movies request from frontend");
-        return movieDbApi.getMovies00s(api_key, lang, include_video,"2000-01-01", "2019-12-31" ,with_original_language);
+        return movieService.getMovies00s();
     }
 
 
     // Disney movies request
-    @GetMapping("/movies/disney")
-    public MoviesByPeriod getMoviesDisney(){
+    @GetMapping("/movies/company/{companyId}")
+    public MoviesByPeriod getMoviesDisney(@PathVariable String companyId){
         System.out.println(" ---> Disney movies request from frontend");
-        return movieDbApi.getMoviesDisney(api_key, lang, "134209");
+        return movieService.getMoviesCompany(companyId);// 134209 for disney?
     }
 
 
@@ -147,7 +144,7 @@ public class Controller {
     @GetMapping("/movies/{actorId}}")
     public MoviesByPeriod getMoviesByActor(@PathVariable String actorId){
         System.out.println(" ---> 00’s movies request from frontend");
-        return movieDbApi.getMoviesByActor(api_key, lang, actorId);
+        return movieService.getMoviesByActor(actorId);
     }
 
 
@@ -160,14 +157,14 @@ public class Controller {
     @GetMapping("/search/{query}")
     public SearchResults getSearchResult(@PathVariable String query){
         System.out.println(" ---> Search request from frontend");
-        return movieDbApi.getSearchResult(api_key, lang, query);
+        return movieService.getSearchResult(query);
     }
 
     // Search company request from frontend
     @GetMapping("/search/company/{query}") // company ID (number) is required here
     public SearchResults getSearchCompanyResults(@PathVariable String query){ //update return type!
         System.out.println(" ---> Search company request from frontend");
-        return movieDbApi.getSearchCompanyResults(api_key, query);
+        return movieService.getSearchCompanyResults(query);
     }
 
 

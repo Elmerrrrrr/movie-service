@@ -100,7 +100,7 @@ public interface MovieDbApi {
 
     //Disney movies request
     @GetMapping("/discover/movie")
-    MoviesByPeriod getMoviesDisney(@RequestParam(value="api_key") String api_key,
+    MoviesByPeriod getMoviesCompany(@RequestParam(value="api_key") String api_key,
                                    @RequestParam(value="language") String language,
                                   // @RequestParam(value="include_video") String inclVideo,
                                    @RequestParam(value="with_companies") String withCompanies

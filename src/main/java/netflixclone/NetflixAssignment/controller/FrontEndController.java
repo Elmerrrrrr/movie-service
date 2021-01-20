@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController
+//@CrossOrigin(origins = "http://localhost:3000")
+//@RestController
 public class FrontEndController {
 
     private final String lang = "en-US";
@@ -64,7 +64,6 @@ public class FrontEndController {
 
 
 
-
     // Single movie detail request from frontend
      @GetMapping("/movie/detailss/{movieId}")
      public MovieDetails getMovieDetailss(@PathVariable int movieId){
@@ -72,15 +71,6 @@ public class FrontEndController {
          return movieDbApi.getMovieDetails(movieId, api_key, lang, include_video);
    }
 
-    //---------Via Service class-----------------
-
-    // Single movie detail request from frontend
-    @GetMapping("/movie/details/{movieId}")
-    public MovieDetailsView getMovieDetails(@PathVariable int movieId){
-        System.out.println(" ---> Movie details with id:"+ movieId +" requested from frontend");
-        return movieService.getMovieDetails(movieId);
-    }
-//----------------------------------------------------
 
     // Get introBanner movie request from frontend
     @GetMapping("/movies/introBanner")
@@ -103,30 +93,13 @@ public class FrontEndController {
 
 
 //    // Movies by genre request from frontend
-//    @GetMapping("/movies/genre/{genreId}")
-//    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
+//    @GetMapping("/movies/genree/{genreId}")
+//    public MoviesByGenreView getMoviesByGenree(@PathVariable String genreId){
 //        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
 ////        MoviesByGenre newMoviesByGenre = new MoviesByGenre();
 ////        newMoviesByGenre.getResults();
-//        return movieDbApi.getMoviesByGenre(api_key, genreId, lang, include_video, with_original_language);
+//        return movieDbApi.getMoviesByGenre(api_key, genreId);
 //    }
-
-
-//-----------------------------------Via Service class-------------------------------------------
-
-    // Movies by genre request from frontend
-    @GetMapping("/movies/genre/{genreId}")
-    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
-
-        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-
-        return movieService.getMoviesByGenre(api_key, genreId);
-    }
-//-----------------------------------------------------------------------------------------------
-
-
-
-
 
 
     /* ------------------Categories Requests------------------ */
@@ -157,7 +130,7 @@ public class FrontEndController {
     @GetMapping("/movies/disney")
     public MoviesByPeriod getMoviesDisney(){
         System.out.println(" ---> Disney movies request from frontend");
-        return movieDbApi.getMoviesDisney(api_key, lang, "134209");
+        return movieDbApi.getMoviesCompany(api_key, lang, "134209");
     }
 
 
