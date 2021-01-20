@@ -26,6 +26,9 @@ public class Result {
     public Integer voteAverage;
     public Integer voteCount;
 
+
+
+
     public Boolean getAdult() {
         return adult;
     }
@@ -185,4 +188,7 @@ public class Result {
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
+
+
+
 }

@@ -26,11 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
 
-    private final String lang = "en-US";
-    private final String include_adult = "false";
-    private final String with_original_language = "en";
-    private final String include_video = "true";
-
 
     @Value("${tmdb.api_key}")
     private String api_key;
@@ -38,10 +33,6 @@ public class Controller {
     @Value("${fnrt.api_key}")
     private String api_keyFA;
 
-
-
-   // @Autowired
-   // private MovieDbApi movieDbApi;
 
     // Injecting Interface Feign Classes
     @Autowired
@@ -146,7 +137,6 @@ public class Controller {
         System.out.println(" ---> 00’s movies request from frontend");
         return movieService.getMoviesByActor(actorId);
     }
-
 
 
 
