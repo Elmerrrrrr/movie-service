@@ -9,6 +9,7 @@ import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
+import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.service.MovieService;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
@@ -41,6 +42,8 @@ public class Controller {
     @Autowired
     private FanArtApi fanArtApi;
 
+    @Autowired
+    private MovieDbApi movieDbApi;
 
 
 
@@ -49,6 +52,13 @@ public class Controller {
     public MovieImagesFA getMovieImages(@PathVariable int id){
         System.out.println(" ---> Movie images requested from frontend");
         return movieService.getMovieImages(id);
+    }
+
+    // Upcoming movies request from frontend
+    @GetMapping("movies/upcoming/{pageNr}")
+    public MoviesUpcoming getUpcomingMovies(@PathVariable String pageNr) {
+        System.out.println(" ---> Movies Upcoming requested from frontend and pageNr = " + pageNr);
+        return movieDbApi.getMoviesUpcoming("4b9e0a6d10b150a86ea776f903aaaf8c", "en-US", pageNr);
     }
 
 

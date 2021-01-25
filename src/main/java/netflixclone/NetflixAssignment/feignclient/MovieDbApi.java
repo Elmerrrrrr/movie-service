@@ -4,6 +4,7 @@ package netflixclone.NetflixAssignment.feignclient;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
 import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
+import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
@@ -16,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(url="https://api.themoviedb.org/3/",name = "MovieDataBaseClientApi")
 public interface MovieDbApi {
 
-
+    //Upcoming movies
+    @GetMapping("movie/upcoming")
+    MoviesUpcoming getMoviesUpcoming(@RequestParam(value="api_key") String api_key,
+                                     @RequestParam(value="language") String language,
+                                     @RequestParam(value="page") String pageNr);
 
     //Top rated movies
     @GetMapping("movie/top_rated")
@@ -24,8 +29,7 @@ public interface MovieDbApi {
                                      @RequestParam(value="language") String language,
                                      @RequestParam(value="page") String pageNr);
 
-   // https://api.themoviedb.org/3/movie/550/videos?api_key=4b9e0a6d10b150a86ea776f903aaaf8c&language=en-US
-    // Movie trailer request
+   // Movie trailer request
     @GetMapping("movie/{movieId}/videos")
     MovieTrailer getMovieTrailer(@PathVariable("movieId") int movieId,
                                  @RequestParam(value="api_key") String api_key,
