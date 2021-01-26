@@ -29,6 +29,16 @@ public class MovieDetails {
     private Boolean video;
     private Float voteAverage;
     private Integer voteCount;
+    private Credits credits;
+
+
+    public Credits getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Credits credits) {
+        this.credits = credits;
+    }
 
     public Boolean getAdult() {
         return adult;

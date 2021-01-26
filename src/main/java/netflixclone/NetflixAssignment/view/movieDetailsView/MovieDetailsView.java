@@ -29,9 +29,18 @@ public class MovieDetailsView {
  //   private Boolean video;
     private Integer voteCount;//
     private String trailer;//
-    public String movieLogoUrl;//
+    private String movieLogoUrl;//
+    private String director;
 
 
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
 
     public String getMovieLogoUrl() {
         return movieLogoUrl;

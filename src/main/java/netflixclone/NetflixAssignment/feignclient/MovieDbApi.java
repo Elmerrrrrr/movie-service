@@ -44,7 +44,9 @@ public interface MovieDbApi {
     MovieDetails getMovieDetails(@PathVariable("movieId") int movieId,
                                  @RequestParam(value="api_key") String api_key,
                                  @RequestParam(value="language") String language,
-                                 @RequestParam(value="video") String inclVideo);
+                                 @RequestParam(value="video") String inclVideo,
+                                 @RequestParam(value="append_to_response") String crew
+                                 );
 
     // Intro banner request
     @GetMapping("discover/tv")

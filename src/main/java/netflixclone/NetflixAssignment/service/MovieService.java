@@ -36,6 +36,7 @@ public class MovieService {
     private final String include_adult = "false";
     private final String with_original_language = "en";
     private final String include_video = "true";
+    private final String append_to_response = "credits";
 
 
 
@@ -69,11 +70,7 @@ public class MovieService {
     public String getMovieLogo(int movieId){
 
         MovieImagesFA dtoImagesFA = fanArtApi.getMovieImages(movieId, api_keyFA);
-//        MovieImagesFAView movieLogoView = new MovieImagesFAView();
-//        for (int i=0; i<dtoImagesFA.getMovielogo().size(); i++){
-//            movieLogoView.setMovieLogoUrl(dtoImagesFA.getMovielogo().get(i).getUrl());
-//        }
-        //return movieLogoView.getMovieLogoUrl();
+
         if (dtoImagesFA == null  || dtoImagesFA.getMovielogo() == null || dtoImagesFA.getMovielogo().size() == 0){
             return "";
         } else
@@ -97,7 +94,7 @@ public class MovieService {
 
     public MovieDetailsView getMovieDetails(int movieId){
 
-        MovieDetails dtoDetailsMovie = movieDbApi.getMovieDetails(movieId, api_keyMD, lang, include_video);
+        MovieDetails dtoDetailsMovie = movieDbApi.getMovieDetails(movieId, api_keyMD, lang, include_video, append_to_response);
         MovieDetailsView detailsMovieView = new MovieDetailsView();
 
         detailsMovieView.setOriginalLanguage(dtoDetailsMovie.getOriginalLanguage());
@@ -118,8 +115,6 @@ public class MovieService {
         detailsMovieView.setVoteCount(dtoDetailsMovie.getVoteCount());
 
 
-
-
         List<Genre> newGenreList = new ArrayList<>();
 
         for (int i = 0; i < dtoDetailsMovie.getGenres().size(); i++) {
@@ -132,11 +127,27 @@ public class MovieService {
         }
         detailsMovieView.setGenres(newGenreList);
 
+        //set directories
+        for (int i = 0; i <dtoDetailsMovie.getCredits().getCrew().size(); i++) {
+
+            if (dtoDetailsMovie.getCredits().getCrew().get(i).job.equals("Director")) {
+                detailsMovieView.setDirector(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
+                System.out.println(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
+            }
+        }
+
+
+
+
+
+
+
 
         //add trailer info
         detailsMovieView.setTrailer(getMovieTrailer(movieId));
         //add logo if available
         detailsMovieView.setMovieLogoUrl(getMovieLogo(movieId));
+
 
 
         return detailsMovieView;
@@ -145,6 +156,7 @@ public class MovieService {
 
     public BannerIntroMovies getBannerIntroMovie(String s) {
        //let this method return 1 random top movie
+        //logo+trailer info
         return movieDbApi.getBannerIntroMovie(api_keyMD, lang, include_video, "213");
     } //done
 
