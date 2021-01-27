@@ -191,6 +191,4 @@ public class MovieDetailsView {
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
-
-
 }

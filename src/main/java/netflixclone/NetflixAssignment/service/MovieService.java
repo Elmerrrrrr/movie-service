@@ -140,13 +140,14 @@ public class MovieService {
             castViewDetailList.setPopularity(dtoDetailsMovie.getCredits().getCast().get(i).getPopularity());
             castViewDetailList.setName(dtoDetailsMovie.getCredits().getCast().get(i).getName());
             castViewDetailList.setCharacter(dtoDetailsMovie.getCredits().getCast().get(i).getCharacter());
+            castViewDetailList.setCastId(dtoDetailsMovie.getCredits().getCast().get(i).getCastId());
+            castViewDetailList.setProfilePath(dtoDetailsMovie.getCredits().getCast().get(i).getProfilePath());
             newCastList.add(castViewDetailList);
-
+            System.out.println(dtoDetailsMovie.getCredits().getCast().get(i).getProfilePath());
 
         }
-        // in de view staat de setCast method
+        // in de view staat de setCast method, met de volgende regel stuur je het naar de front-end.
         detailsMovieView.setCast(newCastList);
-
 
 
 
