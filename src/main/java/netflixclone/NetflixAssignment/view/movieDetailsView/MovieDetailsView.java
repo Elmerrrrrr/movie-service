@@ -1,5 +1,7 @@
 package netflixclone.NetflixAssignment.view.movieDetailsView;
 
+import netflixclone.NetflixAssignment.model.movieDetails.Cast;
+
 import java.util.List;
 
 public class MovieDetailsView {
@@ -10,37 +12,49 @@ public class MovieDetailsView {
     private String releaseDate;//
     private Float voteAverage;//
     private String backdropPath;//
-//    private Object belongsToCollection;
     private Integer budget;//
     private Integer revenue;//
-    private List<Genre> genres = null;//
     private String homepage;//
     private String originalLanguage;//
     private String originalTitle;//
     private String overview;//
     private Float popularity;
     private String posterPath;//
-//    private List<ProductionCompany> productionCompanies = null;
-//    private List<ProductionCountry> productionCountries = null;
     private Integer runtime;//
- //   private List<SpokenLanguage> spokenLanguages = null;
- //   private String status;
- //   private String tagline;
- //   private Boolean video;
     private Integer voteCount;//
     private String trailer;//
     private String movieLogoUrl;//
     private String director;
 
+    // two lists.. Genre is in directory model and Cast in view?
+    private List<Genre> genres = null;//
+
+    private List<Cast> cast = null;//
 
 
+
+    // getters and setters for the lists, we also need the get methods
+    // if we want to display it on the frontend side!
+    public List<Cast> getCast() { return cast; }
+
+    public void setCast(List<Cast> cast) { this.cast = cast; }
+
+    public List<Genre> getGenres() { return genres; }
+
+    public void setGenres(List<Genre> genres) { this.genres = genres; }
+
+
+
+
+
+
+
+    // getters and setters for singular objects
     public String getDirector() {
         return director;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
-    }
+    public void setDirector(String director) { this.director = director; }
 
     public String getMovieLogoUrl() {
         return movieLogoUrl;
@@ -72,14 +86,6 @@ public class MovieDetailsView {
 
     public void setBudget(Integer budget) {
         this.budget = budget;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
     }
 
     public String getHomepage() {

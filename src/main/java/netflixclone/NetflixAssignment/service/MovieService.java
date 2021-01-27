@@ -1,29 +1,29 @@
 package netflixclone.NetflixAssignment.service;
 
-
 import netflixclone.NetflixAssignment.feignclient.FanArtApi;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
+// imports from model
+import netflixclone.NetflixAssignment.model.movieDetails.Cast;
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
 import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
-
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
+
+// imports from view
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +114,7 @@ public class MovieService {
         detailsMovieView.setVoteAverage(dtoDetailsMovie.getVoteAverage());
         detailsMovieView.setVoteCount(dtoDetailsMovie.getVoteCount());
 
-
+        // alright, so genre is an ArrayList, which we can fill
         List<Genre> newGenreList = new ArrayList<>();
 
         for (int i = 0; i < dtoDetailsMovie.getGenres().size(); i++) {
@@ -127,7 +127,32 @@ public class MovieService {
         }
         detailsMovieView.setGenres(newGenreList);
 
-        //set directories
+
+
+
+
+        // trying to get the cast
+        List<Cast> newCastList = new ArrayList<>();
+
+        for (int i = 0; i < dtoDetailsMovie.getCredits().getCast().size(); i++) {
+
+            Cast castViewDetailList = new Cast();
+            castViewDetailList.setPopularity(dtoDetailsMovie.getCredits().getCast().get(i).getPopularity());
+            castViewDetailList.setName(dtoDetailsMovie.getCredits().getCast().get(i).getName());
+            castViewDetailList.setCharacter(dtoDetailsMovie.getCredits().getCast().get(i).getCharacter());
+            newCastList.add(castViewDetailList);
+
+
+        }
+        // in de view staat de setCast method
+        detailsMovieView.setCast(newCastList);
+
+
+
+
+
+
+        // set director
         for (int i = 0; i <dtoDetailsMovie.getCredits().getCrew().size(); i++) {
 
             if (dtoDetailsMovie.getCredits().getCrew().get(i).job.equals("Director")) {
@@ -143,20 +168,23 @@ public class MovieService {
 
 
 
-        //add trailer info
+
+
+
+        // add trailer info
         detailsMovieView.setTrailer(getMovieTrailer(movieId));
-        //add logo if available
+        // add logo if available
         detailsMovieView.setMovieLogoUrl(getMovieLogo(movieId));
 
 
 
         return detailsMovieView;
-    } //done - finalized
+    } // done - finalized
 
 
     public BannerIntroMovies getBannerIntroMovie(String s) {
-       //let this method return 1 random top movie
-        //logo+trailer info
+        // let this method return 1 random top movie
+        // logo + trailer info
         return movieDbApi.getBannerIntroMovie(api_keyMD, lang, include_video, "213");
     } //done
 

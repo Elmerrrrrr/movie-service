@@ -29,16 +29,39 @@ public class MovieDetails {
     private Boolean video;
     private Float voteAverage;
     private Integer voteCount;
+
     private Credits credits;
+    // We have a list CastDetails and a class called CastDetails!
+
+    private List<Cast> cast = null;
 
 
-    public Credits getCredits() {
-        return credits;
-    }
+    public Credits getCredits() { return credits; }
 
     public void setCredits(Credits credits) {
         this.credits = credits;
     }
+
+
+    public List<GenreDetails> getGenres() { return genres; }
+
+    public void setGenres(List<GenreDetails> genres) {
+        this.genres = genres;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Boolean getAdult() {
         return adult;
@@ -72,12 +95,11 @@ public class MovieDetails {
         this.budget = budget;
     }
 
-    public List<GenreDetails> getGenres() {
-        return genres;
-    }
+    public List<Cast> getCast() { return cast; }
+    // so this is returning null
 
-    public void setGenres(List<GenreDetails> genres) {
-        this.genres = genres;
+    public void setCast(List<Cast> genres) {
+        this.cast = cast;
     }
 
     public String getHomepage() {
@@ -239,4 +261,6 @@ public class MovieDetails {
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
+
+
 }

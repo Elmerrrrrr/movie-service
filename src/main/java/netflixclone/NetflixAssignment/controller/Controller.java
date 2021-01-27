@@ -47,7 +47,7 @@ public class Controller {
 
 
 
-    //Get images from FanArt
+    // Get images from FanArt
     @GetMapping("/movie/images/{id}")
     public MovieImagesFA getMovieImages(@PathVariable int id){
         System.out.println(" ---> Movie images requested from frontend");
@@ -78,14 +78,18 @@ public class Controller {
     }
 
 
+
+
+
+
+
+
     // Get introBanner movie request from frontend
     @GetMapping("/movies/introBanner")
     public BannerIntroMovies getBannerIntroMovie(){
         System.out.println(" ---> Intro banner movie request from frontend");
         return movieService.getBannerIntroMovie("213");
     }
-
-
 
 
     /* ------------------Genre Requests------------------ */
