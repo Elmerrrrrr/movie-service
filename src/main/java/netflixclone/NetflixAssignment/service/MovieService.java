@@ -78,10 +78,6 @@ public class MovieService {
     } //done
 
 
-
-
-
-
      public MovieImagesFA getMovieImages(int id) {
 
          return fanArtApi.getMovieImages(id, api_keyFA);
@@ -131,13 +127,19 @@ public class MovieService {
         }
         detailsMovieView.setGenres(newGenreList);
 
-        //set director
+        //set directories
         for (int i = 0; i <dtoDetailsMovie.getCredits().getCrew().size(); i++) {
 
             if (dtoDetailsMovie.getCredits().getCrew().get(i).job.equals("Director")) {
                 detailsMovieView.setDirector(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
+                System.out.println(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
             }
         }
+
+
+
+
+
 
 
 
