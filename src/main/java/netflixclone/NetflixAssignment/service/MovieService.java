@@ -6,6 +6,7 @@ import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 // imports from model
 import netflixclone.NetflixAssignment.model.movieDetails.Cast;
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
+
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
@@ -18,6 +19,7 @@ import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 // imports from view
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
+import netflixclone.NetflixAssignment.view.movieDetailsView.ProductionCompany;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
@@ -36,7 +38,10 @@ public class MovieService {
     private final String include_adult = "false";
     private final String with_original_language = "en";
     private final String include_video = "true";
+
+    // credits is necessary to get the list of actors
     private final String append_to_response = "credits";
+    // other one to add is with_companies, this retrieves a list made by the given company
 
 
 
@@ -91,7 +96,6 @@ public class MovieService {
 
 
     /* ------------------Single Movie Requests------------------ */
-
     public MovieDetailsView getMovieDetails(int movieId){
 
         MovieDetails dtoDetailsMovie = movieDbApi.getMovieDetails(movieId, api_keyMD, lang, include_video, append_to_response);
@@ -129,9 +133,21 @@ public class MovieService {
 
 
 
+        // let us try and get the production companies as well
+        List<ProductionCompany>  newProductionCompanyList = new ArrayList<>();
+        for(int i = 0; i < dtoDetailsMovie.getProductionCompanies().size(); i++) {
+            ProductionCompany productionViewDetailList = new ProductionCompany();
+            productionViewDetailList.setId(dtoDetailsMovie.getProductionCompanies().get(i).getId());
+            productionViewDetailList.setName(dtoDetailsMovie.getProductionCompanies().get(i).getName());
+            productionViewDetailList.setLogoPath(dtoDetailsMovie.getProductionCompanies().get(i).getLogoPath());
+            newProductionCompanyList.add(productionViewDetailList);
+        }
+        detailsMovieView.setProductionCompany(newProductionCompanyList);
 
 
-        // trying to get the cast
+
+
+        // the cast
         List<Cast> newCastList = new ArrayList<>();
 
         for (int i = 0; i < dtoDetailsMovie.getCredits().getCast().size(); i++) {
@@ -142,14 +158,9 @@ public class MovieService {
             castViewDetailList.setCharacter(dtoDetailsMovie.getCredits().getCast().get(i).getCharacter());
             newCastList.add(castViewDetailList);
 
-
         }
         // in de view staat de setCast method
         detailsMovieView.setCast(newCastList);
-
-
-
-
 
 
         // set director
@@ -157,18 +168,8 @@ public class MovieService {
 
             if (dtoDetailsMovie.getCredits().getCrew().get(i).job.equals("Director")) {
                 detailsMovieView.setDirector(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
-                System.out.println(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
             }
         }
-
-
-
-
-
-
-
-
-
 
 
         // add trailer info
@@ -235,6 +236,9 @@ public class MovieService {
         return viewObject;
     } //done - finalized
 
+    // may be here we try and get the companies by companyId
+    // other thing to do is in a single movie search add the parameter with_companies
+
 
 
     /* ------------------Categories Requests------------------ */
@@ -251,12 +255,12 @@ public class MovieService {
         return movieDbApi.getMovies00s(api_keyMD, lang, include_video,"2000-01-01", "2019-12-31" ,with_original_language);
     }
 
-    public MoviesByPeriod getMoviesCompany(String companyId) {
-        return movieDbApi.getMoviesCompany(api_keyMD, lang, companyId);
-    }
-
     public MoviesByPeriod getMoviesByActor(String actorId) {
         return movieDbApi.getMoviesByActor(api_keyMD, lang, actorId);
+    }
+
+    public MoviesByPeriod getMoviesByCompany(String companyId) {
+        return movieDbApi.getMoviesByCompany(api_keyMD, lang, companyId);
     }
 
 
@@ -269,4 +273,6 @@ public class MovieService {
     public SearchResults getSearchCompanyResults(String query) {
         return movieDbApi.getSearchCompanyResults(api_keyMD, query);
     }
+
+
 }

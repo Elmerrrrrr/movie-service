@@ -8,7 +8,6 @@ public class MovieDetails {
     private String backdropPath;
     private Object belongsToCollection;
     private Integer budget;
-    private List<GenreDetails> genres = null;
     private String homepage;
     private Integer id;
     private String imdbId;
@@ -17,51 +16,60 @@ public class MovieDetails {
     private String overview;
     private Float popularity;
     private String posterPath;
-    private List<ProductionCompany> productionCompanies = null;
-    private List<ProductionCountry> productionCountries = null;
     private String releaseDate;
     private Integer revenue;
     private Integer runtime;
-    private List<SpokenLanguage> spokenLanguages = null;
     private String status;
     private String tagline;
     private String title;
     private Boolean video;
     private Float voteAverage;
     private Integer voteCount;
-
     private Credits credits;
-    // We have a list CastDetails and a class called CastDetails!
 
+    private List<GenreDetails> genres = null;
+    private List<ProductionCompany> productionCompanies = null;
+    private List<ProductionCountry> productionCountries = null;
+    private List<SpokenLanguage> spokenLanguages = null;
     private List<Cast> cast = null;
 
+
+    // getters and setters
+    public List<GenreDetails> getGenres() {
+        return genres; }
+
+    public void setGenres(List<GenreDetails> genres) {
+        this.genres = genres;
+    }
+
+    public List<Cast> getCast() {
+        return cast; }
+
+    public void setCast(List<Cast> cast) {
+        this.cast = cast;
+    }
+
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
+    }
+
+    public List<ProductionCountry> getProductionCountries() {
+        return productionCountries;
+    }
+
+    public void setProductionCountries(List<ProductionCountry> productionCountries) {
+        this.productionCountries = productionCountries;
+    }
 
     public Credits getCredits() { return credits; }
 
     public void setCredits(Credits credits) {
         this.credits = credits;
     }
-
-
-    public List<GenreDetails> getGenres() { return genres; }
-
-    public void setGenres(List<GenreDetails> genres) {
-        this.genres = genres;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public Boolean getAdult() {
         return adult;
@@ -93,13 +101,6 @@ public class MovieDetails {
 
     public void setBudget(Integer budget) {
         this.budget = budget;
-    }
-
-    public List<Cast> getCast() { return cast; }
-    // so this is returning null
-
-    public void setCast(List<Cast> genres) {
-        this.cast = cast;
     }
 
     public String getHomepage() {
@@ -164,22 +165,6 @@ public class MovieDetails {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
-    }
-
-    public List<ProductionCompany> getProductionCompanies() {
-        return productionCompanies;
-    }
-
-    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
-        this.productionCompanies = productionCompanies;
-    }
-
-    public List<ProductionCountry> getProductionCountries() {
-        return productionCountries;
-    }
-
-    public void setProductionCountries(List<ProductionCountry> productionCountries) {
-        this.productionCountries = productionCountries;
     }
 
     public String getReleaseDate() {

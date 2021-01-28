@@ -25,16 +25,21 @@ public class MovieDetailsView {
     private String trailer;//
     private String movieLogoUrl;//
     private String director;
-
     // two lists.. Genre is in directory model and Cast in view?
     private List<Genre> genres = null;//
-
     private List<Cast> cast = null;//
-
+    private List<ProductionCompany> productionCompany = null;
 
 
     // getters and setters for the lists, we also need the get methods
     // if we want to display it on the frontend side!
+    public List<ProductionCompany> getProductionCompany() {
+        return productionCompany;
+    }
+
+    public void setProductionCompany(List<ProductionCompany> productionCompany) {
+        this.productionCompany = productionCompany;
+    }
     public List<Cast> getCast() { return cast; }
 
     public void setCast(List<Cast> cast) { this.cast = cast; }
@@ -42,10 +47,6 @@ public class MovieDetailsView {
     public List<Genre> getGenres() { return genres; }
 
     public void setGenres(List<Genre> genres) { this.genres = genres; }
-
-
-
-
 
 
 

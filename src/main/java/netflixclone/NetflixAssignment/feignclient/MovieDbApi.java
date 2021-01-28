@@ -68,11 +68,7 @@ public interface MovieDbApi {
     //Movie by genre request
     @GetMapping("discover/movie")
     MoviesByGenre getMoviesByGenre(@RequestParam(value="api_key") String api_key,
-                                       @RequestParam(value="with_genres") String genreId
-                                     //  @RequestParam(value="language") String language,
-                                     //  @RequestParam(value="include_video") String inclVideo,
-                                      // @RequestParam(value="with_original_language") String original_language
-                                       );
+                                   @RequestParam(value="with_genres") String genreId);
 
 
 
@@ -104,21 +100,18 @@ public interface MovieDbApi {
                                 @RequestParam(value="primary_release_date.lte") String lteDate,
                                 @RequestParam(value="with_original_language") String original_language);
 
-    //Disney movies request
-    @GetMapping("/discover/movie")
-    MoviesByPeriod getMoviesCompany(@RequestParam(value="api_key") String api_key,
-                                   @RequestParam(value="language") String language,
-                                  // @RequestParam(value="include_video") String inclVideo,
-                                   @RequestParam(value="with_companies") String withCompanies
-                                  // @RequestParam(value="with_original_language") String original_language
-                                    );
-
 
     // Movies with actor / actress
     @GetMapping("/discover/movie")
     MoviesByPeriod getMoviesByActor(@RequestParam(value="api_key") String api_key,
                                    @RequestParam(value="language") String language,
                                    @RequestParam(value="with_cast") String cast);
+
+    // Movies with companies
+    @GetMapping("/discover/movie")
+    MoviesByPeriod getMoviesByCompany(@RequestParam(value="api_key") String api_key,
+                                    @RequestParam(value="language") String language,
+                                    @RequestParam(value="with_companies") String company);
 
 
 

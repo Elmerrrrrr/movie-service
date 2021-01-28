@@ -78,12 +78,6 @@ public class Controller {
     }
 
 
-
-
-
-
-
-
     // Get introBanner movie request from frontend
     @GetMapping("/movies/introBanner")
     public BannerIntroMovies getBannerIntroMovie(){
@@ -136,20 +130,18 @@ public class Controller {
         return movieService.getMovies00s();
     }
 
-
-    // Disney movies request
-    @GetMapping("/movies/company/{companyId}")
-    public MoviesByPeriod getMoviesDisney(@PathVariable String companyId){
-        System.out.println(" ---> Disney movies request from frontend");
-        return movieService.getMoviesCompany(companyId);// 134209 for disney?
-    }
-
-
     // Movies with actor / actress
     @GetMapping("/movies/{actorId}}")
     public MoviesByPeriod getMoviesByActor(@PathVariable String actorId){
         System.out.println(" ---> 00’s movies request from frontend");
         return movieService.getMoviesByActor(actorId);
+    }
+
+    // Movies with company
+    @GetMapping("/movies/{companyId}")
+    public MoviesByPeriod getMoviesByCompany(@PathVariable String companyId){
+        System.out.println("Company request from the front end");
+        return movieService.getMoviesByCompany(companyId);
     }
 
 

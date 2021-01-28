@@ -5,7 +5,7 @@ package netflixclone.NetflixAssignment.view.movieDetailsView;
 public class ProductionCompany {
 
     private Integer id;
-    private Object logoPath;
+    private String logoPath;
     private String name;
     private String originCountry;
 
@@ -17,11 +17,11 @@ public class ProductionCompany {
         this.id = id;
     }
 
-    public Object getLogoPath() {
+    public String getLogoPath() {
         return logoPath;
     }
 
-    public void setLogoPath(Object logoPath) {
+    public void setLogoPath(String logoPath) {
         this.logoPath = logoPath;
     }
 
