@@ -47,7 +47,7 @@ public class Controller {
 
 
 
-    //Get images from FanArt
+    // Get images from FanArt
     @GetMapping("/movie/images/{id}")
     public MovieImagesFA getMovieImages(@PathVariable int id){
         System.out.println(" ---> Movie images requested from frontend");
@@ -84,8 +84,6 @@ public class Controller {
         System.out.println(" ---> Intro banner movie request from frontend");
         return movieService.getBannerIntroMovie("213");
     }
-
-
 
 
     /* ------------------Genre Requests------------------ */
@@ -132,20 +130,18 @@ public class Controller {
         return movieService.getMovies00s();
     }
 
-
-    // Disney movies request
-    @GetMapping("/movies/company/{companyId}")
-    public MoviesByPeriod getMoviesDisney(@PathVariable String companyId){
-        System.out.println(" ---> Disney movies request from frontend");
-        return movieService.getMoviesCompany(companyId);// 134209 for disney?
-    }
-
-
     // Movies with actor / actress
     @GetMapping("/movies/{actorId}}")
     public MoviesByPeriod getMoviesByActor(@PathVariable String actorId){
         System.out.println(" ---> 00’s movies request from frontend");
         return movieService.getMoviesByActor(actorId);
+    }
+
+    // Movies with company
+    @GetMapping("/movies/company/{companyId}")
+    public MoviesByPeriod getMoviesCompany(@PathVariable String companyId){
+        System.out.println("Company request from the front end");
+        return movieService.getMoviesCompany(companyId);
     }
 
 
