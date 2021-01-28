@@ -115,7 +115,6 @@ public interface MovieDbApi {
 
 
 
-
     /* ------------------Search Request------------------ */
 
     // Multi search request
