@@ -224,7 +224,7 @@ public class MovieService {
     }
 
     public MoviesByPeriod getMoviesCompany(String companyId) {
-        return movieDbApi.getMoviesCompany(api_keyMD, lang, companyId);
+        return movieDbApi.getMoviesByCompany(api_keyMD, lang, companyId);
     }
 
     public MoviesByPeriod getMoviesByActor(String actorId) {
