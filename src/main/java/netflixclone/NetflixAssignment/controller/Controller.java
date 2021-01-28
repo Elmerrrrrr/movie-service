@@ -138,7 +138,7 @@ public class Controller {
     }
 
     // Movies with company
-    @GetMapping("/movies/{companyId}")
+    @GetMapping("/movies/company/{companyId}")
     public MoviesByPeriod getMoviesCompany(@PathVariable String companyId){
         System.out.println("Company request from the front end");
         return movieService.getMoviesCompany(companyId);
