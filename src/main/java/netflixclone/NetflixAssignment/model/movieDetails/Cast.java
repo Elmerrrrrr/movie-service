@@ -4,18 +4,18 @@ package netflixclone.NetflixAssignment.model.movieDetails;
 
 public class Cast {
 
-    public Boolean adult;
-    public Integer gender;
-    public Integer id;
-    public String knownForDepartment;
-    public String name;
-    public String originalName;
-    public Float popularity;
-    public String profilePath;
-    public Integer castId;
-    public String character;
-    public String creditId;
-    public Integer order;
+    private Boolean adult;
+    private Integer gender;
+    private Integer id;
+    private String knownForDepartment;
+    private String name;
+    private String originalName;
+    private Float popularity;
+    private String profilePath;
+    private Integer castId;
+    private String character;
+    private String creditId;
+    private Integer order;
 
 
     public Boolean getAdult() {

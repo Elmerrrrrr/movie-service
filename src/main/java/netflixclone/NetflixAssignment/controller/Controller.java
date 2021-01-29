@@ -70,12 +70,22 @@ public class Controller {
     }
 
 
+
     // Single movie detail request from frontend
     @GetMapping("/movie/details/{movieId}")
     public MovieDetailsView getMovieDetails(@PathVariable int movieId){
         System.out.println(" ---> Movie details with id:"+ movieId +" requested from frontend");
         return movieService.getMovieDetails(movieId);
     }
+
+
+    // Get random movie request from frontend
+    @GetMapping("/movie/random")
+    public MovieDetailsView getRandomMovie(){
+        System.out.println(" ---> Random movie requested from frontend");
+        return movieService.getRandomBannerMovie();
+    }
+
 
 
     // Get introBanner movie request from frontend

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-
 @FeignClient(url="http://webservice.fanart.tv/v3/", name = "FanArtApi", decode404 = true)
 public interface FanArtApi {
 

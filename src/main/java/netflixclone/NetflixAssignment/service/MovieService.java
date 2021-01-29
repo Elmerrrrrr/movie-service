@@ -60,8 +60,10 @@ public class MovieService {
         MovieTrailer dtoTrailer = movieDbApi.getMovieTrailer(movieId,api_keyMD,lang);
         MovieTrailerView trailerView = new MovieTrailerView();
         for (int i=0; i<dtoTrailer.getResults().size(); i++){
-            trailerView.setYoutubeId(dtoTrailer.getResults().get(i).getKey());
-          }
+            if ( dtoTrailer == null||dtoTrailer.getResults().size()==0|| dtoTrailer.getResults().get(i).getId().equals(" ")){
+            return "";
+          } else trailerView.setYoutubeId(dtoTrailer.getResults().get(i).getKey());
+        }
 
         return trailerView.getYoutubeId();
     } //done
@@ -113,6 +115,8 @@ public class MovieService {
         detailsMovieView.setRuntime(dtoDetailsMovie.getRuntime());
         detailsMovieView.setVoteAverage(dtoDetailsMovie.getVoteAverage());
         detailsMovieView.setVoteCount(dtoDetailsMovie.getVoteCount());
+        detailsMovieView.setRuntime(dtoDetailsMovie.getRuntime());
+
 
 
         List<Genre> newGenreList = new ArrayList<>();
@@ -127,17 +131,15 @@ public class MovieService {
         }
         detailsMovieView.setGenres(newGenreList);
 
-        //set directories
+        //set director
         for (int i = 0; i <dtoDetailsMovie.getCredits().getCrew().size(); i++) {
 
             if (dtoDetailsMovie.getCredits().getCrew().get(i).job.equals("Director")) {
                 detailsMovieView.setDirector(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
-                System.out.println(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
             }
         }
-
-
-
+        
+        //set cast
 
 
 
@@ -157,8 +159,24 @@ public class MovieService {
     public BannerIntroMovies getBannerIntroMovie(String s) {
        //let this method return 1 random top movie
         //logo+trailer info
-        return movieDbApi.getBannerIntroMovie(api_keyMD, lang, include_video, "213");
+        return movieDbApi.getBannerIntroMovie(api_keyMD, lang, "en","videos,credits");
     } //done
+
+    public MovieDetailsView getRandomBannerMovie(){
+
+        BannerIntroMovies  allMoviesObject = movieDbApi.getBannerIntroMovie(api_keyMD, lang, "en","videos,credits");
+
+        int totalAmount = allMoviesObject.getResults().size();
+        int randomNr = ((int) (Math.random() * totalAmount));
+        int randomId = allMoviesObject.getResults().get(randomNr).getId();
+
+        System.out.println("totalamount: "+totalAmount);
+        System.out.println("totalamount: "+randomNr);
+        System.out.println("totalamount: "+randomId);
+
+        return getMovieDetails(randomId);
+
+    }
 
 
     /* ------------------Genre Requests------------------ */

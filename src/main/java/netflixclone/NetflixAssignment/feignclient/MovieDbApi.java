@@ -45,16 +45,18 @@ public interface MovieDbApi {
                                  @RequestParam(value="api_key") String api_key,
                                  @RequestParam(value="language") String language,
                                  @RequestParam(value="video") String inclVideo,
-                                 @RequestParam(value="append_to_response") String crew
+                                 @RequestParam(value="append_to_response") String credits
                                  );
 
     // Intro banner request
-    @GetMapping("discover/tv")
+    @GetMapping("discover/movie")
     BannerIntroMovies getBannerIntroMovie(@RequestParam(value="api_key") String api_key,
                                           @RequestParam(value="language") String language,
-                                          @RequestParam(value="include_video") String inclVideo,
-                                          @RequestParam(value="with_networks") String networks);
-
+                                          @RequestParam(value="with_original_language") String originalLanguage,
+//                                          @RequestParam(value="include_video") String inclVideo,
+//                                          @RequestParam(value="with_networks") String networks,
+                                          @RequestParam(value="append_to_response") String append
+                                          );
 
 
     /* ------------------Genre Requests------------------ */
