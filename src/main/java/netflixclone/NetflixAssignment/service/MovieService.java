@@ -14,8 +14,12 @@ import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
+import netflixclone.NetflixAssignment.view.movieDetailsView.Cast;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
+import netflixclone.NetflixAssignment.view.movieDetailsView.ProductionCompany;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
@@ -59,37 +63,74 @@ public class MovieService {
 
         MovieTrailer dtoTrailer = movieDbApi.getMovieTrailer(movieId,api_keyMD,lang);
         MovieTrailerView trailerView = new MovieTrailerView();
-        for (int i=0; i<dtoTrailer.getResults().size(); i++){
-            if ( dtoTrailer == null||dtoTrailer.getResults().size()==0|| dtoTrailer.getResults().get(i).getId().equals(" ")){
-            return "";
-          } else trailerView.setYoutubeId(dtoTrailer.getResults().get(i).getKey());
-        }
+
+            if (dtoTrailer.getResults() == null || dtoTrailer.getResults().size() == 0){
+                trailerView.setYoutubeId("not available");
+
+            }
+            else {
+                trailerView.setYoutubeId(dtoTrailer.getResults().get(0).getKey());
+            }
+
 
         return trailerView.getYoutubeId();
     } //done
 
 
-    public String getMovieLogo(int movieId){
+    public MovieLogosView getMovieLogo(int movieId) {
 
         MovieImagesFA dtoImagesFA = fanArtApi.getMovieImages(movieId, api_keyFA);
 
-        if (dtoImagesFA == null  || dtoImagesFA.getMovielogo() == null || dtoImagesFA.getMovielogo().size() == 0){
-            return "";
-        } else
-            return dtoImagesFA.getMovielogo().get(0).getUrl();
-    } //done
+        MovieLogosView logosView = new MovieLogosView();
+        List<MovieLogos> logoList = new ArrayList<>();
+        MovieLogos movielogos = new MovieLogos();
 
 
-     public MovieImagesFA getMovieImages(int id) {
 
-         return fanArtApi.getMovieImages(id, api_keyFA);
+        if (dtoImagesFA == null || dtoImagesFA.getHdmovielogo() == null || dtoImagesFA.getHdmovielogo().size() == 0) {
+            movielogos.setUrlHd("notAvailable");
+            movielogos.setUrl("notAvailable");
+        }
+        else {
+            if (dtoImagesFA.getMovielogo() != null && dtoImagesFA.getMovielogo().size() == 0 && dtoImagesFA.getMovielogo().get(0).getLang().equals("en")) {
+                movielogos.setUrl(dtoImagesFA.getMovielogo().get(0).getUrl());
+            } else {
+                movielogos.setUrl("no (English) logo available");
+            }
+
+
+            if (dtoImagesFA.getHdmovielogo() != null && dtoImagesFA.getHdmovielogo().size() != 0 && dtoImagesFA.getHdmovielogo().get(0).getLang().equals("en")) {
+                movielogos.setUrlHd(dtoImagesFA.getHdmovielogo().get(0).getUrl());
+            } else {
+                movielogos.setUrlHd("no (English) HD logo available");
+            }
+
+        }
+
+        logoList.add(movielogos);
+        logosView.setMovielogos(logoList);
+        return logosView;
+    }//done
+
+
+    public MovieImagesFA getMovieImages(int id) {
+
+        return fanArtApi.getMovieImages(id, api_keyFA);
      } //done
+
+
+    public MovieLogosView getMovieLogos(int id) {
+
+        return getMovieLogo(id);
+    } //done
 
 
     public MoviesTopRated getTopRatedMovies( String pageNr) {
 
-        return movieDbApi.getTopRatedMovies(api_keyMD, lang, pageNr);
+        return movieDbApi.getTopRatedMovies(api_keyMD, lang,"en", pageNr);
     } //done
+
+
 
 
     /* ------------------Single Movie Requests------------------ */
@@ -140,15 +181,38 @@ public class MovieService {
         }
         
         //set cast
+       List<Cast> newCastList = new ArrayList<>();
+
+        for (int i = 0; i < 5 ; i++) {
+            Cast cast = new Cast();
+           cast.setName(dtoDetailsMovie.getCredits().getCast().get(i).getName());
+           cast.setId(dtoDetailsMovie.getCredits().getCast().get(i).getId());
+           cast.setCharacter(dtoDetailsMovie.getCredits().getCast().get(i).getCharacter());
+           cast.setOrder(dtoDetailsMovie.getCredits().getCast().get(i).getOrder());
+           newCastList.add(cast);
+        }
+        detailsMovieView.setCast(newCastList);
 
 
+        //set production companies
+        List<ProductionCompany> newProductionCompanyList = new ArrayList<>();
 
+        for (int i = 0; i <dtoDetailsMovie.getProductionCompanies().size() ; i++) {
+
+            ProductionCompany productionCompanies = new ProductionCompany();
+            productionCompanies.setName(dtoDetailsMovie.getProductionCompanies().get(i).getName());
+            productionCompanies.setId(dtoDetailsMovie.getProductionCompanies().get(i).getId());
+            productionCompanies.setLogoPath(dtoDetailsMovie.getProductionCompanies().get(i).getLogoPath());
+            productionCompanies.setOriginCountry(dtoDetailsMovie.getProductionCompanies().get(i).getOriginCountry());
+            newProductionCompanyList.add(productionCompanies);
+        }
+        detailsMovieView.setProductionCompany(newProductionCompanyList);
 
 
         //add trailer info
         detailsMovieView.setTrailer(getMovieTrailer(movieId));
         //add logo if available
-        detailsMovieView.setMovieLogoUrl(getMovieLogo(movieId));
+        detailsMovieView.setMovieLogoUrls(getMovieLogo(movieId));
 
 
 
@@ -162,21 +226,22 @@ public class MovieService {
         return movieDbApi.getBannerIntroMovie(api_keyMD, lang, "en","videos,credits");
     } //done
 
+
     public MovieDetailsView getRandomBannerMovie(){
 
-        BannerIntroMovies  allMoviesObject = movieDbApi.getBannerIntroMovie(api_keyMD, lang, "en","videos,credits");
+        int randomPageNr = (((int) (Math.random() * 4))+1);
+
+        MoviesTopRated allMoviesObject = movieDbApi.getTopRatedMovies(api_keyMD, lang, "en", Integer.toString(randomPageNr));
 
         int totalAmount = allMoviesObject.getResults().size();
         int randomNr = ((int) (Math.random() * totalAmount));
         int randomId = allMoviesObject.getResults().get(randomNr).getId();
 
-        System.out.println("totalamount: "+totalAmount);
-        System.out.println("totalamount: "+randomNr);
-        System.out.println("totalamount: "+randomId);
 
         return getMovieDetails(randomId);
-
     }
+
+
 
 
     /* ------------------Genre Requests------------------ */
@@ -215,7 +280,7 @@ public class MovieService {
 
             //add trailer info
             result.setTrailer(getMovieTrailer(movieId));
-            result.setLogoPath(getMovieLogo(movieId));
+            result.setMovieLogos(getMovieLogo(movieId));
 
             //add result object to the ArrayList
             newList.add(result);
@@ -224,6 +289,8 @@ public class MovieService {
         viewObject.setResults(newList);
         return viewObject;
     } //done - finalized
+
+
 
 
 
@@ -248,6 +315,8 @@ public class MovieService {
     public MoviesByPeriod getMoviesByActor(String actorId) {
         return movieDbApi.getMoviesByActor(api_keyMD, lang, actorId);
     }
+
+
 
 
     /* ------------------Search Request------------------ */

@@ -13,6 +13,7 @@ import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.service.MovieService;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,6 +54,14 @@ public class Controller {
         System.out.println(" ---> Movie images requested from frontend");
         return movieService.getMovieImages(id);
     }
+
+    // Get images from FanArt
+    @GetMapping("/movie/logos/{id}")
+    public MovieLogosView getMovieLogos(@PathVariable int id){
+        System.out.println(" ---> Movie images requested from frontend");
+        return movieService.getMovieLogos(id);
+    }
+
 
     // Upcoming movies request from frontend
     @GetMapping("movies/upcoming/{pageNr}")
@@ -172,7 +181,6 @@ public class Controller {
         System.out.println(" ---> Search company request from frontend");
         return movieService.getSearchCompanyResults(query);
     }
-
 
 
 

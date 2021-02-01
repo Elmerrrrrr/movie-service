@@ -1,6 +1,8 @@
 package netflixclone.NetflixAssignment.view.moviesByGenreView;
 
 
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
+
 public class Result {
 
     private String backdropPath;
@@ -12,15 +14,16 @@ public class Result {
     private String releaseDate;
     private String title;
     private String trailer; //added in service class
-    private String logoPath; //added in service class
+    private MovieLogosView movieLogos = null;//
 
 
-    public String getLogoPath() {
-        return logoPath;
+
+    public MovieLogosView getMovieLogos() {
+        return movieLogos;
     }
 
-    public void setLogoPath(String logoPath) {
-        this.logoPath = logoPath;
+    public void setMovieLogos(MovieLogosView movieLogos) {
+        this.movieLogos = movieLogos;
     }
 
     public String getTrailer() {

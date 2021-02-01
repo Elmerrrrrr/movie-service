@@ -27,6 +27,7 @@ public interface MovieDbApi {
     @GetMapping("movie/top_rated")
     MoviesTopRated getTopRatedMovies(@RequestParam(value="api_key") String api_key,
                                      @RequestParam(value="language") String language,
+                                     @RequestParam(value="with_original_language") String originalLanguage,
                                      @RequestParam(value="page") String pageNr);
 
    // Movie trailer request

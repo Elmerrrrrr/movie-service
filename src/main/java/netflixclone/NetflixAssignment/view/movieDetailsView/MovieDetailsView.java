@@ -1,6 +1,7 @@
 package netflixclone.NetflixAssignment.view.movieDetailsView;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 
-import netflixclone.NetflixAssignment.model.movieDetails.Cast;
 
 import java.util.List;
 
@@ -23,12 +24,13 @@ public class MovieDetailsView {
     private Integer runtime;//
     private Integer voteCount;//
     private String trailer;//
-    private String movieLogoUrl;//
+ //   private String movieLogoUrl;//
     private String director;
-    // two lists.. Genre is in directory model and Cast in view?
+    // two lists.. Genre is in director model and Cast in view?
     private List<Genre> genres = null;//
     private List<Cast> cast = null;//
     private List<ProductionCompany> productionCompany = null;
+    private MovieLogosView movieLogoUrls = null;//
 
 
     // getters and setters for the lists, we also need the get methods
@@ -40,15 +42,26 @@ public class MovieDetailsView {
     public void setProductionCompany(List<ProductionCompany> productionCompany) {
         this.productionCompany = productionCompany;
     }
-    public List<Cast> getCast() { return cast; }
 
-    public void setCast(List<Cast> cast) { this.cast = cast; }
+    public List<Cast> getCast() {
+        return cast;
+    }
+
+    public void setCast(List<Cast> cast) {
+        this.cast = cast;
+    }
 
     public List<Genre> getGenres() { return genres; }
 
     public void setGenres(List<Genre> genres) { this.genres = genres; }
 
+    public MovieLogosView getMovieLogoUrls() {
+        return movieLogoUrls;
+    }
 
+    public void setMovieLogoUrls(MovieLogosView movieLogoUrls) {
+        this.movieLogoUrls = movieLogoUrls;
+    }
 
     // getters and setters for singular objects
     public String getDirector() {
@@ -56,14 +69,6 @@ public class MovieDetailsView {
     }
 
     public void setDirector(String director) { this.director = director; }
-
-    public String getMovieLogoUrl() {
-        return movieLogoUrl;
-    }
-
-    public void setMovieLogoUrl(String movieLogoUrl) {
-        this.movieLogoUrl = movieLogoUrl;
-    }
 
     public String getTrailer() {
         return trailer;

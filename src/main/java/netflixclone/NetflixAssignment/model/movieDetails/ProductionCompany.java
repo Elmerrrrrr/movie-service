@@ -9,6 +9,9 @@ public class ProductionCompany {
     private String name;
     private String originCountry;
 
+
+
+
     public Integer getId() {
         return id;
     }
@@ -17,29 +20,27 @@ public class ProductionCompany {
         this.id = id;
     }
 
-    public void setLogoPath(String logoPath) {
-        this.logoPath = logoPath;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setOriginCountry(String originCountry) {
-        this.originCountry = originCountry;
-    }
-
     public String getLogoPath() {
         return logoPath;
+    }
+
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getOriginCountry() {
         return originCountry;
     }
 
-
+    public void setOriginCountry(String originCountry) {
+        this.originCountry = originCountry;
+    }
 }
