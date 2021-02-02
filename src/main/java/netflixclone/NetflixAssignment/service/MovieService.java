@@ -4,6 +4,7 @@ package netflixclone.NetflixAssignment.service;
 import netflixclone.NetflixAssignment.feignclient.FanArtApi;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
+import netflixclone.NetflixAssignment.model.movieDetails.Cast;
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
@@ -84,7 +85,7 @@ public class MovieService {
      } //done
 
 
-    public MoviesTopRated getTopRatedMovies( String pageNr) {
+    public MoviesTopRated getTopRatedMovies(String pageNr) {
 
         return movieDbApi.getTopRatedMovies(api_keyMD, lang, pageNr);
     } //done
@@ -127,7 +128,7 @@ public class MovieService {
         }
         detailsMovieView.setGenres(newGenreList);
 
-        //set directories
+        // set directors
         for (int i = 0; i <dtoDetailsMovie.getCredits().getCrew().size(); i++) {
 
             if (dtoDetailsMovie.getCredits().getCrew().get(i).job.equals("Director")) {
@@ -136,10 +137,19 @@ public class MovieService {
             }
         }
 
+        // set cast
+        List<Cast> newCastList = new ArrayList<>();
 
+        for (int i = 0; i < dtoDetailsMovie.getCredits().getCast().size(); i++) {
 
+            Cast castViewDetailList = new Cast();
+            castViewDetailList.setCharacter(dtoDetailsMovie.getCredits().getCast().get(i).getCharacter());
+            castViewDetailList.setName(dtoDetailsMovie.getCredits().getCast().get(i).getName());
+            castViewDetailList.setProfilePath(dtoDetailsMovie.getCredits().getCast().get(i).getProfilePath());
+            newCastList.add(castViewDetailList);
 
-
+        }
+        detailsMovieView.setCast(newCastList);
 
 
 
@@ -155,7 +165,7 @@ public class MovieService {
 
 
     public BannerIntroMovies getBannerIntroMovie(String s) {
-       //let this method return 1 random top movie
+       // let this method return 1 random top movie
         //logo+trailer info
         return movieDbApi.getBannerIntroMovie(api_keyMD, lang, include_video, "213");
     } //done
