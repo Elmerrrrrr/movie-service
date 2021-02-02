@@ -2,7 +2,6 @@ package netflixclone.NetflixAssignment.feignclient;
 
 
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
-import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
@@ -48,16 +47,6 @@ public interface MovieDbApi {
                                  @RequestParam(value="video") String inclVideo,
                                  @RequestParam(value="append_to_response") String credits
                                  );
-
-    // Intro banner request
-    @GetMapping("discover/movie")
-    BannerIntroMovies getBannerIntroMovie(@RequestParam(value="api_key") String api_key,
-                                          @RequestParam(value="language") String language,
-                                          @RequestParam(value="with_original_language") String originalLanguage,
-//                                          @RequestParam(value="include_video") String inclVideo,
-//                                          @RequestParam(value="with_networks") String networks,
-                                          @RequestParam(value="append_to_response") String append
-                                          );
 
 
     /* ------------------Genre Requests------------------ */

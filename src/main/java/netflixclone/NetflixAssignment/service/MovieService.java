@@ -8,12 +8,11 @@ import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
-import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
-
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
+
 import netflixclone.NetflixAssignment.view.movieDetailsView.Cast;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
@@ -214,12 +213,6 @@ public class MovieService {
     } //done - finalized
 
 
-    public BannerIntroMovies getBannerIntroMovie(String s) {
-       //let this method return 1 random top movie
-        //logo+trailer info
-        return movieDbApi.getBannerIntroMovie(api_keyMD, lang, "en","videos,credits");
-    } //done
-
 
     public MovieDetailsView getRandomBannerMovie(){
 
@@ -229,18 +222,17 @@ public class MovieService {
         int totalAmount = allMoviesObject.getResults().size();
         int randomNr = ((int) (Math.random() * totalAmount));
         int randomId = allMoviesObject.getResults().get(randomNr).getId();
-       //int randomIdWithLogo = 1;
 
-        if (getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("notAvailable") ||getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("no (English) HD logo available")){
+        if (getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("notAvailable") ||
+            getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("no (English) HD logo available")){
 
-           // System.out.println("new random movie");
             totalAmount = allMoviesObject.getResults().size();
             randomNr = ((int) (Math.random() * totalAmount));
             randomId = allMoviesObject.getResults().get(randomNr).getId();
         }
 
         return getMovieDetails(randomId);
-    }
+    } //done
 
 
 

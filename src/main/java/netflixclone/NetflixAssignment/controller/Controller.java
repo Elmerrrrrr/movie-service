@@ -97,14 +97,6 @@ public class Controller {
 
 
 
-    // Get introBanner movie request from frontend
-    @GetMapping("/movies/introBanner")
-    public BannerIntroMovies getBannerIntroMovie(){
-        System.out.println(" ---> Intro banner movie request from frontend");
-        return movieService.getBannerIntroMovie("213");
-    }
-
-
     /* ------------------Genre Requests------------------ */
 
     // Genre-types movie request from frontend
