@@ -17,7 +17,7 @@ public class MovieDetails {
     private Float popularity;
     private String posterPath;
     private String releaseDate;
-    private Integer revenue;
+    private Long revenue;
     private Integer runtime;
     private String status;
     private String tagline;
@@ -175,11 +175,11 @@ public class MovieDetails {
         this.releaseDate = releaseDate;
     }
 
-    public Integer getRevenue() {
+    public Long getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(Integer revenue) {
+    public void setRevenue(Long revenue) {
         this.revenue = revenue;
     }
 

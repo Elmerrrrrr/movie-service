@@ -14,7 +14,7 @@ public class MovieDetailsView {
     private Float voteAverage;//
     private String backdropPath;//
     private Integer budget;//
-    private Integer revenue;//
+    private Long revenue;//
     private String homepage;//
     private String originalLanguage;//
     private String originalTitle;//
@@ -158,11 +158,11 @@ public class MovieDetailsView {
         this.releaseDate = releaseDate;
     }
 
-    public Integer getRevenue() {
+    public Long getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(Integer revenue) {
+    public void setRevenue(Long revenue) {
         this.revenue = revenue;
     }
 

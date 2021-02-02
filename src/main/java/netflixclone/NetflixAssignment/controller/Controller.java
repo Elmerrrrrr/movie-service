@@ -91,7 +91,7 @@ public class Controller {
     // Get random movie request from frontend
     @GetMapping("/movie/random")
     public MovieDetailsView getRandomMovie(){
-        System.out.println(" ---> Random movie requested from frontend");
+        System.out.println(" ---> Random top movie requested from frontend");
         return movieService.getRandomBannerMovie();
     }
 
@@ -110,9 +110,7 @@ public class Controller {
     // Movies by genre request from frontend
     @GetMapping("/movies/genre/{genreId}")
     public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
-
         System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-
         return movieService.getMoviesByGenre(genreId);
     }
 
@@ -151,7 +149,7 @@ public class Controller {
     // Movies with company
     @GetMapping("/movies/company/{companyId}")
     public MoviesByPeriod getMoviesCompany(@PathVariable String companyId){
-        System.out.println("Company request from the front end");
+        System.out.println(" ---> Company request from the front end");
         return movieService.getMoviesCompany(companyId);
     }
 
