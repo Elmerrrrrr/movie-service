@@ -229,16 +229,17 @@ public class MovieService {
         int totalAmount = allMoviesObject.getResults().size();
         int randomNr = ((int) (Math.random() * totalAmount));
         int randomId = allMoviesObject.getResults().get(randomNr).getId();
-        int randomIdWithLogo = 0;
+       //int randomIdWithLogo = 1;
 
-        while (getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("notAvailable")){
+        if (getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("notAvailable") ||getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("no (English) HD logo available")){
+
+           // System.out.println("new random movie");
             totalAmount = allMoviesObject.getResults().size();
             randomNr = ((int) (Math.random() * totalAmount));
             randomId = allMoviesObject.getResults().get(randomNr).getId();
-            randomIdWithLogo = allMoviesObject.getResults().get(randomNr).getId();
         }
 
-        return getMovieDetails(randomIdWithLogo);
+        return getMovieDetails(randomId);
     }
 
 
