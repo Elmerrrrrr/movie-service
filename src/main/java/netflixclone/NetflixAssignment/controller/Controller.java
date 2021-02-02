@@ -59,7 +59,7 @@ public class Controller {
     @GetMapping("/movie/logos/{id}")
     public MovieLogosView getMovieLogos(@PathVariable int id){
         System.out.println(" ---> Movie images requested from frontend");
-        return movieService.getMovieLogos(id);
+        return movieService.getMovieLogo(id);
     }
 
 

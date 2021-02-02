@@ -119,12 +119,6 @@ public class MovieService {
      } //done
 
 
-    public MovieLogosView getMovieLogos(int id) {
-
-        return getMovieLogo(id);
-    } //done
-
-
     public MoviesTopRated getTopRatedMovies( String pageNr) {
 
         return movieDbApi.getTopRatedMovies(api_keyMD, lang,"en", pageNr);
@@ -230,15 +224,21 @@ public class MovieService {
     public MovieDetailsView getRandomBannerMovie(){
 
         int randomPageNr = (((int) (Math.random() * 4))+1);
-
         MoviesTopRated allMoviesObject = movieDbApi.getTopRatedMovies(api_keyMD, lang, "en", Integer.toString(randomPageNr));
 
         int totalAmount = allMoviesObject.getResults().size();
         int randomNr = ((int) (Math.random() * totalAmount));
         int randomId = allMoviesObject.getResults().get(randomNr).getId();
+        int randomIdWithLogo = 0;
 
+        while (getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("notAvailable")){
+            totalAmount = allMoviesObject.getResults().size();
+            randomNr = ((int) (Math.random() * totalAmount));
+            randomId = allMoviesObject.getResults().get(randomNr).getId();
+            randomIdWithLogo = allMoviesObject.getResults().get(randomNr).getId();
+        }
 
-        return getMovieDetails(randomId);
+        return getMovieDetails(randomIdWithLogo);
     }
 
 
