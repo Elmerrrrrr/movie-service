@@ -19,6 +19,16 @@ public class MovieImagesFA {
     private List<Movielogo> movielogo;
     private List<Movieart> movieart;
     private String status;
+    private String fallBackError;
+
+
+    public String getFallBackError() {
+        return fallBackError;
+    }
+
+    public void setFallBackError(String fallBackError) {
+        this.fallBackError = fallBackError;
+    }
 
     public String getName() {
         return name;
