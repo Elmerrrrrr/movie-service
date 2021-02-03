@@ -6,21 +6,19 @@ public class MovieImagesFA {
 
 
 
-    public String name;
-    public String tmdbId;
-    public String imdbId;
-    public List<Movieposter> movieposter;
-    public List<Hdmovielogo> hdmovielogo;
-    public List<Moviedisc> moviedisc;
-    public List<Moviethumb> moviethumb;
-    public List<Hdmovieclearart> hdmovieclearart;
-    public List<Moviebackground> moviebackground;
-    public List<Moviebanner> moviebanner;
-    public List<Movielogo> movielogo;
-    public List<Movieart> movieart;
-
-
-
+    private String name;
+    private String tmdbId;
+    private String imdbId;
+    private List<Movieposter> movieposter;
+    private List<Hdmovielogo> hdmovielogo;
+    private List<Moviedisc> moviedisc;
+    private List<Moviethumb> moviethumb;
+    private List<Hdmovieclearart> hdmovieclearart;
+    private List<Moviebackground> moviebackground;
+    private List<Moviebanner> moviebanner;
+    private List<Movielogo> movielogo;
+    private List<Movieart> movieart;
+    private String status;
 
     public String getName() {
         return name;
@@ -117,4 +115,14 @@ public class MovieImagesFA {
     public void setMovieart(List<Movieart> movieart) {
         this.movieart = movieart;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
 }

@@ -10,7 +10,7 @@ public class MovieLogosView {
 
 
 
-    public List<MovieLogos> getMovielogo() {
+    public List<MovieLogos> getMovielogos() {
         return movielogos;
     }
 

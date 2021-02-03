@@ -86,7 +86,7 @@ public class MovieService {
 
 
 
-        if (dtoImagesFA == null || dtoImagesFA.getHdmovielogo() == null || dtoImagesFA.getHdmovielogo().size() == 0) {
+        if (dtoImagesFA == null  || dtoImagesFA.getHdmovielogo() == null || dtoImagesFA.getHdmovielogo().size() == 0) {
             movielogos.setUrlHd("notAvailable");
             movielogos.setUrl("notAvailable");
         }
@@ -174,9 +174,9 @@ public class MovieService {
         }
         
         //set cast
-       List<Cast> newCastList = new ArrayList<>();
+        List<Cast> newCastList = new ArrayList<>();
 
-        for (int i = 0; i < 5 ; i++) {
+        for (int i = 0; i < dtoDetailsMovie.getCredits().getCast().size(); i++) {
             Cast cast = new Cast();
            cast.setName(dtoDetailsMovie.getCredits().getCast().get(i).getName());
            cast.setId(dtoDetailsMovie.getCredits().getCast().get(i).getId());
@@ -184,7 +184,8 @@ public class MovieService {
            cast.setOrder(dtoDetailsMovie.getCredits().getCast().get(i).getOrder());
            newCastList.add(cast);
         }
-        detailsMovieView.setCast(newCastList);
+        //portion of the list is set to 4
+        detailsMovieView.setCast(newCastList.subList(0, dtoDetailsMovie.getCredits().getCast().size() <3 ?0 : 4) );
 
 
         //set production companies
@@ -219,17 +220,19 @@ public class MovieService {
         int randomPageNr = (((int) (Math.random() * 4))+1);
         MoviesTopRated allMoviesObject = movieDbApi.getTopRatedMovies(api_keyMD, lang, "en", Integer.toString(randomPageNr));
 
-        int totalAmount = allMoviesObject.getResults().size();
-        int randomNr = ((int) (Math.random() * totalAmount));
-        int randomId = allMoviesObject.getResults().get(randomNr).getId();
+        int totalAmount = 0;
+        int randomNr = 0;
+        int randomId = 0;
 
-        if (getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("notAvailable") ||
-            getMovieDetails(randomId).getMovieLogoUrls().getMovielogo().get(0).getUrlHd().equals("no (English) HD logo available")){
-
+        do {
             totalAmount = allMoviesObject.getResults().size();
             randomNr = ((int) (Math.random() * totalAmount));
             randomId = allMoviesObject.getResults().get(randomNr).getId();
-        }
+
+        } while (getMovieDetails(randomId).getMovieLogoUrls().getMovielogos().isEmpty() ||
+                 getMovieDetails(randomId).getMovieLogoUrls().getMovielogos().get(0).getUrlHd().equals("notAvailable") ||
+                 getMovieDetails(randomId).getMovieLogoUrls().getMovielogos().get(0).getUrlHd().equals("no (English) HD logo available")
+                );
 
         return getMovieDetails(randomId);
     } //done
