@@ -1,6 +1,5 @@
 package netflixclone.NetflixAssignment.view.movieDetailsView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
-import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 
 
 import java.util.List;
@@ -8,33 +7,30 @@ import java.util.List;
 public class MovieDetailsView {
 
 
-    private Integer id;//
-    private String title;//
-    private String releaseDate;//
-    private Float voteAverage;//
-    private String backdropPath;//
-    private Integer budget;//
-    private Long revenue;//
-    private String homepage;//
-    private String originalLanguage;//
-    private String originalTitle;//
-    private String overview;//
-    private Float popularity;
-    private String posterPath;//
-    private Integer runtime;//
-    private Integer voteCount;//
-    private String trailer;//
- //   private String movieLogoUrl;//
+    private Integer id;
+    private String title;
+    private String releaseDate;
+    private Float voteAverage;
+    private String backdropPath;
+    private Integer budget;
+    private Long revenue;
+    private String homepage;
+    private String originalLanguage;
+    private String originalTitle;
+    private String overview;
+//    private Float popularity;
+    private String posterPath;
+    private Integer runtime;
+    private Integer voteCount;
+    private String trailer;
     private String director;
-    // two lists.. Genre is in director model and Cast in view?
+
     private List<Genre> genres = null;//
     private List<Cast> cast = null;//
     private List<ProductionCompany> productionCompany = null;
     private MovieLogosView movieLogoUrls = null;//
 
 
-    // getters and setters for the lists, we also need the get methods
-    // if we want to display it on the frontend side!
     public List<ProductionCompany> getProductionCompany() {
         return productionCompany;
     }
@@ -62,6 +58,8 @@ public class MovieDetailsView {
     public void setMovieLogoUrls(MovieLogosView movieLogoUrls) {
         this.movieLogoUrls = movieLogoUrls;
     }
+
+
 
     // getters and setters for singular objects
     public String getDirector() {
@@ -134,13 +132,13 @@ public class MovieDetailsView {
         this.overview = overview;
     }
 
-    public Float getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(Float popularity) {
-        this.popularity = popularity;
-    }
+//    public Float getPopularity() {
+//        return popularity;
+//    }
+//
+//    public void setPopularity(Float popularity) {
+//        this.popularity = popularity;
+//    }
 
     public String getPosterPath() {
         return posterPath;
