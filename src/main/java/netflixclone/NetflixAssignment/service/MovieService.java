@@ -184,8 +184,8 @@ public class MovieService {
            cast.setOrder(dtoDetailsMovie.getCredits().getCast().get(i).getOrder());
            newCastList.add(cast);
         }
-        //portion of the list is set to 4
-        detailsMovieView.setCast(newCastList.subList(0, dtoDetailsMovie.getCredits().getCast().size() <3 ?0 : 4) );
+        //set cast list to max 4 persons
+        detailsMovieView.setCast(newCastList.subList(0, dtoDetailsMovie.getCredits().getCast().size() <4 ?0 :4) );
 
 
         //set production companies
@@ -203,9 +203,9 @@ public class MovieService {
         detailsMovieView.setProductionCompany(newProductionCompanyList);
 
 
-        //add trailer info
+        //set trailer info if available
         detailsMovieView.setTrailer(getMovieTrailer(movieId));
-        //add logo if available
+        //set logo if available
         detailsMovieView.setMovieLogoUrls(getMovieLogo(movieId));
 
 
@@ -271,10 +271,8 @@ public class MovieService {
             result.setBackdropPath(dtoObject.getResults().get(i).getBackdropPath());
             result.setPosterPath(dtoObject.getResults().get(i).getPosterPath());
 
-
+            //add trailer info and logos
             int movieId = dtoObject.getResults().get(i).getId();
-
-            //add trailer info
             result.setTrailer(getMovieTrailer(movieId));
             result.setMovieLogos(getMovieLogo(movieId));
 

@@ -9,6 +9,7 @@ import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

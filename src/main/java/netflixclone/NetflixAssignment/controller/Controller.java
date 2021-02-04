@@ -3,20 +3,23 @@ package netflixclone.NetflixAssignment.controller;
 
 import netflixclone.NetflixAssignment.feignclient.FanArtApi;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
-import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
+
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
-import netflixclone.NetflixAssignment.model.moviesBannerIntro.BannerIntroMovies;
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
+
 import netflixclone.NetflixAssignment.service.MovieService;
+
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
