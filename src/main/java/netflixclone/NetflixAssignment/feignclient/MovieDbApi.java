@@ -61,7 +61,9 @@ public interface MovieDbApi {
     //Movie by genre request
     @GetMapping("discover/movie")
     MoviesByGenre getMoviesByGenre(@RequestParam(value="api_key") String api_key,
-                                   @RequestParam(value="with_genres") String genreId);
+                                   @RequestParam(value="with_genres") String genreId,
+                                   @RequestParam(value="page") String pageNr
+                                   );
 
 
 

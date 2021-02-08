@@ -17,6 +17,7 @@ import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 
+import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -111,12 +114,18 @@ public class Controller {
 
 
     // Movies by genre request from frontend
-    @GetMapping("/movies/genre/{genreId}")
-    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId){
-        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-        return movieService.getMoviesByGenre(genreId);
+    @GetMapping("/movies/genre/{genreId}/{pageNr}")
+    public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId, @PathVariable String pageNr){
+        System.out.println(" ---> Movies genre with id:"+ genreId +"with pageNr: " + pageNr +" requested from frontend");
+        return movieService.getMoviesByGenre(genreId, pageNr);
     }
 
+    // Movies by genre request from frontend
+    @GetMapping("/movies/genre/{genreId}")
+    public List<Result> getMoviesByGenre40(@PathVariable String genreId){
+        System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
+        return movieService.getMoviesByGenreList(genreId);
+    }
 
 
     /* ------------------Categories Requests------------------ */

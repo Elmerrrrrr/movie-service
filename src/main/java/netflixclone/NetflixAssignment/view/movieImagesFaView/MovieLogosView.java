@@ -5,9 +5,7 @@ import java.util.List;
 public class MovieLogosView {
 
 
-
     public List<MovieLogos> movielogos;
-
 
 
     public List<MovieLogos> getMovielogos() {

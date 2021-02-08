@@ -19,6 +19,7 @@ import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieDetailsView.ProductionCompany;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
+import netflixclone.NetflixAssignment.view.movieImagesView.Movielogo;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
@@ -246,10 +247,10 @@ public class MovieService {
         return movieDbApi.getMovieGenres(api_keyMD, lang); //done
     }
 
-    public MoviesByGenreView getMoviesByGenre(String genreId) {
+    public MoviesByGenreView getMoviesByGenre(String genreId, String pageNr) {
 
 
-        MoviesByGenre dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId);
+        MoviesByGenre dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
 
         MoviesByGenreView viewObject = new MoviesByGenreView();
 
@@ -271,10 +272,22 @@ public class MovieService {
             result.setBackdropPath(dtoObject.getResults().get(i).getBackdropPath());
             result.setPosterPath(dtoObject.getResults().get(i).getPosterPath());
 
-            //add trailer info and logos
+            //add trailer info and logos + runtime
             int movieId = dtoObject.getResults().get(i).getId();
-            result.setTrailer(getMovieTrailer(movieId));
-            result.setMovieLogos(getMovieLogo(movieId));
+            MovieDetailsView detailsMovie = getMovieDetails(movieId);
+            result.setTrailer(detailsMovie.getTrailer());
+
+            List<MovieLogos> newLogoList = new ArrayList<>();
+            for (int j = 0; j < detailsMovie.getMovieLogoUrls().getMovielogos().size(); j++) {
+                MovieLogos logos= new MovieLogos();
+                logos.setUrl(detailsMovie.getMovieLogoUrls().getMovielogos().get(j).getUrl());
+                logos.setUrlHd(detailsMovie.getMovieLogoUrls().getMovielogos().get(j).getUrlHd());
+                newLogoList.add(logos);
+            }
+            result.setMovieLogos(newLogoList);
+            result.setRuntime(detailsMovie.getRuntime());
+            result.setDirector(detailsMovie.getDirector());
+
 
             //add result object to the ArrayList
             newList.add(result);
@@ -285,6 +298,27 @@ public class MovieService {
     } //done - finalized
 
 
+    public List<Result> getMoviesByGenreList(String genreId) {
+
+        MoviesByGenreView dtoObjectP1 = getMoviesByGenre(genreId, "1");
+        MoviesByGenreView dtoObjectP2 = getMoviesByGenre(genreId, "2");
+
+        List<Result> newList = new ArrayList<Result>();
+
+
+        for (int i = 0; i < dtoObjectP1.getResults().size(); i++) {
+            newList.add(dtoObjectP1.getResults().get(i));
+        }
+
+
+        for (int i = 0; i < dtoObjectP2.getResults().size(); i++) {
+            newList.add(dtoObjectP2.getResults().get(i));
+        }
+
+
+
+        return newList;
+    } //done - finalized
 
 
 

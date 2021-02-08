@@ -1,7 +1,11 @@
 package netflixclone.NetflixAssignment.view.moviesByGenreView;
 
 
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
+import netflixclone.NetflixAssignment.view.movieImagesView.Movielogo;
+
+import java.util.List;
 
 public class Result {
 
@@ -14,15 +18,32 @@ public class Result {
     private String releaseDate;
     private String title;
     private String trailer; //added in service class
-    private MovieLogosView movieLogos = null;//
+    private List<MovieLogos> movieLogos = null;//
+    private String director;
+    private Integer runtime;
 
 
+    public String getDirector() {
+        return director;
+    }
 
-    public MovieLogosView getMovieLogos() {
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Integer runtime) {
+        this.runtime = runtime;
+    }
+
+    public List<MovieLogos> getMovieLogos() {
         return movieLogos;
     }
 
-    public void setMovieLogos(MovieLogosView movieLogos) {
+    public void setMovieLogos(List<MovieLogos> movieLogos) {
         this.movieLogos = movieLogos;
     }
 

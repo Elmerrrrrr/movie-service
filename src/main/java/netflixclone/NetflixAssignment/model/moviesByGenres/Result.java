@@ -1,6 +1,8 @@
 
 package netflixclone.NetflixAssignment.model.moviesByGenres;
 
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
+
 import java.util.List;
 
 public class Result {
@@ -19,6 +21,9 @@ public class Result {
     private Boolean video;
     private Float voteAverage;
     private Integer voteCount;
+
+
+
 
     public Boolean getAdult() {
         return adult;

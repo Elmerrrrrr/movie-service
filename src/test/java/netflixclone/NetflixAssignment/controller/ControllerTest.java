@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.annotation.security.RunAs;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.mockito.Mockito.when;
@@ -51,13 +52,17 @@ public class ControllerTest {
 //        assertEquals("", result.getResponse());
 
 
-        MovieImagesFA movieImagesFAObj = new MovieImagesFA();
-        movieImagesFAObj.setName("Fight Club");
+        MovieImagesFA movieImagesFATestObj = new MovieImagesFA();
+        movieImagesFATestObj.setName("Fight Club");
+        movieImagesFATestObj.setMovielogo(new ArrayList<>());
+        movieImagesFATestObj.setHdmovielogo(new ArrayList<>());
 
-        when(movieService.getMovieImages(550)).thenReturn(movieImagesFAObj);
+        when(movieService.getMovieImages(550)).thenReturn(movieImagesFATestObj);
 
-        MovieImagesFA result2 = controller.getMovieImages(550);
-        assertEquals(movieImagesFAObj.getName(), result2.getName());
+        MovieImagesFA returnCheckObj = controller.getMovieImages(550);
+        assertEquals(movieImagesFATestObj.getName(), returnCheckObj.getName());
+        assertEquals(movieImagesFATestObj.getMovielogo(), returnCheckObj.getMovielogo());
+        assertEquals(movieImagesFATestObj.getHdmovielogo(), returnCheckObj.getHdmovielogo());
 
     }
 
