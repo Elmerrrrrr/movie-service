@@ -10,6 +10,7 @@ import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 
+import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,36 +70,20 @@ public interface MovieDbApi {
 
     /* ------------------Categories Requests------------------ */
 
-   //80’s movies request
+   //categories movies request
    @GetMapping("/discover/movie")
-  MoviesByPeriod getMovies80s(@RequestParam(value="api_key") String api_key,
-                              @RequestParam(value="language") String language,
-                              @RequestParam(value="include_video") String inclVideo,
-                              @RequestParam(value="primary_release_date.gte") String gteDate,
-                              @RequestParam(value="primary_release_date.lte") String lteDate,
-                              @RequestParam(value="with_original_language") String original_language);
-
-    //90’s movies request
-    @GetMapping("/discover/movie")
-    MoviesByPeriod getMovies90s(@RequestParam(value="api_key") String api_key,
-                                @RequestParam(value="language") String language,
-                                @RequestParam(value="include_video") String inclVideo,
-                                @RequestParam(value="primary_release_date.gte") String gteDate,
-                                @RequestParam(value="primary_release_date.lte") String lteDate,
-                                @RequestParam(value="with_original_language") String original_language);
-    //00’s movies request
-    @GetMapping("/discover/movie")
-    MoviesByPeriod getMovies00s(@RequestParam(value="api_key") String api_key,
-                                @RequestParam(value="language") String language,
-                                @RequestParam(value="include_video") String inclVideo,
-                                @RequestParam(value="primary_release_date.gte") String gteDate,
-                                @RequestParam(value="primary_release_date.lte") String lteDate,
-                                @RequestParam(value="with_original_language") String original_language);
+   MoviesByGenre getMoviesCategories(@RequestParam(value="api_key") String api_key,
+                                         @RequestParam(value="language") String language,
+                                         @RequestParam(value="primary_release_date.gte") String gteDate,
+                                         @RequestParam(value="primary_release_date.lte") String lteDate,
+                                         @RequestParam(value="with_original_language") String original_language,
+                                         @RequestParam(value="page") String pageNr
+                                        );
 
 
     // Movies with actor / actress
     @GetMapping("/discover/movie")
-    MoviesByPeriod getMoviesByActor(@RequestParam(value="api_key") String api_key,
+    MoviesByGenre getMoviesByActor(@RequestParam(value="api_key") String api_key,
                                    @RequestParam(value="language") String language,
                                    @RequestParam(value="with_cast") String cast);
 

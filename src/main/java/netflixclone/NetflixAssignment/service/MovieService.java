@@ -41,6 +41,12 @@ public class MovieService {
     private final String with_original_language = "en";
     private final String include_video = "true";
     private final String append_to_response = "credits";
+    private String gte = "";
+    private String lte = "";
+    private String actorId = "";
+    private String companyId = "";
+
+
 
 
 
@@ -247,11 +253,23 @@ public class MovieService {
         return movieDbApi.getMovieGenres(api_keyMD, lang); //done
     }
 
-    public MoviesByGenreView getMoviesByGenre(String genreId, String pageNr) {
 
+    public MoviesByGenreView getMoviesByGenre(String genreId, String pageNr, boolean category, boolean actor, boolean company) {
 
-        MoviesByGenre dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
+        MoviesByGenre dtoObject = new MoviesByGenre();
 
+        if (category){
+             dtoObject = movieDbApi.getMoviesCategories(api_keyMD, lang, gte, lte, with_original_language, pageNr);
+        }
+        else if (actor){
+            dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, actorId);
+        }
+        else if (company){
+            dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, companyId);
+        }
+        else {
+             dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
+        }
         MoviesByGenreView viewObject = new MoviesByGenreView();
 
         List<Result> newList = new ArrayList<>();
@@ -298,10 +316,30 @@ public class MovieService {
     } //done - finalized
 
 
-    public List<Result> getMoviesByGenreList(String genreId) {
+    public List<Result> getMoviesByGenreList(String genreId, boolean category, boolean actor, boolean company) {
 
-        MoviesByGenreView dtoObjectP1 = getMoviesByGenre(genreId, "1");
-        MoviesByGenreView dtoObjectP2 = getMoviesByGenre(genreId, "2");
+        MoviesByGenreView dtoObjectP1 = new MoviesByGenreView();
+        MoviesByGenreView dtoObjectP2 = new MoviesByGenreView();
+
+
+        if(category) {
+             dtoObjectP1 = getMoviesByGenre("", "1", category, actor, company);
+             dtoObjectP2 = getMoviesByGenre("", "2", category, actor, company);
+        }
+        else if(actor) {
+            dtoObjectP1 = getMoviesByGenre("", "1", category, actor, company);
+            dtoObjectP2 = getMoviesByGenre("", "2", category, actor, company);
+        }
+        else if(company) {
+            dtoObjectP1 = getMoviesByGenre("", "1", category, actor, company);
+            dtoObjectP2 = getMoviesByGenre("", "2", category, actor, company);
+        }
+
+        else{
+             dtoObjectP1 = getMoviesByGenre(genreId, "1", category, actor, company);
+             dtoObjectP2 = getMoviesByGenre(genreId, "2", category, actor, company);
+
+        }
 
         List<Result> newList = new ArrayList<Result>();
 
@@ -324,24 +362,43 @@ public class MovieService {
 
     /* ------------------Categories Requests------------------ */
 
-    public MoviesByPeriod getMovies80s() {
-        return movieDbApi.getMovies80s(api_keyMD, lang, include_video,"1980-01-01", "1989-12-31" ,with_original_language );
+    public List<Result>  getMovies80s() {
+
+        gte = "1980-01-01";
+        lte = "1989-12-31";
+
+        return getMoviesByGenreList("", true, false, false);
     }
 
-    public MoviesByPeriod getMovies90s() {
-        return movieDbApi.getMovies90s(api_keyMD, lang, include_video, "1990-01-01", "1999-12-31" ,with_original_language );
+    public List<Result> getMovies90s() {
+
+        gte = "1990-01-01";
+        lte = "1999-12-31";
+
+        return getMoviesByGenreList("", true,false, false);
+
     }
 
-    public MoviesByPeriod getMovies00s() {
-        return movieDbApi.getMovies00s(api_keyMD, lang, include_video,"2000-01-01", "2019-12-31" ,with_original_language);
+    public List<Result> getMovies00s() {
+
+        gte = "2000-01-01";
+        lte = "2010-12-31";
+
+        return getMoviesByGenreList("", true, false, false);
+
     }
 
-    public MoviesByPeriod getMoviesCompany(String companyId) {
-        return movieDbApi.getMoviesByCompany(api_keyMD, lang, companyId);
+    public List<Result> getMoviesCompany(String companyId) {
+
+         companyId = companyId;
+        return getMoviesByGenreList("", false, false, true);
     }
 
-    public MoviesByPeriod getMoviesByActor(String actorId) {
-        return movieDbApi.getMoviesByActor(api_keyMD, lang, actorId);
+    public List<Result> getMoviesByActor(String actorId) {
+
+        actorId = actorId;
+
+        return getMoviesByGenreList("", false,true, false);
     }
 
 

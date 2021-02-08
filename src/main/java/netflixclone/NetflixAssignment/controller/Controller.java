@@ -117,14 +117,14 @@ public class Controller {
     @GetMapping("/movies/genre/{genreId}/{pageNr}")
     public MoviesByGenreView getMoviesByGenre(@PathVariable String genreId, @PathVariable String pageNr){
         System.out.println(" ---> Movies genre with id:"+ genreId +"with pageNr: " + pageNr +" requested from frontend");
-        return movieService.getMoviesByGenre(genreId, pageNr);
+        return movieService.getMoviesByGenre(genreId, pageNr, false,false, false);
     }
 
     // Movies by genre request from frontend
     @GetMapping("/movies/genre/{genreId}")
     public List<Result> getMoviesByGenre40(@PathVariable String genreId){
         System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
-        return movieService.getMoviesByGenreList(genreId);
+        return movieService.getMoviesByGenreList(genreId, false,false, false);
     }
 
 
@@ -132,35 +132,35 @@ public class Controller {
 
     // 80’s movies request
     @GetMapping("/movies/80s")
-    public MoviesByPeriod getMovies80s(){
+    public List<Result> getMovies80s(){
         System.out.println(" ---> 80’s movies request from frontend");
         return movieService.getMovies80s();
     }
 
     // 90’s movies request
     @GetMapping("/movies/90s")
-    public MoviesByPeriod getMovies90s(){
+    public List<Result> getMovies90s(){
         System.out.println(" ---> 90’s movies request from frontend");
         return movieService.getMovies90s();
     }
 
     // 00’s movies request
     @GetMapping("/movies/00s")
-    public MoviesByPeriod getMovies00s(){
+    public List<Result> getMovies00s(){
         System.out.println(" ---> 00’s movies request from frontend");
         return movieService.getMovies00s();
     }
 
     // Movies with actor / actress
     @GetMapping("/movies/{actorId}}")
-    public MoviesByPeriod getMoviesByActor(@PathVariable String actorId){
+    public List<Result> getMoviesByActor(@PathVariable String actorId){
         System.out.println(" ---> 00’s movies request from frontend");
         return movieService.getMoviesByActor(actorId);
     }
 
     // Movies with company
     @GetMapping("/movies/company/{companyId}")
-    public MoviesByPeriod getMoviesCompany(@PathVariable String companyId){
+    public List<Result> getMoviesCompany(@PathVariable String companyId){
         System.out.println(" ---> Company request from the front end");
         return movieService.getMoviesCompany(companyId);
     }
