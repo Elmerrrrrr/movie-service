@@ -41,6 +41,8 @@ public class MovieService {
     private final String with_original_language = "en";
     private final String include_video = "true";
     private final String append_to_response = "credits";
+    private final String sort_by = "popularity.desc";
+
     private String gte = "";
     private String lte = "";
     private String actorId = "";
@@ -259,13 +261,13 @@ public class MovieService {
         MoviesByGenre dtoObject = new MoviesByGenre();
 
         if (category){
-             dtoObject = movieDbApi.getMoviesCategories(api_keyMD, lang, gte, lte, with_original_language, pageNr);
+             dtoObject = movieDbApi.getMoviesCategories(api_keyMD, lang, sort_by, gte, lte, with_original_language, pageNr);
         }
         else if (actor){
-            dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, actorId);
+            dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, sort_by, actorId, pageNr);
         }
         else if (company){
-            dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, companyId);
+            dtoObject = movieDbApi.getMoviesByCompany(api_keyMD, lang, sort_by, companyId, pageNr);
         }
         else {
              dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
