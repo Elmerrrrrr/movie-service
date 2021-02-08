@@ -89,7 +89,7 @@ public interface MovieDbApi {
 
     // Movies with companies
     @GetMapping("/discover/movie")
-    MoviesByPeriod getMoviesByCompany(@RequestParam(value="api_key") String api_key,
+    MoviesByGenre getMoviesByCompany(@RequestParam(value="api_key") String api_key,
                                     @RequestParam(value="language") String language,
                                     @RequestParam(value="with_companies") String company);
 

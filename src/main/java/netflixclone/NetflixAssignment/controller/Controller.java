@@ -154,14 +154,14 @@ public class Controller {
     // Movies with actor / actress
     @GetMapping("/movies/{actorId}}")
     public List<Result> getMoviesByActor(@PathVariable String actorId){
-        System.out.println(" ---> 00’s movies request from frontend");
+        System.out.println(" ---> Movies with actorId "+ actorId +" request from frontend");
         return movieService.getMoviesByActor(actorId);
     }
 
     // Movies with company
     @GetMapping("/movies/company/{companyId}")
     public List<Result> getMoviesCompany(@PathVariable String companyId){
-        System.out.println(" ---> Company request from the front end");
+        System.out.println(" ---> Company with id"+ companyId +" request from the front end");
         return movieService.getMoviesCompany(companyId);
     }
 
