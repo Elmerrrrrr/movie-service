@@ -264,14 +264,15 @@ public class MovieService {
              dtoObject = movieDbApi.getMoviesCategories(api_keyMD, lang, sort_by, gte, lte, with_original_language, pageNr);
         }
         else if (actor){
-            dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, sort_by, actorId, pageNr);
+             dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, sort_by, actorId, pageNr);
         }
         else if (company){
-            dtoObject = movieDbApi.getMoviesByCompany(api_keyMD, lang, sort_by, companyId, pageNr);
+             dtoObject = movieDbApi.getMoviesByCompany(api_keyMD, lang, sort_by, companyId, pageNr);
         }
         else {
              dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
         }
+
         MoviesByGenreView viewObject = new MoviesByGenreView();
 
         List<Result> newList = new ArrayList<>();
@@ -325,21 +326,21 @@ public class MovieService {
 
 
         if(category) {
-             dtoObjectP1 = getMoviesByGenre("", "1", category, actor, company);
-             dtoObjectP2 = getMoviesByGenre("", "2", category, actor, company);
+             dtoObjectP1 = getMoviesByGenre("", "1", true, false, false);
+             dtoObjectP2 = getMoviesByGenre("", "2", true, false, false);
         }
         else if(actor) {
-            dtoObjectP1 = getMoviesByGenre("", "1", category, actor, company);
-            dtoObjectP2 = getMoviesByGenre("", "2", category, actor, company);
+            dtoObjectP1 = getMoviesByGenre("", "1", false, true, false);
+            dtoObjectP2 = getMoviesByGenre("", "2", false, true, false);
         }
         else if(company) {
-            dtoObjectP1 = getMoviesByGenre("", "1", category, actor, company);
-            dtoObjectP2 = getMoviesByGenre("", "2", category, actor, company);
+            dtoObjectP1 = getMoviesByGenre("", "1", false, false, true);
+            dtoObjectP2 = getMoviesByGenre("", "2", false, false, true);
         }
 
         else{
-             dtoObjectP1 = getMoviesByGenre(genreId, "1", category, actor, company);
-             dtoObjectP2 = getMoviesByGenre(genreId, "2", category, actor, company);
+             dtoObjectP1 = getMoviesByGenre(genreId, "1", false, false, false);
+             dtoObjectP2 = getMoviesByGenre(genreId, "2", false, false, false);
 
         }
 
@@ -387,18 +388,18 @@ public class MovieService {
         lte = "2010-12-31";
 
         return getMoviesByGenreList("", true, false, false);
-
     }
 
-    public List<Result> getMoviesCompany(String companyId) {
+    public List<Result> getMoviesCompany(String companyIdd) {
 
-         companyId = companyId;
+         companyId = companyIdd;
+
         return getMoviesByGenreList("", false, false, true);
     }
 
-    public List<Result> getMoviesByActor(String actorId) {
+    public List<Result> getMoviesByActor(String actorrId) {
 
-        actorId = actorId;
+        actorId = actorrId;
 
         return getMoviesByGenreList("", false,true, false);
     }

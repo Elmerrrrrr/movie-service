@@ -6,6 +6,7 @@ import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
+import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
@@ -21,10 +22,7 @@ import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -165,6 +163,14 @@ public class Controller {
         return movieService.getMoviesCompany(companyId);
     }
 
+
+
+    // Movies with actor / actress
+    @GetMapping("/movies/actorr/{actorId}")
+    public MoviesByGenre getMoviesByActorr(@PathVariable String actorId){
+        System.out.println(" ---> Movies with actorId:"+ actorId +" request from frontend");
+        return movieDbApi.getMoviesByActor("4b9e0a6d10b150a86ea776f903aaaf8c","en-US","popularity.desc", "5292", "1");
+    }
 
 
 

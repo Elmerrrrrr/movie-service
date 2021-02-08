@@ -1,8 +1,6 @@
 package netflixclone.NetflixAssignment.feignclient;
 
-
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
-import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.model.movieDetails.MovieDetails;
@@ -10,7 +8,6 @@ import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 
-import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,7 +84,7 @@ public interface MovieDbApi {
     MoviesByGenre getMoviesByActor(@RequestParam(value="api_key") String api_key,
                                    @RequestParam(value="language") String language,
                                    @RequestParam(value="sort_by") String sort_by,
-                                   @RequestParam(value="with_people") String actor,
+                                   @RequestParam(value="with_people") String actorId,
                                    @RequestParam(value="page") String pageNr
                                   );
 
