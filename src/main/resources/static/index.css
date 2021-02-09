@@ -12,6 +12,9 @@ h1, h4{text-align: center;}
 
 main{flex: 1;}
 
+.search{ padding-left: 40px;}
+#results{ padding-left: 40px;}
+
 footer{
     justify-content:center;
     font-size: small;

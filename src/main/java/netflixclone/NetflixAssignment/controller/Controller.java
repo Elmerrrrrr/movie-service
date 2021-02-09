@@ -165,15 +165,6 @@ public class Controller {
 
 
 
-    // Movies with actor / actress
-    @GetMapping("/movies/actorr/{actorId}")
-    public MoviesByGenre getMoviesByActorr(@PathVariable String actorId){
-        System.out.println(" ---> Movies with actorId:"+ actorId +" request from frontend");
-        return movieDbApi.getMoviesByActor("4b9e0a6d10b150a86ea776f903aaaf8c","en-US","popularity.desc", "5292", "1");
-    }
-
-
-
     /* ------------------Search Request------------------ */
 
     // Search movie request from frontend

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Backend - NetfllixClone Project 2021 </title>
     <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 <main>
@@ -31,6 +32,13 @@
 <h3>Search</h3>
 <ul><li><a href="http://localhost:2021/search/something" target="_blank">http://localhost:2021/search/{query}</a></li></ul>
 <ul><li><a href="http://localhost:2021/search/company/6125" target="_blank">http://localhost:2021/search/company/{companyIDNumber}</a></li></ul>
+<br>
+   <div class="search">
+    <input type="text" onkeypress="multiSearch()" id='searchMulti' placeholder='search for movies, actors..' required>
+    <button  onclick="multiSearch()">Search</button>
+  </div>
+<br>
+    <div id="results"></div>
 <br>
 <h3>Logos</h3>
     <p>The logos are included if available in the detailed movie request. Also in the movies by genre view. They can be included anywhere on request.</p>
