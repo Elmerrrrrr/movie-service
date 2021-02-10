@@ -3,7 +3,7 @@ package netflixclone.NetflixAssignment.view.moviesByGenres;
 
 import java.util.List;
 
-public class Result {
+public class ResultByGenre {
 
     private Boolean adult;
     private String backdropPath;

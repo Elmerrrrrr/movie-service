@@ -5,7 +5,7 @@ import java.util.List;
 public class MoviesTopRated {
 
     private Integer page;
-    private List<Result> results = null;
+    private List<ResultTopRated> results = null;
     private Integer totalPages;
     private Integer totalResults;
 
@@ -19,11 +19,11 @@ public class MoviesTopRated {
         this.page = page;
     }
 
-    public List<Result> getResults() {
+    public List<ResultTopRated> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<ResultTopRated> results) {
         this.results = results;
     }
 

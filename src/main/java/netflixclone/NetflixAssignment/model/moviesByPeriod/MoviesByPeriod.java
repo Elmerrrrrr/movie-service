@@ -1,6 +1,6 @@
 package netflixclone.NetflixAssignment.model.moviesByPeriod;
 
-import netflixclone.NetflixAssignment.model.moviesByGenres.Result;
+import netflixclone.NetflixAssignment.model.moviesByGenres.ResultByGenre;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class MoviesByPeriod {
 
 
     private Integer page;
-    private List<Result> results;
+    private List<ResultByGenre> results;
     private Integer totalPages;
     private Integer totalResults;
 
@@ -20,11 +20,11 @@ public class MoviesByPeriod {
         this.page = page;
     }
 
-    public List<Result> getResults() {
+    public List<ResultByGenre> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<ResultByGenre> results) {
         this.results = results;
     }
 

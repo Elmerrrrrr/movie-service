@@ -5,7 +5,7 @@ import java.util.List;
 public class MoviesByGenreView {
 
     private Integer page;
-    private List<Result> results;
+    private List<ResultMBG> results;
     private Integer totalPages;
     private Integer totalResults;
 
@@ -19,11 +19,11 @@ public class MoviesByGenreView {
         this.page = page;
     }
 
-    public List<Result> getResults() {
+    public List<ResultMBG> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<ResultMBG> results) {
         this.results = results;
     }
 

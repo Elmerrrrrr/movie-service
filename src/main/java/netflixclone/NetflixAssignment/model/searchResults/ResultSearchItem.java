@@ -3,7 +3,7 @@ package netflixclone.NetflixAssignment.model.searchResults;
 
 import java.util.List;
 
-public class Result {
+public class ResultSearchItem {
 
     private String backdropPath;
     private String firstAirDate;

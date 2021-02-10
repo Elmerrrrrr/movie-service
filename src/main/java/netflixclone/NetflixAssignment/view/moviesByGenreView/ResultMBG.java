@@ -1,36 +1,58 @@
+package netflixclone.NetflixAssignment.view.moviesByGenreView;
 
-package netflixclone.NetflixAssignment.model.moviesByGenres;
 
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
+import netflixclone.NetflixAssignment.view.movieImagesView.Movielogo;
 
 import java.util.List;
 
-public class Result {
+public class ResultMBG {
 
-    private Boolean adult;
     private String backdropPath;
-    private List<Integer> genreIds;
     private Integer id;
     private String originalLanguage;
     private String originalTitle;
     private String overview;
-    private Float popularity;
     private String posterPath;
     private String releaseDate;
     private String title;
-    private Boolean video;
-    private Float voteAverage;
-    private Integer voteCount;
+    private String trailer; //added in service class
+    private List<MovieLogos> movieLogos = null;//
+    private String director;
+    private Integer runtime;
 
 
-
-
-    public Boolean getAdult() {
-        return adult;
+    public String getDirector() {
+        return director;
     }
 
-    public void setAdult(Boolean adult) {
-        this.adult = adult;
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Integer runtime) {
+        this.runtime = runtime;
+    }
+
+    public List<MovieLogos> getMovieLogos() {
+        return movieLogos;
+    }
+
+    public void setMovieLogos(List<MovieLogos> movieLogos) {
+        this.movieLogos = movieLogos;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 
     public String getBackdropPath() {
@@ -39,14 +61,6 @@ public class Result {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
-    }
-
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
-
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
     }
 
     public Integer getId() {
@@ -81,14 +95,6 @@ public class Result {
         this.overview = overview;
     }
 
-    public Float getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(Float popularity) {
-        this.popularity = popularity;
-    }
-
     public String getPosterPath() {
         return posterPath;
     }
@@ -113,28 +119,6 @@ public class Result {
         this.title = title;
     }
 
-    public Boolean getVideo() {
-        return video;
-    }
 
-    public void setVideo(Boolean video) {
-        this.video = video;
-    }
-
-    public Float getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(Float voteAverage) {
-        this.voteAverage = voteAverage;
-    }
-
-    public Integer getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
-    }
 
 }

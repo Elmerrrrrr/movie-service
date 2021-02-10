@@ -3,7 +3,7 @@ package netflixclone.NetflixAssignment.model.moviesTopRated;
 
 import java.util.List;
 
-public class Result {
+public class ResultTopRated {
 
     private Boolean adult;
     private String backdropPath;

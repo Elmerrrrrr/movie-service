@@ -9,7 +9,6 @@ import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
-import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 
@@ -19,10 +18,9 @@ import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieDetailsView.ProductionCompany;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
-import netflixclone.NetflixAssignment.view.movieImagesView.Movielogo;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
-import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
+import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -275,7 +273,7 @@ public class MovieService {
 
         MoviesByGenreView viewObject = new MoviesByGenreView();
 
-        List<Result> newList = new ArrayList<>();
+        List<ResultMBG> newList = new ArrayList<>();
 
         viewObject.setPage(dtoObject.getPage());
         viewObject.setTotalPages(dtoObject.getTotalPages());
@@ -283,7 +281,7 @@ public class MovieService {
 
         for (int i = 0; i<dtoObject.getResults().size(); i++) {
 
-            Result result = new Result();
+            ResultMBG result = new ResultMBG();
             result.setId(dtoObject.getResults().get(i).getId());
             result.setTitle(dtoObject.getResults().get(i).getTitle());
             result.setOriginalTitle(dtoObject.getResults().get(i).getOriginalTitle());
@@ -319,7 +317,7 @@ public class MovieService {
     } //done - finalized
 
 
-    public List<Result> getMoviesByGenreList(String genreId, boolean category, boolean actor, boolean company) {
+    public List<ResultMBG> getMoviesByGenreList(String genreId, boolean category, boolean actor, boolean company) {
 
         MoviesByGenreView dtoObjectP1 = new MoviesByGenreView();
         MoviesByGenreView dtoObjectP2 = new MoviesByGenreView();
@@ -344,7 +342,7 @@ public class MovieService {
 
         }
 
-        List<Result> newList = new ArrayList<Result>();
+        List<ResultMBG> newList = new ArrayList<ResultMBG>();
 
 
         for (int i = 0; i < dtoObjectP1.getResults().size(); i++) {
@@ -365,7 +363,7 @@ public class MovieService {
 
     /* ------------------Categories Requests------------------ */
 
-    public List<Result>  getMovies80s() {
+    public List<ResultMBG>  getMovies80s() {
 
         gte = "1980-01-01";
         lte = "1989-12-31";
@@ -373,7 +371,7 @@ public class MovieService {
         return getMoviesByGenreList("", true, false, false);
     }
 
-    public List<Result> getMovies90s() {
+    public List<ResultMBG> getMovies90s() {
 
         gte = "1990-01-01";
         lte = "1999-12-31";
@@ -382,7 +380,7 @@ public class MovieService {
 
     }
 
-    public List<Result> getMovies00s() {
+    public List<ResultMBG> getMovies00s() {
 
         gte = "2000-01-01";
         lte = "2010-12-31";
@@ -390,14 +388,14 @@ public class MovieService {
         return getMoviesByGenreList("", true, false, false);
     }
 
-    public List<Result> getMoviesCompany(String companyIdd) {
+    public List<ResultMBG> getMoviesCompany(String companyIdd) {
 
          companyId = companyIdd;
 
         return getMoviesByGenreList("", false, false, true);
     }
 
-    public List<Result> getMoviesByActor(String actorrId) {
+    public List<ResultMBG> getMoviesByActor(String actorrId) {
 
         actorId = actorrId;
 

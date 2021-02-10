@@ -6,7 +6,7 @@ import java.util.List;
 public class SearchResults {
 
     private Integer page;
-    private List<Result> results = null;
+    private List<ResultSearchItem> results = null;
     private Integer totalPages;
     private Integer totalResults;
 
@@ -18,11 +18,11 @@ public class SearchResults {
         this.page = page;
     }
 
-    public List<Result> getResults() {
+    public List<ResultSearchItem> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<ResultSearchItem> results) {
         this.results = results;
     }
 

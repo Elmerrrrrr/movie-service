@@ -3,7 +3,7 @@ package netflixclone.NetflixAssignment.view.searchResults;
 
 import java.util.List;
 
-public class Result {
+public class ResultSearch {
 
     public Boolean adult;
     public Integer gender;

@@ -1,24 +1,29 @@
 
-package netflixclone.NetflixAssignment.view.moviesTopRated;
+package netflixclone.NetflixAssignment.model.moviesByGenres;
+
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 
 import java.util.List;
 
-public class Result {
+public class ResultByGenre {
 
-    public Boolean adult;
-    public String backdropPath;
-    public List<Integer> genreIds = null;
-    public Integer id;
-    public String originalLanguage;
-    public String originalTitle;
-    public String overview;
-    public Float popularity;
-    public String posterPath;
-    public String releaseDate;
-    public String title;
-    public Boolean video;
-    public Float voteAverage;
-    public Integer voteCount;
+    private Boolean adult;
+    private String backdropPath;
+    private List<Integer> genreIds;
+    private Integer id;
+    private String originalLanguage;
+    private String originalTitle;
+    private String overview;
+    private Float popularity;
+    private String posterPath;
+    private String releaseDate;
+    private String title;
+    private Boolean video;
+    private Float voteAverage;
+    private Integer voteCount;
+
+
+
 
     public Boolean getAdult() {
         return adult;
@@ -131,4 +136,5 @@ public class Result {
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
+
 }

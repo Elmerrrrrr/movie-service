@@ -2,7 +2,7 @@ package netflixclone.NetflixAssignment.model.moviesByPeriod;
 
 import java.util.List;
 
-public class Result {
+public class ResultByPeriod {
 
     private Boolean adult;
     private String backdropPath;

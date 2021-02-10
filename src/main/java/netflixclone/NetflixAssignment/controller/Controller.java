@@ -6,8 +6,6 @@ import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
 import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
-import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
-import netflixclone.NetflixAssignment.model.moviesByPeriod.MoviesByPeriod;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
@@ -18,7 +16,7 @@ import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 
-import netflixclone.NetflixAssignment.view.moviesByGenreView.Result;
+import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -120,7 +118,7 @@ public class Controller {
 
     // Movies by genre request from frontend
     @GetMapping("/movies/genre/{genreId}")
-    public List<Result> getMoviesByGenre40(@PathVariable String genreId){
+    public List<ResultMBG> getMoviesByGenre40(@PathVariable String genreId){
         System.out.println(" ---> Movies genre with id:"+ genreId +" requested from frontend");
         return movieService.getMoviesByGenreList(genreId, false,false, false);
     }
@@ -130,35 +128,35 @@ public class Controller {
 
     // 80’s movies request
     @GetMapping("/movies/80s")
-    public List<Result> getMovies80s(){
+    public List<ResultMBG> getMovies80s(){
         System.out.println(" ---> 80’s movies request from frontend");
         return movieService.getMovies80s();
     }
 
     // 90’s movies request
     @GetMapping("/movies/90s")
-    public List<Result> getMovies90s(){
+    public List<ResultMBG> getMovies90s(){
         System.out.println(" ---> 90’s movies request from frontend");
         return movieService.getMovies90s();
     }
 
     // 00’s movies request
     @GetMapping("/movies/00s")
-    public List<Result> getMovies00s(){
+    public List<ResultMBG> getMovies00s(){
         System.out.println(" ---> 00’s movies request from frontend");
         return movieService.getMovies00s();
     }
 
     // Movies with actor / actress
     @GetMapping("/movies/actor/{actorId}")
-    public List<Result> getMoviesByActor(@PathVariable String actorId){
+    public List<ResultMBG> getMoviesByActor(@PathVariable String actorId){
         System.out.println(" ---> Movies with actorId:"+ actorId +" request from frontend");
         return movieService.getMoviesByActor(actorId);
     }
 
     // Movies with company
     @GetMapping("/movies/company/{companyId}")
-    public List<Result> getMoviesCompany(@PathVariable String companyId){
+    public List<ResultMBG> getMoviesCompany(@PathVariable String companyId){
         System.out.println(" ---> Company with id:"+ companyId +" request from the front end");
         return movieService.getMoviesCompany(companyId);
     }

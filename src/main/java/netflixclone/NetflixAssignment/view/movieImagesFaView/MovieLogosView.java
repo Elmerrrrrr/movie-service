@@ -15,4 +15,7 @@ public class MovieLogosView {
     public void setMovielogos(List<MovieLogos> movielogos) {
         this.movielogos = movielogos;
     }
+
+    public void setName(String fight_club) {
+    }
 }
