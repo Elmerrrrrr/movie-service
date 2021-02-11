@@ -9,6 +9,8 @@ import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.ResultUpcoming;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 
+import netflixclone.NetflixAssignment.model.searchResults.ResultSearchItem;
+import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Cast;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
@@ -105,7 +107,7 @@ public class ControllerTest {
         List<ResultUpcoming> newList = new ArrayList<>();
         movieTestObj.setResults(newList);
 
-        when(movieDbApi.getMoviesUpcoming("4b9e0a6d10b150a86ea776f903aaaf8c","en-US","1")).thenReturn(movieTestObj);
+        when(movieService.getMoviesUpcoming("1")).thenReturn(movieTestObj);
         MoviesUpcoming returnCheckObj = controller.getUpcomingMovies("1");
         assertEquals(movieTestObj.getResults(),returnCheckObj.getResults());
     }
@@ -191,38 +193,9 @@ public class ControllerTest {
         when(movieService.getMoviesByGenreList("1",false, false,false)).thenReturn(newTestList);
         List<ResultMBG> returnCheckObj = controller.getMoviesByGenre40("1");
 
-//
-//        when(movieService.getMoviesByGenreList("1",true, false,false)).thenReturn(newTestList);
-//        List<ResultMBG> returnCheckObj2= controller.getMoviesByGenre40("1");
-//
-//        when(movieService.getMoviesByGenreList("1",false, true,false)).thenReturn(newTestList);
-//        List<ResultMBG> returnCheckObj3= controller.getMoviesByGenre40("1");
-//
-//        when(movieService.getMoviesByGenreList("1",false, false,true)).thenReturn(newTestList);
-//        List<ResultMBG> returnCheckObj4= controller.getMoviesByGenre40("1");
-
         assertEquals(newTestList.get(0).getDirector(), returnCheckObj.get(0).getDirector());
         assertEquals(newTestList.get(0).getTrailer(), returnCheckObj.get(0).getTrailer());
         assertEquals(newTestList.get(0).getId(), returnCheckObj.get(0).getId());
-
-
-//
-//        assertEquals(newTestList.get(0).getDirector(), returnCheckObj2.get(0).getDirector());
-//        assertEquals(newTestList.get(0).getTrailer(), returnCheckObj2.get(0).getTrailer());
-//        assertEquals(newTestList.get(0).getId(), returnCheckObj2.get(0).getId());
-//
-//
-//
-//        assertEquals(newTestList.get(0).getDirector(), returnCheckObj3.get(0).getDirector());
-//        assertEquals(newTestList.get(0).getTrailer(), returnCheckObj3.get(0).getTrailer());
-//        assertEquals(newTestList.get(0).getId(), returnCheckObj3.get(0).getId());
-//
-//
-//
-//        assertEquals(newTestList.get(0).getDirector(), returnCheckObj4.get(0).getDirector());
-//        assertEquals(newTestList.get(0).getTrailer(), returnCheckObj4.get(0).getTrailer());
-//        assertEquals(newTestList.get(0).getId(), returnCheckObj4.get(0).getId());
-
 
     }
 
@@ -320,10 +293,43 @@ public class ControllerTest {
 
     @Test
     void getSearchResult() {
+
+        SearchResults movieTestObj = new SearchResults();
+        List<ResultSearchItem> newTestList = new ArrayList<>();
+        ResultSearchItem resultSearch = new ResultSearchItem();
+        movieTestObj.setTotalResults(1234);
+        movieTestObj.setTotalPages(1234);
+        movieTestObj.setPage(123);
+        newTestList.add(resultSearch);
+        movieTestObj.setResults(newTestList);
+
+        when(movieService.getSearchResult("123")).thenReturn(movieTestObj);
+        SearchResults returnCheckObj = controller.getSearchResult("123");
+        assertEquals(movieTestObj.getTotalResults(), returnCheckObj.getTotalResults());
+        assertEquals(movieTestObj.getTotalPages(), returnCheckObj.getTotalPages());
+        assertEquals(movieTestObj.getPage(), returnCheckObj.getPage());
+        assertEquals(movieTestObj.getResults(), returnCheckObj.getResults());
     }
 
     @Test
     void getSearchCompanyResults() {
+
+
+        SearchResults movieTestObj = new SearchResults();
+        List<ResultSearchItem> newTestList = new ArrayList<>();
+        ResultSearchItem resultSearch = new ResultSearchItem();
+        movieTestObj.setTotalResults(1234);
+        movieTestObj.setTotalPages(1234);
+        movieTestObj.setPage(123);
+        newTestList.add(resultSearch);
+        movieTestObj.setResults(newTestList);
+
+        when(movieService.getSearchCompanyResults("123")).thenReturn(movieTestObj);
+        SearchResults returnCheckObj = controller.getSearchCompanyResults("123");
+        assertEquals(movieTestObj.getTotalResults(), returnCheckObj.getTotalResults());
+        assertEquals(movieTestObj.getTotalPages(), returnCheckObj.getTotalPages());
+        assertEquals(movieTestObj.getPage(), returnCheckObj.getPage());
+        assertEquals(movieTestObj.getResults(), returnCheckObj.getResults());
     }
 
 

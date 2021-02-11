@@ -10,6 +10,7 @@ import netflixclone.NetflixAssignment.model.movieImagesFA.MovieImagesFA;
 import netflixclone.NetflixAssignment.model.movieTrailer.MovieTrailer;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
+import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 
 import netflixclone.NetflixAssignment.view.movieDetailsView.Cast;
@@ -131,6 +132,10 @@ public class MovieService {
     } //done
 
 
+    public MoviesUpcoming getMoviesUpcoming(String pageNr) {
+
+        return movieDbApi.getMoviesUpcoming(api_keyMD, lang, pageNr);
+    } //done
 
 
     /* ------------------Single Movie Requests------------------ */

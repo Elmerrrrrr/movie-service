@@ -69,7 +69,7 @@ public class Controller {
     @GetMapping("movies/upcoming/{pageNr}")
     public MoviesUpcoming getUpcomingMovies(@PathVariable String pageNr) {
         System.out.println(" ---> Movies Upcoming requested from frontend and pageNr = " + pageNr);
-        return movieDbApi.getMoviesUpcoming("4b9e0a6d10b150a86ea776f903aaaf8c", "en-US", pageNr);
+        return movieService.getMoviesUpcoming(pageNr);
     }
 
 
