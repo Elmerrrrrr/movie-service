@@ -6,7 +6,7 @@ INSERT INTO users (username, password, enabled)
 
 INSERT INTO users (username, password, enabled)
   values ('admin',
-    'pass',
+    'team2',
     true);
 
 

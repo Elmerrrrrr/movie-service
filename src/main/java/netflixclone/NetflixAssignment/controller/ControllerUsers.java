@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControllerUsers {
 
-//    @GetMapping("/")
-//    public String home(){
-//        return ("<h1>Welcome</h1>");
-//    }
 
     @GetMapping("/user")
     public String user(){
@@ -18,8 +14,8 @@ public class ControllerUsers {
     }
 
     @GetMapping("/admin")
-    public String admin(){
-        return ("<h1>Welcome Admin</h1>");
+    public void admin(){
+
     }
 
 

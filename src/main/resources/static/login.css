@@ -1,0 +1,9 @@
+html, body{
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-left: 25px;
+    font-family: monospace;
+    color:rgb(87, 87, 87);
+
+}

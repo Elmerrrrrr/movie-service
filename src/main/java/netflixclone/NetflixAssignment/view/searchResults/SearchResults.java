@@ -10,6 +10,8 @@ public class SearchResults {
     private Integer totalPages;
     private Integer totalResults;
 
+
+
     public Integer getPage() {
         return page;
     }
