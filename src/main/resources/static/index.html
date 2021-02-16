@@ -30,15 +30,25 @@
 <ul><li><a href="http://localhost:2021/movies/actor/5292" target="_blank">http://localhost:2021/movies/actor/{actorId}</a></li></ul>
 <br>
 <h3>Search</h3>
-<ul><li><a href="http://localhost:2021/search/something" target="_blank">http://localhost:2021/search/{query}</a></li></ul>
+<ul><li><a href="http://localhost:2021/search/movie/fight+club" target="_blank">http://localhost:2021/search/movie/{query}</a></li></ul>
+<ul><li><a href="http://localhost:2021/search/actors/brad" target="_blank">http://localhost:2021/search/actors/{query}</a></li></ul>
 <ul><li><a href="http://localhost:2021/search/company/6125" target="_blank">http://localhost:2021/search/company/{companyIDNumber}</a></li></ul>
 <br>
    <div class="search">
-    <input type="text" onkeypress="multiSearch()" id='searchMulti' placeholder='search for movies, actors..' required>
-    <button  onclick="multiSearch()">Search</button>
+    <input type="text" onkeypress="searchActor()" id='searchActor' placeholder='search for actors..' required>
+    <button  onclick="searchActor()">Search</button>
   </div>
 <br>
-    <div id="results"></div>
+    <div id="resultsActor"></div>
+<br>
+
+<br>
+<div class="search">
+    <input type="text" onkeypress="searchMovie()" id='searchMovie' placeholder='search for movies..' required>
+    <button  onclick="searchMovie()">Search</button>
+</div>
+<br>
+<div id="resultsMovie"></div>
 <br>
 <h3>Logos</h3>
     <p>The logos are included if available in the detailed movie request. Also in the movies by genre view. They can be included anywhere on request.</p>

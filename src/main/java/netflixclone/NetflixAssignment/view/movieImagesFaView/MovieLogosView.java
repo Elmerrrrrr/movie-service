@@ -18,4 +18,7 @@ public class MovieLogosView {
 
     public void setName(String fight_club) {
     }
+
+
+
 }

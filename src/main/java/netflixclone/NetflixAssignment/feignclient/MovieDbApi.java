@@ -88,6 +88,16 @@ public interface MovieDbApi {
                                    @RequestParam(value="page") String pageNr
                                   );
 
+
+    // Movies with actor / actress
+    @GetMapping("/discover/movie")
+    MoviesByGenre getMoviesByActors(@RequestParam(value="api_key") String api_key,
+                                   @RequestParam(value="language") String language,
+                                   @RequestParam(value="sort_by") String sort_by,
+                                   @RequestParam(value="with_people") String actorId,
+                                   @RequestParam(value="page") String pageNr
+    );
+
     // Movies with companies
     @GetMapping("/discover/movie")
     MoviesByGenre getMoviesByCompany(@RequestParam(value="api_key") String api_key,
@@ -100,19 +110,30 @@ public interface MovieDbApi {
 
 
 
+
+
     /* ------------------Search Request------------------ */
 
-    // Multi search request
-    @GetMapping("search/multi")
-    SearchResults getSearchResult(@RequestParam(value="api_key") String api_key,
+    // Movie search request
+    @GetMapping("search/movie")
+    SearchResults getMovieSearchResults(@RequestParam(value="api_key") String api_key,
                                   @RequestParam(value="language") String language,
-                                  @RequestParam("query") String query);
+                                  @RequestParam("query") String query,
+                                  @RequestParam("page") String pageId
+                                  );
+
+    //People search request
+    @GetMapping("search/person")
+    SearchResults getActorSearchResults(@RequestParam(value="api_key") String api_key,
+                                        @RequestParam(value="language") String language,
+                                        @RequestParam("query") String query,
+                                        @RequestParam("page") String pageId
+                                        );
 
     //Company search request
     @GetMapping("search/company")
     SearchResults getSearchCompanyResults(@RequestParam(value="api_key") String api_key,
                                           @RequestParam("query") String companyId);
-
 
 
 }

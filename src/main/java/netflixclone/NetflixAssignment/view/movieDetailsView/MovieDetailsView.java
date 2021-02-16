@@ -1,4 +1,5 @@
 package netflixclone.NetflixAssignment.view.movieDetailsView;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 
 
@@ -18,7 +19,7 @@ public class MovieDetailsView {
     private String originalLanguage;
     private String originalTitle;
     private String overview;
-//    private Float popularity;
+    private Float popularity;
     private String posterPath;
     private Integer runtime;
     private Integer voteCount;
@@ -28,7 +29,7 @@ public class MovieDetailsView {
     private List<Genre> genres = null;//
     private List<Cast> cast = null;//
     private List<ProductionCompany> productionCompany = null;
-    private MovieLogosView movieLogoUrls = null;//
+    private List<MovieLogos> movielogos;
 
 
     public List<ProductionCompany> getProductionCompany() {
@@ -51,15 +52,13 @@ public class MovieDetailsView {
 
     public void setGenres(List<Genre> genres) { this.genres = genres; }
 
-    public MovieLogosView getMovieLogoUrls() {
-        return movieLogoUrls;
+    public List<MovieLogos> getMovielogos() {
+        return movielogos;
     }
 
-    public void setMovieLogoUrls(MovieLogosView movieLogoUrls) {
-        this.movieLogoUrls = movieLogoUrls;
+    public void setMovielogos(List<MovieLogos> movielogos) {
+        this.movielogos = movielogos;
     }
-
-
 
     // getters and setters for singular objects
     public String getDirector() {
@@ -132,13 +131,13 @@ public class MovieDetailsView {
         this.overview = overview;
     }
 
-//    public Float getPopularity() {
-//        return popularity;
-//    }
-//
-//    public void setPopularity(Float popularity) {
-//        this.popularity = popularity;
-//    }
+    public Float getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Float popularity) {
+        this.popularity = popularity;
+    }
 
     public String getPosterPath() {
         return posterPath;

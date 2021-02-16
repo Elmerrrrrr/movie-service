@@ -23,11 +23,14 @@ import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
 
+import netflixclone.NetflixAssignment.view.searchResultsView.searchActorMovieList.Actor;
+import netflixclone.NetflixAssignment.view.searchResultsView.searchActorMovieList.SearchActorMovieList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -84,11 +87,10 @@ public class MovieService {
     } //done
 
 
-    public MovieLogosView getMovieLogo(int movieId) {
+    public List<MovieLogos> getMovieLogo(int movieId) {
 
         MovieImagesFA dtoImagesFA = fanArtApi.getMovieImages(movieId, api_keyFA);
 
-        MovieLogosView logosView = new MovieLogosView();
         List<MovieLogos> logoList = new ArrayList<>();
         MovieLogos movielogos = new MovieLogos();
 
@@ -115,8 +117,8 @@ public class MovieService {
         }
 
         logoList.add(movielogos);
-        logosView.setMovielogos(logoList);
-        return logosView;
+
+        return logoList;
     }//done
 
 
@@ -218,7 +220,7 @@ public class MovieService {
         //set trailer info if available
         detailsMovieView.setTrailer(getMovieTrailer(movieId));
         //set logo if available
-        detailsMovieView.setMovieLogoUrls(getMovieLogo(movieId));
+        detailsMovieView.setMovielogos(getMovieLogo(movieId));
 
 
 
@@ -241,9 +243,9 @@ public class MovieService {
             randomNr = ((int) (Math.random() * totalAmount));
             randomId = allMoviesObject.getResults().get(randomNr).getId();
 
-        } while (getMovieDetails(randomId).getMovieLogoUrls().getMovielogos().isEmpty() ||
-                 getMovieDetails(randomId).getMovieLogoUrls().getMovielogos().get(0).getUrlHd().equals("notAvailable") ||
-                 getMovieDetails(randomId).getMovieLogoUrls().getMovielogos().get(0).getUrlHd().equals("no (English) HD logo available")
+        } while (getMovieDetails(randomId).getMovielogos().isEmpty() ||
+                 getMovieDetails(randomId).getMovielogos().get(0).getUrlHd().equals("notAvailable") ||
+                 getMovieDetails(randomId).getMovielogos().get(0).getUrlHd().equals("no (English) HD logo available")
                 );
 
         return getMovieDetails(randomId);
@@ -302,10 +304,10 @@ public class MovieService {
             result.setTrailer(detailsMovie.getTrailer());
 
             List<MovieLogos> newLogoList = new ArrayList<>();
-            for (int j = 0; j < detailsMovie.getMovieLogoUrls().getMovielogos().size(); j++) {
+            for (int j = 0; j < detailsMovie.getMovielogos().size(); j++) {
                 MovieLogos logos= new MovieLogos();
-                logos.setUrl(detailsMovie.getMovieLogoUrls().getMovielogos().get(j).getUrl());
-                logos.setUrlHd(detailsMovie.getMovieLogoUrls().getMovielogos().get(j).getUrlHd());
+                logos.setUrl(detailsMovie.getMovielogos().get(j).getUrl());
+                logos.setUrlHd(detailsMovie.getMovielogos().get(j).getUrlHd());
                 newLogoList.add(logos);
             }
             result.setMovieLogos(newLogoList);
@@ -412,11 +414,61 @@ public class MovieService {
 
     /* ------------------Search Request------------------ */
 
-    public SearchResults getSearchResult(String query) {
-        return movieDbApi.getSearchResult(api_keyMD, lang, query);
+    public SearchResults getMovieSearchResults(String query) {
+        return movieDbApi.getMovieSearchResults(api_keyMD, lang, query,"1");
     }
+
+    public SearchResults getActorSearchResults(String query) {
+
+
+        return movieDbApi.getActorSearchResults(api_keyMD, lang, query,"1");
+    }
+
 
     public SearchResults getSearchCompanyResults(String query) {
         return movieDbApi.getSearchCompanyResults(api_keyMD, query);
     }
+
+    public List<Actor> getActorsSearchResultsList(String query){
+
+
+
+        List<Actor> newActorsList = new ArrayList();
+        SearchResults searchResultsActorsP1 = movieDbApi.getActorSearchResults(api_keyMD, lang, query,"1");
+
+        for (int i = 0; i <searchResultsActorsP1.getResults().size() ; i++) {
+
+            Actor actor = new Actor();
+            int actorIdSearch = searchResultsActorsP1.getResults().get(i).getId();
+            actor.setId(actorIdSearch);
+            actor.setName(searchResultsActorsP1.getResults().get(i).getName());
+            actor.setPopularity(searchResultsActorsP1.getResults().get(i).getPopularity());
+
+        //    MoviesByGenre movieResultsByActors = movieDbApi.getMoviesByActors(api_keyMD, lang,sort_by,Integer.toString(actorIdSearch),"1");
+        //    List<MovieDetailsView> movieResultsByActorsList = new ArrayList(movieResultsByActors.getResults().subList(0, movieResultsByActors.getResults().size() > 1 ? movieResultsByActors.getResults().size()/2 :0));
+
+          //  List<MovieDetailsView> movieDetailsResultList = new ArrayList();
+
+//            for (int j = 0; j < movieResultsByActorsList.size(); j++) {
+//
+//                int movieId = movieResultsByActors.getResults().get(j).getId();
+//                MovieDetailsView movieWithDetails = getMovieDetails(movieId);
+//                movieDetailsResultList.add(movieWithDetails);
+//            }
+
+            //actor.setMoviesList(movieDetailsResultList);
+            newActorsList.add(actor);
+        }
+
+
+        newActorsList.sort(Collections.reverseOrder());
+
+
+        return newActorsList;
+
+    }
+
+
+
+
 }

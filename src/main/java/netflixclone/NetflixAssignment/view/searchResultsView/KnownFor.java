@@ -1,5 +1,5 @@
 
-package netflixclone.NetflixAssignment.view.searchResults;
+package netflixclone.NetflixAssignment.view.searchResultsView;
 
 import java.util.List;
 

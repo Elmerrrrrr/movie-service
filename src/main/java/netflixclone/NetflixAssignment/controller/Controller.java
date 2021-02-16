@@ -13,10 +13,12 @@ import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 import netflixclone.NetflixAssignment.service.MovieService;
 
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
+import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 
 import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
+import netflixclone.NetflixAssignment.view.searchResultsView.searchActorMovieList.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -48,6 +50,12 @@ public class Controller {
     @Autowired
     private MovieDbApi movieDbApi;
 
+    // test fallback
+    @GetMapping("/movie/img/{id}")
+    public MovieImagesFA getMovieImg(@PathVariable int id){
+        System.out.println(" ---> Movie images requested from frontend");
+        return fanArtApi.getMovieImg(000 , "123");
+    }
 
 
     // Get images from FanArt
@@ -59,7 +67,7 @@ public class Controller {
 
     // Get images from FanArt
     @GetMapping("/movie/logos/{id}")
-    public MovieLogosView getMovieLogos(@PathVariable int id){
+    public List<MovieLogos>  getMovieLogos(@PathVariable int id){
         System.out.println(" ---> Movie images requested from frontend");
         return movieService.getMovieLogo(id);
     }
@@ -166,10 +174,18 @@ public class Controller {
     /* ------------------Search Request------------------ */
 
     // Search movie request from frontend
-    @GetMapping("/search/{query}")
-    public SearchResults getSearchResult(@PathVariable String query){
-        System.out.println(" ---> Search request from frontend");
-        return movieService.getSearchResult(query);
+    @GetMapping("/search/movie/{query}")
+    public SearchResults getMovieSearchResults(@PathVariable String query){
+        System.out.println(" ---> Search movie request from frontend");
+        return movieService.getMovieSearchResults(query);
+    }
+
+
+    // Search actor request from frontend
+    @GetMapping("/search/actors/{query}")
+    public List<Actor> getActorsSearchResults(@PathVariable String query){
+        System.out.println(" ---> Search actor request from frontend");
+        return movieService.getActorsSearchResultsList(query);
     }
 
     // Search company request from frontend

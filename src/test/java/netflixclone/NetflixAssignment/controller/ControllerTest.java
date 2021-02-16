@@ -81,21 +81,20 @@ public class ControllerTest {
     @Test
     void getMovieLogos() {
 
-        MovieLogosView movieTestObj = new MovieLogosView();
         List<MovieLogos> logoList= new ArrayList<>();
         MovieLogos logos = new MovieLogos();
 
         logos.setUrl("http:///550.com");
         logos.setUrlHd("http:///550.com");
         logoList.add(logos);
-        movieTestObj.setMovielogos(logoList);
 
 
-        when(movieService.getMovieLogo(550)).thenReturn(movieTestObj);
 
-        MovieLogosView returnCheckObj = controller.getMovieLogos(550);
-        assertEquals(movieTestObj.getMovielogos().get(0).getUrl(), returnCheckObj.getMovielogos().get(0).getUrl());
-        assertEquals(movieTestObj.getMovielogos().get(0).getUrlHd(), returnCheckObj.getMovielogos().get(0).getUrlHd());
+        when(movieService.getMovieLogo(550)).thenReturn(logoList);
+
+        List<MovieLogos> returnCheckObj = controller.getMovieLogos(550);
+        assertEquals(logoList.get(0).getUrl(), returnCheckObj.get(0).getUrl());
+        assertEquals(logoList.get(0).getUrlHd(), returnCheckObj.get(0).getUrlHd());
 
     }
 
@@ -292,7 +291,7 @@ public class ControllerTest {
     }
 
     @Test
-    void getSearchResult() {
+    void getMovieSearchResults() {
 
         SearchResults movieTestObj = new SearchResults();
         List<ResultSearchItem> newTestList = new ArrayList<>();
@@ -303,8 +302,8 @@ public class ControllerTest {
         newTestList.add(resultSearch);
         movieTestObj.setResults(newTestList);
 
-        when(movieService.getSearchResult("123")).thenReturn(movieTestObj);
-        SearchResults returnCheckObj = controller.getSearchResult("123");
+        when(movieService.getMovieSearchResults("123")).thenReturn(movieTestObj);
+        SearchResults returnCheckObj = controller.getMovieSearchResults("123");
         assertEquals(movieTestObj.getTotalResults(), returnCheckObj.getTotalResults());
         assertEquals(movieTestObj.getTotalPages(), returnCheckObj.getTotalPages());
         assertEquals(movieTestObj.getPage(), returnCheckObj.getPage());
