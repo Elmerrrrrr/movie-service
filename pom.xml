@@ -59,8 +59,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
-
 	</dependencies>
 
 	<dependencyManagement>
@@ -73,9 +71,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
-
-
 
 		</dependencies>
 	</dependencyManagement>
@@ -112,6 +107,7 @@
 							<mainClass>netflixclone.NetflixAssignment.NetflixAssignmentApplication</mainClass>
 						</manifest>
 					</archive>
+<!--					<finalName>Backend_Netflix_Clone-Tm2-©2021-V</finalName>-->
 				</configuration>
 			</plugin>
 
