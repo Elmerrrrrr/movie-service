@@ -181,12 +181,21 @@ public class Controller {
     }
 
 
-    // Search actor request from frontend
+    // Search suggestions actor request from frontend
+    @GetMapping("/search/actors/sug/{query}")
+    public List<Actor> getActorsSearchResultsSuggestions(@PathVariable String query){
+        System.out.println(" ---> Search suggestions actor request from frontend");
+        return movieService.getActorsSearchResultsListSuggestion(query);
+    }
+
+    // Search suggestions actor request from frontend
     @GetMapping("/search/actors/{query}")
     public List<Actor> getActorsSearchResults(@PathVariable String query){
         System.out.println(" ---> Search actor request from frontend");
         return movieService.getActorsSearchResultsList(query);
     }
+
+
 
     // Search company request from frontend
     @GetMapping("/search/company/{query}") // company ID (number) is required here
@@ -194,7 +203,6 @@ public class Controller {
         System.out.println(" ---> Search company request from frontend");
         return movieService.getSearchCompanyResults(query);
     }
-
 
 
 

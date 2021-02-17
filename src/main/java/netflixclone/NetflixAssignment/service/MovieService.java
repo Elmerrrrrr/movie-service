@@ -429,8 +429,33 @@ public class MovieService {
         return movieDbApi.getSearchCompanyResults(api_keyMD, query);
     }
 
-    public List<Actor> getActorsSearchResultsList(String query){
 
+
+
+    public List<Actor> getActorsSearchResultsListSuggestion(String query){
+
+        List<Actor> newActorsList = new ArrayList();
+        SearchResults searchResultsActorsP1 = movieDbApi.getActorSearchResults(api_keyMD, lang, query,"1");
+
+        for (int i = 0; i <searchResultsActorsP1.getResults().size() ; i++) {
+
+            Actor actor = new Actor();
+            int actorIdSearch = searchResultsActorsP1.getResults().get(i).getId();
+            actor.setId(actorIdSearch);
+            actor.setName(searchResultsActorsP1.getResults().get(i).getName());
+            actor.setPopularity(searchResultsActorsP1.getResults().get(i).getPopularity());
+            actor.setMoviesList(new ArrayList<>());
+            newActorsList.add(actor);
+        }
+
+        newActorsList.sort(Collections.reverseOrder());
+
+        return newActorsList;
+    }
+
+
+
+    public List<Actor> getActorsSearchResultsList(String query){
 
 
         List<Actor> newActorsList = new ArrayList();
@@ -444,19 +469,19 @@ public class MovieService {
             actor.setName(searchResultsActorsP1.getResults().get(i).getName());
             actor.setPopularity(searchResultsActorsP1.getResults().get(i).getPopularity());
 
-        //    MoviesByGenre movieResultsByActors = movieDbApi.getMoviesByActors(api_keyMD, lang,sort_by,Integer.toString(actorIdSearch),"1");
-        //    List<MovieDetailsView> movieResultsByActorsList = new ArrayList(movieResultsByActors.getResults().subList(0, movieResultsByActors.getResults().size() > 1 ? movieResultsByActors.getResults().size()/2 :0));
+                MoviesByGenre movieResultsByActors = movieDbApi.getMoviesByActors(api_keyMD, lang,sort_by,Integer.toString(actorIdSearch),"1");
+                List<MovieDetailsView> movieResultsByActorsList = new ArrayList(movieResultsByActors.getResults().subList(0, movieResultsByActors.getResults().size() > 1 ? movieResultsByActors.getResults().size()/2 :0));
 
-          //  List<MovieDetailsView> movieDetailsResultList = new ArrayList();
+              List<MovieDetailsView> movieDetailsResultList = new ArrayList();
 
-//            for (int j = 0; j < movieResultsByActorsList.size(); j++) {
-//
-//                int movieId = movieResultsByActors.getResults().get(j).getId();
-//                MovieDetailsView movieWithDetails = getMovieDetails(movieId);
-//                movieDetailsResultList.add(movieWithDetails);
-//            }
+            for (int j = 0; j < movieResultsByActorsList.size(); j++) {
 
-            //actor.setMoviesList(movieDetailsResultList);
+                int movieId = movieResultsByActors.getResults().get(j).getId();
+                MovieDetailsView movieWithDetails = getMovieDetails(movieId);
+                movieDetailsResultList.add(movieWithDetails);
+            }
+
+            actor.setMoviesList(movieDetailsResultList);
             newActorsList.add(actor);
         }
 
