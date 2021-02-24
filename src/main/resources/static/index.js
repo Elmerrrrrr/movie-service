@@ -13,15 +13,15 @@ xmlhttp.open("GET",baseurl + searchQuery,true);
 xmlhttp.onreadystatechange = function() {
 
   if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
-    let results = JSON.parse(xmlhttp.responseText);
-    console.log(results);
+    let resultsActor = JSON.parse(xmlhttp.responseText);
+    console.log(resultsActor);
 
     let tbltop = "";
 
     let main =  "Zoekresultaten voor: \'"+ searchQuery +"\' zijn o.a.: "
-    + results[0].name +", "
-    + results[1].name +", "
-    + results[2].name +"."
+    + resultsActor.results[0].name +", "
+    + resultsActor.results[1].name +", "
+    + resultsActor.results[2].name +"."
     ;
 
     let tblbottom = "";
