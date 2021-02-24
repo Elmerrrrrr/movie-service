@@ -8,6 +8,7 @@ import netflixclone.NetflixAssignment.model.movieGenres.MovieGenres;
 import netflixclone.NetflixAssignment.model.moviesByGenres.MoviesByGenre;
 import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 
+import netflixclone.NetflixAssignment.model.searchResults.searchPeopleView.SearchPeople;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -130,12 +131,17 @@ public interface MovieDbApi {
                                         @RequestParam("page") String pageId
                                         );
 
+    //People search request
+    @GetMapping("search/person")
+    SearchPeople getActorSearchResultsQuery(@RequestParam(value="api_key") String api_key,
+                                            @RequestParam(value="language") String language,
+                                            @RequestParam("query") String query);
+
+
     //Company search request
     @GetMapping("search/company")
     SearchResults getSearchCompanyResults(@RequestParam(value="api_key") String api_key,
                                           @RequestParam("query") String companyId);
-
-
 }
 
 

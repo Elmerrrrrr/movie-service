@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -93,6 +92,7 @@ public class ControllerTest {
         when(movieService.getMovieLogo(550)).thenReturn(logoList);
 
         List<MovieLogos> returnCheckObj = controller.getMovieLogos(550);
+
         assertEquals(logoList.get(0).getUrl(), returnCheckObj.get(0).getUrl());
         assertEquals(logoList.get(0).getUrlHd(), returnCheckObj.get(0).getUrlHd());
 
@@ -282,6 +282,7 @@ public class ControllerTest {
         newTestList.add(movieTestObj);
 
         when(movieService.getMoviesCompany("123")).thenReturn(newTestList);
+
         List<ResultMBG> returnCheckObj = controller.getMoviesCompany("123");
         assertEquals(newTestList.get(0).getDirector(), returnCheckObj.get(0).getDirector());
         assertEquals(newTestList.get(0).getTrailer(), returnCheckObj.get(0).getTrailer());

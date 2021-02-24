@@ -10,6 +10,7 @@ import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 
+import netflixclone.NetflixAssignment.model.searchResults.searchPeopleView.SearchPeople;
 import netflixclone.NetflixAssignment.service.MovieService;
 
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
@@ -18,6 +19,7 @@ import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 
 import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
+import netflixclone.NetflixAssignment.view.searchResultsView.SearchActorResult;
 import netflixclone.NetflixAssignment.view.searchResultsView.searchActorMovieList.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -189,10 +191,21 @@ public class Controller {
     }
 
     // Search suggestions actor request from frontend
-    @GetMapping("/search/actors/{query}")
-    public List<Actor> getActorsSearchResults(@PathVariable String query){
+    @GetMapping("/search/actor/{query}")
+    public SearchPeople getActorsSearchResultsQuery(@PathVariable String query){
         System.out.println(" ---> Search actor request from frontend");
-        return movieService.getActorsSearchResultsList(query);
+        return  movieService.getActorSearchResultsQuery(query);
+    }
+
+    // Search actor query request from frontend
+    @GetMapping("/search/actors/{query}")
+    public SearchActorResult  getActorsSearchResults(@PathVariable String query){
+        System.out.println(" ---> Search actor query request from frontend");
+        List<Actor> newList = movieService.getActorsSearchResultsList(query);
+        SearchActorResult newResults = new SearchActorResult ();
+        newResults.setResults(newList);
+
+        return newResults;
     }
 
 

@@ -13,6 +13,7 @@ import netflixclone.NetflixAssignment.model.moviesTopRated.MoviesTopRated;
 import netflixclone.NetflixAssignment.model.moviesUpcoming.MoviesUpcoming;
 import netflixclone.NetflixAssignment.model.searchResults.SearchResults;
 
+import netflixclone.NetflixAssignment.model.searchResults.searchPeopleView.SearchPeople;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Cast;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
@@ -418,10 +419,8 @@ public class MovieService {
         return movieDbApi.getMovieSearchResults(api_keyMD, lang, query,"1");
     }
 
-    public SearchResults getActorSearchResults(String query) {
-
-
-        return movieDbApi.getActorSearchResults(api_keyMD, lang, query,"1");
+    public SearchPeople getActorSearchResultsQuery(String query) {
+        return movieDbApi.getActorSearchResultsQuery(api_keyMD, lang, query);
     }
 
 
@@ -469,10 +468,10 @@ public class MovieService {
             actor.setName(searchResultsActorsP1.getResults().get(i).getName());
             actor.setPopularity(searchResultsActorsP1.getResults().get(i).getPopularity());
 
-                MoviesByGenre movieResultsByActors = movieDbApi.getMoviesByActors(api_keyMD, lang,sort_by,Integer.toString(actorIdSearch),"1");
-                List<MovieDetailsView> movieResultsByActorsList = new ArrayList(movieResultsByActors.getResults().subList(0, movieResultsByActors.getResults().size() > 1 ? movieResultsByActors.getResults().size()/2 :0));
+            MoviesByGenre movieResultsByActors = movieDbApi.getMoviesByActors(api_keyMD, lang,sort_by,Integer.toString(actorIdSearch),"1");
+            List<MovieDetailsView> movieResultsByActorsList = new ArrayList(movieResultsByActors.getResults().subList(0, movieResultsByActors.getResults().size() > 1 ? movieResultsByActors.getResults().size()/2 :0));
 
-              List<MovieDetailsView> movieDetailsResultList = new ArrayList();
+            List<MovieDetailsView> movieDetailsResultList = new ArrayList();
 
             for (int j = 0; j < movieResultsByActorsList.size(); j++) {
 
@@ -485,12 +484,9 @@ public class MovieService {
             newActorsList.add(actor);
         }
 
-
         newActorsList.sort(Collections.reverseOrder());
 
-
         return newActorsList;
-
     }
 
 

@@ -60,7 +60,10 @@ xmlhttp.onreadystatechange = function() {
 
     let tbltop = "";
 
-    let main =  "Zoekresultaten voor: \'"+ searchQuery +"\' zijn o.a.: "+ results[0].title +".";
+    let main =  "Zoekresultaten voor: \'"+ searchQuery +"\' zijn o.a.: "
+    + results.results[0].title +", "
+    + results.results[1].title +", "
+    + results.results[2].title +".";
 
     let tblbottom = "";
     let tbl = tbltop + main + tblbottom;
