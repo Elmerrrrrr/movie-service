@@ -5,7 +5,6 @@ html, body{
     padding-left: 25px;
     font-family: monospace;
     color:rgb(87, 87, 87);
-
 }
 
 h1, h4{text-align: center;}
@@ -13,7 +12,9 @@ h1, h4{text-align: center;}
 main{flex: 1;}
 
 .search{ padding-left: 40px;}
-#results{ padding-left: 55px;}
+
+#resultsActor, #resultsMovie{
+padding-left: 40px;}
 
 .login{
 display: flex;
@@ -22,9 +23,8 @@ justify-content: center;
 align-items:center;
 width:100%;
 }
-legend{
-    font-weight: bold;
-}
+
+legend{font-weight: bold;}
 
 footer{
     justify-content:center;
