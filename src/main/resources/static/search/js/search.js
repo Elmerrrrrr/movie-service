@@ -54,7 +54,7 @@ function select(element){
     });
    
     icon.onclick = ()=>{
-        webLink = "http://localhost:2021/movies/actor/" + actorId;
+        webLink = "../movies/actor/" + actorId;
         console.log(webLink);
         let newWebLink = webLink.replace(/,/g,'');
         console.log(newWebLink);
@@ -84,7 +84,7 @@ function searchActor(){
  
     console.log(resultsFetch);
 
-    let baseurl = "http://localhost:2021/search/actors/sug/";
+    let baseurl = "../search/actors/sug/";
     let inputBox = document.querySelector("input").value;
     
     let xmlhttp = new XMLHttpRequest();

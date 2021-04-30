@@ -2,7 +2,7 @@
 function searchActor(){
 
 document.getElementById('resultsActor').innerHTML="";
-let baseurl = "http://localhost:2021/search/actors/";
+let baseurl = "../search/actors/";
 let searchQuery = document.getElementById("searchActor").value;
 
 
@@ -44,7 +44,7 @@ xmlhttp.send();
 function searchMovie(){
 
 document.getElementById('resultsMovie').innerHTML="";
-let baseurl = "http://localhost:2021/search/movie/";
+let baseurl = "../search/movie/";
 let searchQuery = document.getElementById("searchMovie").value;
 
 
