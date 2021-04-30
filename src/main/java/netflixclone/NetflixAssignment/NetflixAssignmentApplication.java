@@ -11,5 +11,4 @@ public class NetflixAssignmentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NetflixAssignmentApplication.class, args);
 	}
-
 }

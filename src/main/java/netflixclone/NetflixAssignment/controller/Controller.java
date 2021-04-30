@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class  Controller {
 
@@ -53,11 +53,11 @@ public class  Controller {
     private MovieDbApi movieDbApi;
 
     // test fallback
-    @GetMapping("/movie/img/{id}")
-    public MovieImagesFA getMovieImg(@PathVariable int id){
-        System.out.println(" ---> Movie images requested from frontend");
-        return fanArtApi.getMovieImg(000 , "123");
-    }
+//    @GetMapping("/movie/img/{id}")
+//    public MovieImagesFA getMovieImg(@PathVariable int id){
+//        System.out.println(" ---> Movie images requested from frontend");
+//        return fanArtApi.getMovieImg(000 , "123");
+//    }
 
 
     // Get images from FanArt
