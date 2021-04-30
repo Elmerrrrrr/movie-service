@@ -1,4 +1,4 @@
-# Netflix clone - Final Project - Backend
+# Netflix Clone - Backend
 
 ### Developed with Java, Junit, Spring Boot, Maven, REST API, Feign
 
