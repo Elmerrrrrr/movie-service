@@ -1,9 +1,10 @@
 # Netflix clone - Final Project - Backend
 
-### Developed with Java, Spring Boot, Maven, REST API, Feign
+### Developed with Java, Junit, Spring Boot, Maven, REST API, Feign
 
-<br>
-<img src="https://i.pinimg.com/originals/ae/f3/17/aef3172ae2c0fb181836ec7c490e0d1d.gif" width="300px">
+####Hosted with Docker on Microsoft Azure: <a href="https://netflix-clone-tm2.azurewebsites.net/">See Live</a><br>
+<img src="https://raw.githubusercontent.com/Elmerrrrrr/movie-service/main/src/main/resources/screenshots/backend-server-page.jpg" width="500px">
+
 
 <a href="https://github.com/Elmerrrrrr/movie-frontend">Link to the frontend of this project</a>
 <br>
