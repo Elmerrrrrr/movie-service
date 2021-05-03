@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Backend - NetfllixClone Project 2021 </title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="index3.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <main>
@@ -35,7 +36,7 @@
 <ul><li><a href="/search/company/6125" target="_blank">../search/company/{companyIDNumber}</a></li></ul>
 <br>
    <div class="search">
-    <input type="text" onkeypress="searchActor()" id='searchActor' placeholder='search for actors..' required>
+    <input type="text" onkeyup="searchActor()" id='searchActor' placeholder='search for actors..' required>
     <button  onclick="searchActor()">Search</button>
   </div>
 <br>
@@ -44,7 +45,7 @@
 
 <br>
 <div class="search">
-    <input type="text" onkeypress="searchMovie()" id='searchMovie' placeholder='search for movies..' required>
+    <input type="text" onkeyup="searchMovie()" id='searchMovie' placeholder='search for movies..' required>
     <button  onclick="searchMovie()">Search</button>
 </div>
 <br>

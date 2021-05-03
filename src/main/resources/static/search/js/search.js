@@ -15,11 +15,11 @@ inputBox.onkeyup = (e)=>{
         icon.onclick = ()=>{
             webLink = "" + userData;
             linkTag.setAttribute("href", webLink);
-            console.log(webLink);
+//            console.log(webLink);
             linkTag.click();
         }
         emptyArray = searchActor().filter((data)=>{
-            console.log(data.name);
+//            console.log(data.name);
             //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
             return data.name.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase()); 
         });
@@ -82,11 +82,11 @@ let resultsFetch;
 
 function searchActor(){
  
-    console.log(resultsFetch);
+//    console.log(resultsFetch);
 
     let baseurl = "../search/actors/sug/";
     let inputBox = document.querySelector("input").value;
-    
+
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET",baseurl + inputBox,true);
     
@@ -94,7 +94,7 @@ function searchActor(){
     
       if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
         resultsFetch = JSON.parse(xmlhttp.responseText);
-        console.log(resultsFetch);
+//        console.log(resultsFetch);
       }
     };
     xmlhttp.send();

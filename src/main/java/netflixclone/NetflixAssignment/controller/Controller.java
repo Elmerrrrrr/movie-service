@@ -199,7 +199,7 @@ public class  Controller {
 
     // Search actor query request from frontend
     @GetMapping("/search/actors/{query}")
-    public SearchActorResult  getActorsSearchResults(@PathVariable String query){
+    public SearchActorResult getActorsSearchResults(@PathVariable String query){
         System.out.println(" ---> Search actor query request from frontend");
         List<Actor> newList = movieService.getActorsSearchResultsList(query);
         SearchActorResult newResults = new SearchActorResult ();
@@ -207,7 +207,18 @@ public class  Controller {
 
         return newResults;
     }
-
+    
+    // Search actor query request from frontend
+    @GetMapping("/searchfast/actors/{query}")
+    public SearchActorResult getActorsSearchResultsFast(@PathVariable String query){
+        System.out.println(" ---> Search actor query request from frontend");
+        List<Actor> newList = movieService.getActorsSearchResultsFast(query);
+        SearchActorResult newResults = new SearchActorResult ();
+        newResults.setResults(newList);
+        
+        return newResults;
+    }
+    
 
 
     // Search company request from frontend

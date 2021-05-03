@@ -488,8 +488,27 @@ public class MovieService {
 
         return newActorsList;
     }
-
-
+    
+    public List<Actor> getActorsSearchResultsFast(String query){
+    
+        List<Actor> newActorsList = new ArrayList();
+        SearchResults searchResultsActorsP1 = movieDbApi.getActorSearchResults(api_keyMD, lang, query,"1");
+    
+        for (int i = 0; i <searchResultsActorsP1.getResults().size() ; i++) {
+        
+            Actor actor = new Actor();
+            int actorIdSearch = searchResultsActorsP1.getResults().get(i).getId();
+            actor.setId(actorIdSearch);
+            actor.setName(searchResultsActorsP1.getResults().get(i).getName());
+            actor.setPopularity(searchResultsActorsP1.getResults().get(i).getPopularity());
+            newActorsList.add(actor);
+        }
+    
+        newActorsList.sort(Collections.reverseOrder());
+    
+        return newActorsList;
+        
+    }
 
 
 }

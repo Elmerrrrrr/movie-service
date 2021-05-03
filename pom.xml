@@ -12,7 +12,7 @@
 	<artifactId>NetflixAssignment </artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>NetflixAssignment </name>
-	<description>A Netflix clone. Final assignment.</description>
+	<description>Netflix Clone</description>
 
 	<properties>
 		<java.version>11</java.version>
