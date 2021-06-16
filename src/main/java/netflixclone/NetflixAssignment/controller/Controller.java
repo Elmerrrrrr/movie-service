@@ -1,6 +1,5 @@
 package netflixclone.NetflixAssignment.controller;
 
-
 import netflixclone.NetflixAssignment.feignclient.FanArtApi;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
@@ -15,7 +14,6 @@ import netflixclone.NetflixAssignment.service.MovieService;
 
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
-import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 
 import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
@@ -52,13 +50,6 @@ public class  Controller {
     @Autowired
     private MovieDbApi movieDbApi;
 
-    // test fallback
-//    @GetMapping("/movie/img/{id}")
-//    public MovieImagesFA getMovieImg(@PathVariable int id){
-//        System.out.println(" ---> Movie images requested from frontend");
-//        return fanArtApi.getMovieImg(000 , "123");
-//    }
-
 
     // Get images from FanArt
     @GetMapping("/movie/images/{id}")
@@ -91,7 +82,6 @@ public class  Controller {
     }
 
 
-
     // Single movie detail request from frontend
     @GetMapping("/movie/details/{movieId}")
     public MovieDetailsView getMovieDetails(@PathVariable int movieId){
@@ -106,7 +96,6 @@ public class  Controller {
         System.out.println(" ---> Random top movie requested from frontend");
         return movieService.getRandomBannerMovie();
     }
-
 
 
     /* ------------------Genre Requests------------------ */
@@ -172,7 +161,6 @@ public class  Controller {
     }
 
 
-
     /* ------------------Search Request------------------ */
 
     // Search movie request from frontend
@@ -181,7 +169,6 @@ public class  Controller {
         System.out.println(" ---> Search movie request from frontend");
         return movieService.getMovieSearchResults(query);
     }
-
 
     // Search suggestions actor request from frontend
     @GetMapping("/search/actors/sug/{query}")
@@ -204,7 +191,6 @@ public class  Controller {
         List<Actor> newList = movieService.getActorsSearchResultsList(query);
         SearchActorResult newResults = new SearchActorResult ();
         newResults.setResults(newList);
-
         return newResults;
     }
     
@@ -215,19 +201,13 @@ public class  Controller {
         List<Actor> newList = movieService.getActorsSearchResultsFast(query);
         SearchActorResult newResults = new SearchActorResult ();
         newResults.setResults(newList);
-        
         return newResults;
     }
-    
-
 
     // Search company request from frontend
     @GetMapping("/search/company/{query}") // company ID (number) is required here
-    public SearchResults getSearchCompanyResults(@PathVariable String query){ //update return type!
+    public SearchResults getSearchCompanyResults(@PathVariable String query){
         System.out.println(" ---> Search company request from frontend");
         return movieService.getSearchCompanyResults(query);
     }
-
-
-
 }

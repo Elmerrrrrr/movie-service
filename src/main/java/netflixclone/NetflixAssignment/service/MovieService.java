@@ -1,6 +1,5 @@
 package netflixclone.NetflixAssignment.service;
 
-
 import netflixclone.NetflixAssignment.feignclient.FanArtApi;
 import netflixclone.NetflixAssignment.feignclient.MovieDbApi;
 
@@ -18,14 +17,12 @@ import netflixclone.NetflixAssignment.view.movieDetailsView.Cast;
 import netflixclone.NetflixAssignment.view.movieDetailsView.Genre;
 import netflixclone.NetflixAssignment.view.movieDetailsView.MovieDetailsView;
 import netflixclone.NetflixAssignment.view.movieDetailsView.ProductionCompany;
-import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogosView;
 import netflixclone.NetflixAssignment.view.movieImagesFaView.MovieLogos;
 import netflixclone.NetflixAssignment.view.movieTrailerView.MovieTrailerView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.MoviesByGenreView;
 import netflixclone.NetflixAssignment.view.moviesByGenreView.ResultMBG;
 
 import netflixclone.NetflixAssignment.view.searchResultsView.searchActorMovieList.Actor;
-import netflixclone.NetflixAssignment.view.searchResultsView.searchActorMovieList.SearchActorMovieList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -38,7 +35,6 @@ import java.util.List;
 @Service
 public class MovieService {
 
-
     private final String lang = "en-US";
     private final String include_adult = "false";
     private final String with_original_language = "en";
@@ -50,9 +46,6 @@ public class MovieService {
     private String lte = "";
     private String actorId = "";
     private String companyId = "";
-
-
-
 
 
     @Value("${tmdb.api_key}")
@@ -69,77 +62,54 @@ public class MovieService {
     private FanArtApi fanArtApi;
 
 
-
     public String getMovieTrailer(int movieId){
 
         MovieTrailer dtoTrailer = movieDbApi.getMovieTrailer(movieId,api_keyMD,lang);
         MovieTrailerView trailerView = new MovieTrailerView();
 
-            if (dtoTrailer.getResults() == null || dtoTrailer.getResults().size() == 0){
+            if (dtoTrailer.getResults() == null || dtoTrailer.getResults().size() == 0)
                 trailerView.setYoutubeId("not available");
 
-            }
-            else {
-                trailerView.setYoutubeId(dtoTrailer.getResults().get(0).getKey());
-            }
-
+            else trailerView.setYoutubeId(dtoTrailer.getResults().get(0).getKey());
 
         return trailerView.getYoutubeId();
-    } //done
+    }
 
 
     public List<MovieLogos> getMovieLogo(int movieId) {
 
         MovieImagesFA dtoImagesFA = fanArtApi.getMovieImages(movieId, api_keyFA);
-
         List<MovieLogos> logoList = new ArrayList<>();
         MovieLogos movielogos = new MovieLogos();
-
-
 
         if (dtoImagesFA == null  || dtoImagesFA.getHdmovielogo() == null || dtoImagesFA.getHdmovielogo().size() == 0) {
             movielogos.setUrlHd("notAvailable");
             movielogos.setUrl("notAvailable");
         }
         else {
-            if (dtoImagesFA.getMovielogo() != null && dtoImagesFA.getMovielogo().size() == 0 && dtoImagesFA.getMovielogo().get(0).getLang().equals("en")) {
-                movielogos.setUrl(dtoImagesFA.getMovielogo().get(0).getUrl());
-            } else {
-                movielogos.setUrl("no (English) logo available");
-            }
+            if (dtoImagesFA.getMovielogo() != null && dtoImagesFA.getMovielogo().size() != 0 && dtoImagesFA.getMovielogo().get(0).getLang().equals("en"))
+               movielogos.setUrl(dtoImagesFA.getMovielogo().get(0).getUrl());
+            else movielogos.setUrl("no (English) logo available");
 
-
-            if (dtoImagesFA.getHdmovielogo() != null && dtoImagesFA.getHdmovielogo().size() != 0 && dtoImagesFA.getHdmovielogo().get(0).getLang().equals("en")) {
-                movielogos.setUrlHd(dtoImagesFA.getHdmovielogo().get(0).getUrl());
-            } else {
-                movielogos.setUrlHd("no (English) HD logo available");
-            }
-
+            if (dtoImagesFA.getHdmovielogo() != null && dtoImagesFA.getHdmovielogo().size() != 0 && dtoImagesFA.getHdmovielogo().get(0).getLang().equals("en"))
+               movielogos.setUrlHd(dtoImagesFA.getHdmovielogo().get(0).getUrl());
+            else movielogos.setUrlHd("no (English) HD logo available");
         }
-
         logoList.add(movielogos);
-
         return logoList;
-    }//done
-
+    }
 
     public MovieImagesFA getMovieImages(int id) {
-
         return fanArtApi.getMovieImages(id, api_keyFA);
-     } //done
-
+    }
 
     public MoviesTopRated getTopRatedMovies( String pageNr) {
-
         return movieDbApi.getTopRatedMovies(api_keyMD, lang,"en", pageNr);
-    } //done
-
+    }
 
     public MoviesUpcoming getMoviesUpcoming(String pageNr) {
-
         return movieDbApi.getMoviesUpcoming(api_keyMD, lang, pageNr);
-    } //done
-
+    }
 
     /* ------------------Single Movie Requests------------------ */
 
@@ -166,10 +136,7 @@ public class MovieService {
         detailsMovieView.setVoteCount(dtoDetailsMovie.getVoteCount());
         detailsMovieView.setRuntime(dtoDetailsMovie.getRuntime());
 
-
-
         List<Genre> newGenreList = new ArrayList<>();
-
         for (int i = 0; i < dtoDetailsMovie.getGenres().size(); i++) {
 
             Genre genresViewDetailList = new Genre();
@@ -187,10 +154,8 @@ public class MovieService {
                 detailsMovieView.setDirector(dtoDetailsMovie.getCredits().getCrew().get(i).getName());
             }
         }
-        
         //set cast
         List<Cast> newCastList = new ArrayList<>();
-
         for (int i = 0; i < dtoDetailsMovie.getCredits().getCast().size(); i++) {
             Cast cast = new Cast();
            cast.setName(dtoDetailsMovie.getCredits().getCast().get(i).getName());
@@ -202,10 +167,8 @@ public class MovieService {
         //set cast list to max 4 persons
         detailsMovieView.setCast(newCastList.subList(0, dtoDetailsMovie.getCredits().getCast().size() <4 ?0 :4) );
 
-
         //set production companies
         List<ProductionCompany> newProductionCompanyList = new ArrayList<>();
-
         for (int i = 0; i <dtoDetailsMovie.getProductionCompanies().size() ; i++) {
 
             ProductionCompany productionCompanies = new ProductionCompany();
@@ -217,18 +180,12 @@ public class MovieService {
         }
         detailsMovieView.setProductionCompany(newProductionCompanyList);
 
-
         //set trailer info if available
         detailsMovieView.setTrailer(getMovieTrailer(movieId));
         //set logo if available
         detailsMovieView.setMovielogos(getMovieLogo(movieId));
-
-
-
         return detailsMovieView;
-    } //done - finalized
-
-
+    }
 
     public MovieDetailsView getRandomBannerMovie(){
 
@@ -248,12 +205,8 @@ public class MovieService {
                  getMovieDetails(randomId).getMovielogos().get(0).getUrlHd().equals("notAvailable") ||
                  getMovieDetails(randomId).getMovielogos().get(0).getUrlHd().equals("no (English) HD logo available")
                 );
-
         return getMovieDetails(randomId);
-    } //done
-
-
-
+    }
 
     /* ------------------Genre Requests------------------ */
 
@@ -261,26 +214,16 @@ public class MovieService {
         return movieDbApi.getMovieGenres(api_keyMD, lang); //done
     }
 
-
     public MoviesByGenreView getMoviesByGenre(String genreId, String pageNr, boolean category, boolean actor, boolean company) {
 
         MoviesByGenre dtoObject = new MoviesByGenre();
 
-        if (category){
-             dtoObject = movieDbApi.getMoviesCategories(api_keyMD, lang, sort_by, gte, lte, with_original_language, pageNr);
-        }
-        else if (actor){
-             dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, sort_by, actorId, pageNr);
-        }
-        else if (company){
-             dtoObject = movieDbApi.getMoviesByCompany(api_keyMD, lang, sort_by, companyId, pageNr);
-        }
-        else {
-             dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
-        }
+        if (category) dtoObject = movieDbApi.getMoviesCategories(api_keyMD, lang, sort_by, gte, lte, with_original_language, pageNr);
+        else if (actor) dtoObject = movieDbApi.getMoviesByActor(api_keyMD, lang, sort_by, actorId, pageNr);
+        else if (company) dtoObject = movieDbApi.getMoviesByCompany(api_keyMD, lang, sort_by, companyId, pageNr);
+        else dtoObject = movieDbApi.getMoviesByGenre(api_keyMD, genreId, pageNr);
 
         MoviesByGenreView viewObject = new MoviesByGenreView();
-
         List<ResultMBG> newList = new ArrayList<>();
 
         viewObject.setPage(dtoObject.getPage());
@@ -315,101 +258,53 @@ public class MovieService {
             result.setRuntime(detailsMovie.getRuntime());
             result.setDirector(detailsMovie.getDirector());
 
-
             //add result object to the ArrayList
             newList.add(result);
         }
-
         viewObject.setResults(newList);
         return viewObject;
-    } //done - finalized
+    }
 
 
     public List<ResultMBG> getMoviesByGenreList(String genreId, boolean category, boolean actor, boolean company) {
-
         MoviesByGenreView dtoObjectP1 = new MoviesByGenreView();
-        MoviesByGenreView dtoObjectP2 = new MoviesByGenreView();
-
-
-        if(category) {
-             dtoObjectP1 = getMoviesByGenre("", "1", true, false, false);
-             dtoObjectP2 = getMoviesByGenre("", "2", true, false, false);
-        }
-        else if(actor) {
-            dtoObjectP1 = getMoviesByGenre("", "1", false, true, false);
-            dtoObjectP2 = getMoviesByGenre("", "2", false, true, false);
-        }
-        else if(company) {
-            dtoObjectP1 = getMoviesByGenre("", "1", false, false, true);
-            dtoObjectP2 = getMoviesByGenre("", "2", false, false, true);
-        }
-
-        else{
-             dtoObjectP1 = getMoviesByGenre(genreId, "1", false, false, false);
-             dtoObjectP2 = getMoviesByGenre(genreId, "2", false, false, false);
-
-        }
-
-        List<ResultMBG> newList = new ArrayList<ResultMBG>();
-
-
-        for (int i = 0; i < dtoObjectP1.getResults().size(); i++) {
-            newList.add(dtoObjectP1.getResults().get(i));
-        }
-
-
-        for (int i = 0; i < dtoObjectP2.getResults().size(); i++) {
-            newList.add(dtoObjectP2.getResults().get(i));
-        }
-
-
-
-        return newList;
-    } //done - finalized
-
+        if(category) dtoObjectP1 = getMoviesByGenre("", "1", true, false, false);
+        else if(actor) dtoObjectP1 = getMoviesByGenre("", "1", false, true, false);
+        else if(company) dtoObjectP1 = getMoviesByGenre("", "1", false, false, true);
+        else dtoObjectP1 = getMoviesByGenre(genreId, "1", false, false, false);
+        return new ArrayList<ResultMBG>(dtoObjectP1.getResults());
+    }
 
 
     /* ------------------Categories Requests------------------ */
 
     public List<ResultMBG>  getMovies80s() {
-
         gte = "1980-01-01";
         lte = "1989-12-31";
-
         return getMoviesByGenreList("", true, false, false);
     }
 
     public List<ResultMBG> getMovies90s() {
-
         gte = "1990-01-01";
         lte = "1999-12-31";
-
         return getMoviesByGenreList("", true,false, false);
-
     }
 
     public List<ResultMBG> getMovies00s() {
-
         gte = "2000-01-01";
         lte = "2010-12-31";
-
         return getMoviesByGenreList("", true, false, false);
     }
 
     public List<ResultMBG> getMoviesCompany(String companyIdd) {
-
-         companyId = companyIdd;
-
+        companyId = companyIdd;
         return getMoviesByGenreList("", false, false, true);
     }
 
     public List<ResultMBG> getMoviesByActor(String actorrId) {
-
         actorId = actorrId;
-
         return getMoviesByGenreList("", false,true, false);
     }
-
 
 
 
@@ -423,13 +318,9 @@ public class MovieService {
         return movieDbApi.getActorSearchResultsQuery(api_keyMD, lang, query);
     }
 
-
     public SearchResults getSearchCompanyResults(String query) {
         return movieDbApi.getSearchCompanyResults(api_keyMD, query);
     }
-
-
-
 
     public List<Actor> getActorsSearchResultsListSuggestion(String query){
 
@@ -446,16 +337,12 @@ public class MovieService {
             actor.setMoviesList(new ArrayList<>());
             newActorsList.add(actor);
         }
-
         newActorsList.sort(Collections.reverseOrder());
-
         return newActorsList;
     }
 
 
-
     public List<Actor> getActorsSearchResultsList(String query){
-
 
         List<Actor> newActorsList = new ArrayList();
         SearchResults searchResultsActorsP1 = movieDbApi.getActorSearchResults(api_keyMD, lang, query,"1");
@@ -485,7 +372,6 @@ public class MovieService {
         }
 
         newActorsList.sort(Collections.reverseOrder());
-
         return newActorsList;
     }
     
@@ -503,12 +389,7 @@ public class MovieService {
             actor.setPopularity(searchResultsActorsP1.getResults().get(i).getPopularity());
             newActorsList.add(actor);
         }
-    
         newActorsList.sort(Collections.reverseOrder());
-    
         return newActorsList;
-        
     }
-
-
 }
